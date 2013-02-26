@@ -131,24 +131,24 @@ Skills
     -   [JQuery](http://jquery.com/)
     -   Less.js
     -   [Leaflet](http://leafletjs.com/)
-    -   [Selenium]()
+    -   [Selenium](http://docs.seleniumhq.org/)
 
 *   Project Technologies
 
     -   [Ubuntu Server](http://www.ubuntu.com)
     -   [Postgresql](http://www.postgresql.org/)
     -   [Apache](http://www.apache.org/)
-    -   [Mapserver]()
-    -   [TileCache]()
+    -   [Mapserver](http://mapserver.org/)
+    -   [TileCache](http://tilecache.org/)
     -   [RabbitMQ](http://www.rabbitmq.com/)
     -   [Amazon Web Services]() (EC2, S3)
-    -   [Git]()
+    -   [Git](http://git-scm.com/)
 
 *   GIS Tools
 
-    -   CARIS Hydrographic Survey Package
-    -   CARIS Chart Production Package
-    -   ESRI Desktop GIS Package (ArcInfo, ArcView, etc)
+    -   [CARIS Hydrographic Survey Package](http://www.caris.com/)
+    -   [CARIS Chart Production Package](http://www.caris.com/)
+    -   [ESRI Desktop GIS Package (ArcInfo, ArcView, etc)](http://www.esri.com)
     -   [GDAL](http://www.gdal.org/)
     -   [PDAL](http://www.pointcloud.org)
 
