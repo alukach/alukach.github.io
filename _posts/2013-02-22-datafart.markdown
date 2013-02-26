@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DataFarts
+title: DataFarts - Bad Name, Cool Tool
 category: posts
 tags: [command-line-foo]
 ---
