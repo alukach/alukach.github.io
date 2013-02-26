@@ -1,12 +1,12 @@
 ---
-layout: resume
+layout: resume_print
 title: Resum&eacute;
 ---
 
 Anthony Lukach
 ==============
 
-[anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)
+[{{ site.email }}](mailto:{{ site.email }})
 
 ---
 
@@ -129,7 +129,7 @@ Skills
     -   [GeoDjango](http://www.geodjango.com)
     -   [Scrapy](http://www.scrapy.org)
     -   [JQuery](http://jquery.com/)
-    -   [Less.js](http://lesscss.org/)
+    -   Less.js
     -   [Leaflet](http://leafletjs.com/)
     -   [Selenium](http://docs.seleniumhq.org/)
 
@@ -153,6 +153,3 @@ Skills
     -   [PDAL](http://www.pointcloud.org)
 
 ---
-
-**Download**
-[Plaintext](https://raw.github.com/alukach/alukach.github.com/master/resume/index.md)

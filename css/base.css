@@ -258,19 +258,12 @@ ul.pagination {
     text-decoration: none;
   }
 
-
-/*.resume * {
-  margin-left: 25px;
-  line-height: 1em;
-}
-.resume h2 {
-  margin-left: 0;
-}*/
-
 .resume {
   font-size: 0.75em;
-  /*font: 14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
 }
+  .resume h1:first-child {
+    border-bottom: none;
+  }
   .resume ul li {
     list-style-type: none;
     margin-bottom: 1.5em;
