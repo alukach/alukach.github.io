@@ -9,7 +9,7 @@ I'm a GIS Developer / Cartographer / Hydrographer / Open Source celebrant from t
 
 When I'm not in my nerd-cave or at work, you can typically find me walking my dog on a beach in Victoria BC, making curries, or riding my bike.
 
-This blog is primarily intended to be a place for me to post small tips and tricks that I come across while working on projects.  Topics will typically revolved around Open Source tools and the Unix toolchain.  Occasionally, I'll go into greater depth about tools and methods that I am experimenting with at any given time.  At any given rate, I hope that it's as useful for you as it is for me.
+This blog is primarily intended to be a place for me to post small tips and tricks that I come across while working on projects.  Topics will typically revolved around Open Source tools and the Unix toolchain.  Occasionally, I'll go into greater depth about tools and methods that I am experimenting with at any given time.  At any rate, I hope that it's as useful for you as it is for me.
 
 ---
 
