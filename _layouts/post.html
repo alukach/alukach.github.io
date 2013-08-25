@@ -23,6 +23,9 @@ comments: true
 {{ content }}
 
 <hr>
+
+{% include JB/comments %}
+
 <ul class="pagination">
 {% if page.previous %}
   <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Previous</a></li>
@@ -31,7 +34,6 @@ comments: true
   <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &rarr;</a></li>
 {% endif %}
 </ul>
-{% include JB/comments %}
 
 <!-- TODO: bio here -->
 <section class="meta">
