@@ -3,8 +3,6 @@ layout: layout
 title: "Links"
 ---
 
-<!-- You can edit this whole page, remove it, or use it as basis for any non-post pages you have. -->
-
 ## Personal Projects
 
 * [livingcitymap.com](http://www.livingcitymap.com) &mdash; A personal mapping project
