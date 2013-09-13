@@ -27,30 +27,28 @@
 */
 
 @media screen and (min-width: 37.5em) {
-    body {
-        /*padding: 2em 0;*/
-    }
-    blockquote {
+    .resume blockquote {
         top: 10px;
         right: 50px;
         position: absolute;
     }
-    h1 { /* Open up the top section height so we don't collapse on the blockquote */
+    .resume h1 { /* Open up the top section height so we don't collapse on the blockquote */
         margin-top: .5em;
         /*text-transform: uppercase;*/
     }
-    h2 {
+    .resume h2 {
         /*text-transform: uppercase;*/
         /*font-style: italic;*/
     }
-    ol {
+    .resume ol {
         margin: 0 0 0 1em;
     }
-    ol li {
+    .resume ol li {
         width: 50%;
         margin: 0;
     }
-    ol li:nth-child(1), ol li:nth-child(2) {
+    .resume ol li:nth-child(1),
+    .resume ol li:nth-child(2) {
         border-top: none;
     }
 }
@@ -63,47 +61,45 @@
 */
 
 @media screen and (min-width: 57em) {
-    .content {
-        width: 912px;
-    }
     .resume {
+        width: 912px;
         position:relative;
         padding: 40px 50px;
     }
-    blockquote {
+    .resume blockquote {
         top: 40px;
         right: 50px;
         position: absolute;
     }
-    h1 {
+    .resume h1 {
         margin-top: 0;
         font-size: 3em;
         /*text-transform: uppercase;*/
         letter-spacing: 3px;
         font-weight: normal;
     }
-    h2 {
+    .resume h2 {
         /*text-transform: uppercase;*/
         /*font-style: italic;*/
         letter-spacing: 2px;
         font-weight: normal;
     }
 
-    h3 {
+    .resume h3 {
         float: left;
         width: 16%;
     }
 
-    h3+p {
+    .resume h3+p {
         float: left;
         width: 84%;
     }
 
-    ul li {
+    .resume ul li {
         width: 28%;
         float: left;
     }
-    ul dl {
+    .resume ul dl {
         dt {
             font-size: 122%;
             font-weight: normal;
@@ -114,24 +110,26 @@
         }
     }
 
-    ol {
+    .resume ol {
         float: left;
         width: 84%;
         margin: .6em 0 0;
     }
 
-    ol li {
+    .resume ol li {
         width: 33%;
         margin: 0;
     }
-    ol li:nth-child(3n) {
+    .resume ol li:nth-child(3n) {
         width: 34%;
     }
-    ol li:nth-child(1), ol li:nth-child(2), ol li:nth-child(3) {
+    .resume ol li:nth-child(1),
+    .resume ol li:nth-child(2),
+    .resume ol li:nth-child(3) {
         border-top: none;
     }
 
-    dl {
+    .resume dl {
         margin: .5em 0 0;
         dt {
         }
