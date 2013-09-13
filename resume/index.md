@@ -8,9 +8,10 @@ layout: layout
 <h2>Geospatial Web Developer</h2>
 
 <blockquote>
-  <p><a href="mailto:anthony.lukach@gmail.com">anthony.lukach@gmail.com</a><br />
+  <p><span class="buttons"><a class="button" href="alukach.html">Print</a> <a class="button" href="alukach.pdf">PDF</a></span>
+  <a href="mailto:anthony.lukach@gmail.com">anthony.lukach@gmail.com</a><br />
   <a href="http://www.alukach.com">alukach.com</a><br />
-  (425) 405-0654</p>
+  <span class='phone'>(425) 405-0654</span></p>
 </blockquote>
 
 <hr />
@@ -181,9 +182,8 @@ Map and Air Photo Interpretation</p>
 
 <h3 id="footer">Footer</h3>
 
-<p>Anthony Lukach &#8212; <a href="anthony.lukach@gmail.com">anthony.lukach@gmail.com</a> &#8212; <a href="http://www.alukach.com">alukach.com</a> &#8212; (425) 405-0654</p>
+<p>Anthony Lukach &#8212; <a href="mailto:anthony.lukach@gmail.com">anthony.lukach@gmail.com</a> &#8212; <a href="http://www.alukach.com">alukach.com</a> <span class='phone'>&#8212; (425) 405-0654</span></p>
 
 <hr />
 
 </div>
-[Print](alukach.html) | [PDF](alukach.pdf)

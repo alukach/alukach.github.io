@@ -4,9 +4,10 @@ Anthony Lukach
 Geospatial Web Developer
 -------------------------
 
+> <span class="buttons"><a class="button" href="alukach.html">Print</a> <a class="button" href="alukach.pdf">PDF</a></span>
 > [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)  
 > [alukach.com](http://www.alukach.com)  
-> (425) 405-0654  
+> <span class='phone'>(425) 405-0654</span>  
 
 
 ---
@@ -149,6 +150,6 @@ University of Victoria
 
 ### Footer {#footer}
 
-Anthony Lukach -- [anthony.lukach@gmail.com](anthony.lukach@gmail.com) -- [alukach.com](http://www.alukach.com) -- (425) 405-0654  
+Anthony Lukach -- [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com) -- [alukach.com](http://www.alukach.com) <span class='phone'>-- (425) 405-0654</span>  
 
 ------
