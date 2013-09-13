@@ -1,4 +1,16 @@
+.content_area .resume {
+  height: 100%;
+  width: 100%;
+  max-width: 900px;
+  margin: 0;
+  padding: 0;
 
+  border-bottom: none;
+}
+
+.content_area .resume blockquote {
+    top: 0;
+}
 
 .resume {
     position:relative;
@@ -175,6 +187,10 @@
     }
 }
 
+.content_area .resume dl dd {
+    font-size:100%;
+}
+
 
 .resume #footer {
     display: none;
@@ -184,12 +200,4 @@
     width: 100%;
     font-size: 11px;
     text-align: center;
-}
-
-.content_area .resume {
-    padding: 0;
-}
-
-.content_area .resume blockquote {
-    top: 0;
 }
