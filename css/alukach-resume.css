@@ -223,10 +223,7 @@ body.pdf dl em {
   border-bottom:none;
 }
 .content_area .resume blockquote { top:0; }
-.content_area .resume .buttons {
-  display:block;
-  text-align:center;
-}
+.content_area .resume .buttons { display:block; }
 .content_area .resume a.button {
   font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
   color:#ffffff;
