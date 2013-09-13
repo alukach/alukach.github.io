@@ -4,7 +4,7 @@ Anthony Lukach
 Geospatial Web Developer
 -------------------------
 
-> <span class="buttons"><a class="button" href="alukach.html">Print</a> <a class="button" href="alukach.pdf">PDF</a></span>
+> <a class="button" href="alukach.pdf">Download PDF</a>
 > [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)  
 > [alukach.com](http://www.alukach.com)  
 > <span class='phone'>(425) 405-0654</span>  

@@ -12,9 +12,9 @@
     top: 0;
 }
 
-.content_area .resume .buttons {
+/*.content_area .resume .buttons {
     display: block;
-}
+}*/
 .content_area .resume a.button {
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     color: #FFF;
@@ -25,7 +25,7 @@
     line-height: 2.5em;
     min-width: 80px;
     background-color: #666;
-    display: inline-block;
+    display: block;
 }
 .content_area .resume a.button:hover {
     text-decoration: none;
@@ -49,7 +49,7 @@
     text-align: left;
 }
 
-.resume .buttons { display: none;}
+.resume .button { display: none;}
 
 .resume h1,
 .resume h2,
