@@ -111,7 +111,7 @@ Flaxen Geo Consulting
 
 [LivingCityMap](http://www.livingcitymap.com)
 : *Founder / Developer*
-  _http://www.livingcitymap.com_
+  _[http://www.livingcitymap.com](http://www.livingcitymap.com)_
 
   An effort to provide spatial context to events within the Seattle area.
   Spiders are dispatched nightly, extracting events and locations from local 
