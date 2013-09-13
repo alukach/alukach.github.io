@@ -12,6 +12,31 @@
     top: 0;
 }
 
+.content_area .resume .buttons {
+    display: block;
+    text-align: center;
+}
+.content_area .resume a.button {
+    font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
+    color: #FFF;
+    font-weight: normal;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    line-height: 2.5em;
+    min-width: 80px;
+    background-color: #666;
+    display: inline-block;
+}
+.content_area .resume a.button:hover {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.content_area .resume .phone {
+    display:none;
+}
+
 .resume {
     position:relative;
     margin: 0 auto;
@@ -24,6 +49,8 @@
     color: #444;
     text-align: left;
 }
+
+.resume .buttons { display: none;}
 
 .resume h1,
 .resume h2,
