@@ -223,6 +223,27 @@ body.pdf dl em {
   border-bottom:none;
 }
 .content_area .resume blockquote { top:0; }
+.content_area .resume .buttons {
+  display:block;
+  text-align:center;
+}
+.content_area .resume a.button {
+  font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
+  color:#ffffff;
+  font-weight:normal;
+  text-align:center;
+  text-transform:uppercase;
+  margin-bottom:5px;
+  line-height:2.5em;
+  min-width:80px;
+  background-color:#666666;
+  display:inline-block;
+}
+.content_area .resume a.button:hover {
+  text-decoration:none;
+  font-weight:600;
+}
+.content_area .resume .phone { display:none; }
 .resume {
   position:relative;
   margin:0 auto;
@@ -233,6 +254,7 @@ body.pdf dl em {
   color:#444444;
   text-align:left;
 }
+.resume .buttons { display:none; }
 .resume h1, .resume h2, .resume h3, .resume h4, .resume ul dl dt {
   font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
   color:#444444;
