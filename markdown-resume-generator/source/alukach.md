@@ -35,7 +35,7 @@ communication skills and attention to detail.
 ### Technical {#technical}
 
 1. Python
-1. HTMl5
+1. HTML5
 1. GDAL
 1. Django
 1. CSS3
