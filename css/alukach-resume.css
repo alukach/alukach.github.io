@@ -220,7 +220,6 @@ body.pdf dl em {
   border-bottom:none;
 }
 .content_area .resume blockquote { top:0; }
-.content_area .resume .buttons { display:block; }
 .content_area .resume a.button {
   font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
   color:#ffffff;
@@ -231,7 +230,7 @@ body.pdf dl em {
   line-height:2.5em;
   min-width:80px;
   background-color:#666666;
-  display:inline-block;
+  display:block;
 }
 .content_area .resume a.button:hover {
   text-decoration:none;
@@ -248,7 +247,7 @@ body.pdf dl em {
   color:#444444;
   text-align:left;
 }
-.resume .buttons { display:none; }
+.resume .button { display:none; }
 .resume h1, .resume h2, .resume h3, .resume h4, .resume dl dt {
   font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
   color:#444444;
