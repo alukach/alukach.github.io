@@ -214,6 +214,15 @@ body.pdf dl em {
   font-style:normal;
 }
 
+.content_area .resume {
+  height:100%;
+  width:100%;
+  max-width:900px;
+  margin:0;
+  padding:0;
+  border-bottom:none;
+}
+.content_area .resume blockquote { top:0; }
 .resume {
   position:relative;
   margin:0 auto;
@@ -351,14 +360,13 @@ body.pdf dl em {
   margin:.15em 0 .5em;
   font-style:normal;
 }
+.content_area .resume dl dd { font-size:100%; }
 .resume #footer { display:none; }
 .resume #footer + p {
   width:100%;
   font-size:11px;
   text-align:center;
 }
-.content_area .resume { padding:0; }
-.content_area .resume blockquote { top:0; }
 
 @media screen and (min-width: 15em) {
 }

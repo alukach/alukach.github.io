@@ -186,3 +186,4 @@ Map and Air Photo Interpretation</p>
 <hr />
 
 </div>
+[Print](alukach.html) | [PDF](alukach.pdf)
