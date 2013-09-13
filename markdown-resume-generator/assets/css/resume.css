@@ -55,7 +55,7 @@
 .resume h2,
 .resume h3,
 .resume h4,
-.resume ul dl dt {
+.resume dl dt {
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     color: #444;
 }
@@ -202,13 +202,17 @@
         font-size: 80%;
         line-height: 1.4em;
     }
+
+    dd p {
+        margin: 1em 0 1em
+    }
     strong {
         display: block;
     }
     em {
         display: block;
         font-size: 110%;
-        margin: .15em 0 .5em;
+        margin: .15em 0 .25em;
         font-style: normal;
     }
 }

@@ -137,10 +137,7 @@ table {
 }
 
 body.pdf { color:black; }
-body.pdf a {
-  text-decoration:none;
-  color:black;
-}
+body.pdf a { text-decoration:none; }
 body.pdf .resume {
   width:840px;
   margin:0 auto;
@@ -204,7 +201,7 @@ body.pdf ol li {
 }
 body.pdf ol li:nth-child(3n) { width:34%; }
 body.pdf ol li:nth-child(1), body.pdf ol li:nth-child(2), body.pdf ol li:nth-child(3) { border-top:none; }
-body.pdf dl { margin:.7em 0 0; }
+body.pdf dl { margin:.2em 0 0; }
 body.pdf dl strong {
   float:right;
   margin-top:-2em;
@@ -252,7 +249,7 @@ body.pdf dl em {
   text-align:left;
 }
 .resume .buttons { display:none; }
-.resume h1, .resume h2, .resume h3, .resume h4, .resume ul dl dt {
+.resume h1, .resume h2, .resume h3, .resume h4, .resume dl dt {
   font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
   color:#444444;
 }
@@ -372,11 +369,12 @@ body.pdf dl em {
   font-size:80%;
   line-height:1.4em;
 }
+.resume dl dd p { margin:1em 0 1em; }
 .resume dl strong { display:block; }
 .resume dl em {
   display:block;
   font-size:110%;
-  margin:.15em 0 .5em;
+  margin:.15em 0 .25em;
   font-style:normal;
 }
 .content_area .resume dl dd { font-size:100%; }
@@ -455,15 +453,12 @@ body.pdf dl em {
   }
   .resume ol li:nth-child(3n) { width:34%; }
   .resume ol li:nth-child(1), .resume ol li:nth-child(2), .resume ol li:nth-child(3) { border-top:none; }
-  .resume dl { margin:.5em 0 0; }
+  .resume dl { margin:.2em 0 0; }
   .resume dl strong {
     float:right;
     margin-top:-2em;
   }
-  .resume dl em {
-    font-size:130%;
-    font-style:normal;
-  }
+  .resume dl em { font-style:normal; }
 }
 @media screen and (min-width: 118em) {
 }

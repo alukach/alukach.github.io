@@ -3,7 +3,7 @@ body.pdf {
 
     a {
         text-decoration: none;
-        color: black;
+        /*color: black;*/
     }
     .resume {
         width: 840px;
@@ -88,7 +88,7 @@ body.pdf {
     }
 
     dl {
-        margin: .7em 0 0;
+        margin: .2em 0 0;
         dt {
         }
         dd {
