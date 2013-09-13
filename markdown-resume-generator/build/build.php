@@ -54,6 +54,7 @@ if (!isset($options['s'])) {
 $basename     = pathinfo($options['s'], PATHINFO_FILENAME);
 $source       = './' . $options['s'];
 $pdf_source   = './../resume/' . $basename . '-print.html';
+$output_md  = './../resume/index.md';
 $output_html  = './../resume/' . $basename . '.html';
 $output_css   = './../css/' . $basename . '-resume.css';
 $pdf_output   = './../resume/' . $basename . '.pdf';
@@ -68,6 +69,7 @@ $css = new AssetCollection(
 );
 $style = $css->dump();
 
+$jekyll_templt = file_get_contents(APPLICATION_BASE_PATH . '/assets/templates/jekyll_template.html');
 $html_template = file_get_contents(APPLICATION_BASE_PATH . '/assets/templates/default.html');
 $css_template  = file_get_contents(APPLICATION_BASE_PATH . '/assets/templates/resume_style.css');
 $resume        = file_get_contents($source);
@@ -83,8 +85,23 @@ $title = sprintf(
     $html->find('h2', 0)->innertext
 );
 
-// We'll now render the Markdown into an html file with Mustache Templates
 $m = new Mustache;
+
+// We'll now render the Markdown into a file with Mustache Templates
+$rendered_markdown = $m->render(
+    $jekyll_templt,
+    array(
+        'resume' => $resume,
+    )
+);
+// Save the fully rendered markdown to the final destination
+file_put_contents(
+    $output_md,
+    $rendered_markdown
+);
+echo "Wrote markdown to $output_md\n";
+
+// We'll now render the HTML into a file with Mustache Templates
 $rendered_html = $m->render(
     $html_template,
     array(
@@ -95,15 +112,6 @@ $rendered_html = $m->render(
         'reload' => $refresh_dev
     )
 );
-
-// We'll now render the CSS into an css file with Mustache Templates
-$rendered_css = $m->render(
-    $css_template,
-    array(
-        'style'  => $style
-    )
-);
-
 // Save the fully rendered html to the final destination
 file_put_contents(
     $output_html,
@@ -111,12 +119,21 @@ file_put_contents(
 );
 echo "Wrote html to $output_html\n";
 
-// Save the fully rendered html to the final destination
+// We'll now render the CSS into a file with Mustache Templates
+$rendered_css = $m->render(
+    $css_template,
+    array(
+        'style'  => $style
+    )
+);
+// Save the fully rendered css to the final destination
 file_put_contents(
     $output_css,
     $rendered_css
 );
 echo "Wrote css to $output_css\n";
+
+
 
 // If the user wants to make a pdf file, we'll use wkhtmltopdf to convert
 // the html document into a nice looking pdf.
