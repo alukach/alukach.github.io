@@ -25,7 +25,7 @@ communication skills and attention to detail.
 * Back-End Development
   : Experience with MVC architecture, designing and developing data models, views, and supporting rest APIs.
 
-* Front-End Design
+* Front-End Development
   : Strong background in HTML, CSS, Javascript.  Capable of working with a wide array of modern libraries.
 
 * Geospatial Processing
