@@ -259,32 +259,6 @@ ul.pagination {
   }
 
 .resume {
-  font-size: 0.75em;
+  height: 100%;
+  width: 100%;
 }
-  .resume h1:first-child {
-    border-bottom: none;
-  }
-  .resume ul li {
-    list-style-type: none;
-    margin-bottom: 1.5em;
-  }
-    .resume ul li p {
-      /*font-size: 15px;*/
-      margin-bottom: 0;
-      line-height: 1.5em;
-    }
-    .resume ul li a {
-      color: #000;
-      text-decoration: none;
-    }
-    .resume ul li a:hover {
-      text-decoration: underline;
-    }
-      .resume ul li ul {
-        margin-top: 0.25em;
-      }
-        .resume ul li ul li{
-          font-size: 14px;
-          list-style-type: disc;
-          margin-bottom: .25em;
-        }
