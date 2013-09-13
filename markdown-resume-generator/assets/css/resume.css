@@ -1,42 +1,33 @@
-.clearfix {
-  zoom: 1;
-    &:after {
-        display: block;
-        visibility: hidden;
-        height: 0;
-        clear: both;
-        content: ".";
-    }
-}
 
-body {
-    font-family: 'Hoefler Text', Times New Roman, Times, serif;
-    /*color: #444;*/
-}
-h1, h2, h3, h4, ul dl dt {
-    font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
-}
-
-.content {
-    margin: 0 auto;
-    padding: 0;
-    /*background: whiteSmoke;*/
-    border: solid #666;
-    border-width: 8px 0 2px 0;
-    text-align: left;
-}
 
 .resume {
     position:relative;
+    margin: 0 auto;
     padding: 10px 20px;
+    /*background: whiteSmoke;*/
+    border: solid #666;
+    border-width: 8px 0 2px 0;
+
+    font-family: 'Hoefler Text', Times New Roman, Times, serif;
+    color: #444;
+    text-align: left;
 }
 
-a {
-    color: #333;
+.resume h1,
+.resume h2,
+.resume h3,
+.resume h4,
+.resume ul dl dt {
+    font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
+    color: #444;
+}
+
+.resume a {
+    color: #444;
     text-decoration: none;
 }
 
-a:hover {
+.resume a:hover {
     color: #227CE8;
     text-decoration: underline;
 }
@@ -50,13 +41,14 @@ a:hover {
     text-decoration: none;
 }*/
 
-blockquote {
+.resume blockquote {
     margin: 0;
     padding: 0;
     line-height: 1.4em;
+    font-style: normal;
 }
 
-hr {
+.resume hr {
     display: block;
     position: relative;
     padding: 0;
@@ -69,9 +61,11 @@ hr {
     line-height: 0;
     overflow: visible;
     page-break-after: avoid;
+
+    background-image: none;
 }
 
-h1 {
+.resume h1 {
     margin: 0;
     padding: 0;
     font-size: 36px;
@@ -79,7 +73,7 @@ h1 {
     font-weight: normal;
     text-transform: uppercase;
 }
-h2 {
+.resume h2 {
     margin: 0;
     padding: 0;
     font-size: 18px;
@@ -91,7 +85,7 @@ h2 {
     font-style: italic;
 }
 
-h3 {
+.resume h3 {
     margin: 0;
     padding: 0 0 .5em;
     font-size: 150%;
@@ -99,7 +93,7 @@ h3 {
     font-weight: normal;
 }
 
-h3+p {
+.resume h3+p {
     margin: .6em 0 16px;
     padding: 0;
     display: block;
@@ -108,17 +102,17 @@ h3+p {
 }
 
 
-ul {
+.resume ul {
     margin: 0;
     padding: 0;
     list-style: none;
 }
-ul li {
+.resume ul li {
     margin: 0;
     padding: 0;
 }
 
-ul dl {
+.resume ul dl {
     margin: .3em 0 0;
     padding: 0;
     width: 100%;
@@ -133,14 +127,14 @@ ul dl {
     }
 }
 
-ol {
+.resume ol {
     margin: 0;
     padding: 0 0 .75em;
     width: 84%;
     display: inline-block;
 }
 
-ol li {
+.resume ol li {
     margin: 0 0 0 1em;
     padding: 0;
     border-top: 1px solid #CCCCCC;
@@ -150,11 +144,11 @@ ol li {
     line-height: 24px;
     font-size: 14px;
 }
-ol li:nth-child(1) {
+.resume ol li:nth-child(1) {
     border-top: none;
 }
 
-dl {
+.resume dl {
     display: inline-block;
     width: 75%;
     margin: 0;
@@ -179,16 +173,23 @@ dl {
         margin: .15em 0 .5em;
         font-style: normal;
     }
-    
 }
 
 
-#footer {
+.resume #footer {
     display: none;
 }
 
-#footer + p {
+.resume #footer + p {
     width: 100%;
     font-size: 11px;
     text-align: center;
+}
+
+.content_area .resume {
+    padding: 0;
+}
+
+.content_area .resume blockquote {
+    top: 0;
 }
