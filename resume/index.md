@@ -1,6 +1,6 @@
 ---
 layout: layout
-title: "Résumé"
+title: "R&eacute;sum&eacute;"
 ---
 
 <div class="resume">
