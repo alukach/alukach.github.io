@@ -14,6 +14,7 @@ body.pdf {
         text-align: left;
         position:relative;
         padding: 40px 80px;
+        color: #000;
     }
 
 /*    .resume {
@@ -88,7 +89,7 @@ body.pdf {
     }
 
     dl {
-        margin: .2em 0 0;
+        margin: .2em 0 .2em;
         dt {
         }
         dd {
