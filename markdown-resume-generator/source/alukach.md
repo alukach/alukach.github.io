@@ -23,7 +23,7 @@ communication skills and attention to detail.
 ### Skills {#skills}
 
 * Back-End Development
-  : Experience with MVC architecture, designing and developing data models, views, and supporting rest APIs.
+  : Experience with MVC architecture, designing and developing data models, views, and supporting RESTful APIs.
 
 * Front-End Development
   : Strong background in HTML, CSS, Javascript.  Capable of working with a wide array of modern libraries.
