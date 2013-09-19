@@ -5,7 +5,9 @@ title: "Links"
 
 ## Personal Projects
 
-* [livingcitymap.com](http://www.livingcitymap.com) &mdash; A personal mapping project
+* [livingcitymap.com](http://www.livingcitymap.com) &mdash; A personal mapping project.
+
+* [VectorFormats Mod](/vectorformats_mod) &mdash; A GeoJSON serializer for Django models, capable of spanning relationships.
 
 * [allthingsdope.com](http://www.allthingsdope.com) &mdash; A foray into Wordpress Template design / a lighthearded blog designed to hold playlists.
 
