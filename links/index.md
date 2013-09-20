@@ -9,6 +9,8 @@ title: "Links"
 
 * [VectorFormats Mod](/vectorformats_mod) &mdash; A GeoJSON serializer for Django models, capable of spanning relationships.
 
+* [.mySetup](/.mySetup) &mdash; A set of scripts designed to make your Bash/Python/Git experience as pleasurable as possible.
+
 * [allthingsdope.com](http://www.allthingsdope.com) &mdash; A foray into Wordpress Template design / a lighthearded blog designed to hold playlists.
 
 ## Organizations
