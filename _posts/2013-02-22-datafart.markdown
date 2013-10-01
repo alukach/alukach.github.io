@@ -17,7 +17,7 @@ One of which was [DataFart](http://www.datafart.com).  Okay, it's a bad name.  A
 
 into this:
 
-![DataFart's Example Image](http://www.datafart.com/static/screenshot.png)  
+![DataFart's Example Image](http://datafart.com/static/screenshot.png)  
 
 
 Best off, it's really nothing more than a terminal command:
