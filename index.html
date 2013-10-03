@@ -3,10 +3,25 @@ layout: content
 title: "Posts"
 ---
 
-  <ul class="listing">
-    {% for post in site.posts %}
-    <li>
-      <span>{{ post.date | date: "%B %e, %Y" }}</span> <a href="{{ post.url }}">{{ post.title }}</a>
-    </li>
-    {% endfor %}
-  </ul>
+{% for post in site.posts %}
+    <h1>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </h1>
+
+    <section class="byline">
+      {{ post.date | date: "%B %e, %Y" }}
+      {% unless post.tags == empty %}
+      {% if post.tags %}
+        <ul class="tag_box">
+        {% assign tags_list = post.tags %}
+        {% include JB/tags_list %}
+        </ul>
+      {% endif %}
+    {% endunless %}
+    </section>
+
+    {{ post.content }}
+
+    <br />
+
+{% endfor %}
