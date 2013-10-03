@@ -9,7 +9,7 @@ At last week's [CUGOS][cugos], [Aaron Racicot][racicot] showed off a few cool th
 
 One of which was [DataFart](http://www.datafart.com).  Okay, it's a bad name.  A horrible name.  But it's actually a pretty great idea and so easy to set up.  In the site's own words, "DataFart lets you easily graph data from the command line." It's essentially an API end-point to pipe your data to.  It returns a URL which presents your data graphed via [D3.js](http://d3js.org/), turning this:
 
-{% highlight bash linenos=table%}
+{% highlight bash%}
 1.0 2.61 3.1
 1.2 2.11 4.8
 2.1 3.40 5.2
