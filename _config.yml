@@ -14,7 +14,8 @@ github: alukach
 email: anthonylukach@gmail.com
 gravatar_url: http://gravatar.com/avatar/f027dc4105248fc3b10e70f4bdc4d25f
 
-
+paginate: 4
+paginate_path: "posts/:num"
 
 # All Jekyll-Bootstrap specific configurations are namespaced into this hash
 #
@@ -58,8 +59,8 @@ JB :
   # These paths are to the main pages Jekyll-Bootstrap ships with.
   # Some JB helpers refer to these paths; change them here if needed.
   #
-  archive_path: /archive.html
-  categories_path : /categories.html
+  # archive_path: /archive.html
+  # categories_path : /categories.html
   tags_path : /tags/
 
   # Settings for comments helper
@@ -70,15 +71,15 @@ JB :
     provider : disqus
     disqus :
       short_name : alukach
-    livefyre :
-      site_id : 123
-    intensedebate :
-      account : 123abc
-    facebook :
-      appid : 123
-      num_posts: 5
-      width: 580
-      colorscheme: light
+    # livefyre :
+    #   site_id : 123
+    # intensedebate :
+    #   account : 123abc
+    # facebook :
+    #   appid : 123
+    #   num_posts: 5
+    #   width: 580
+    #   colorscheme: light
 
   # Settings for analytics helper
   # Set 'provider' to the analytics provider you want to use.

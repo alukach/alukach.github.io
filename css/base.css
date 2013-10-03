@@ -274,3 +274,23 @@ ul.pagination {
     text-transform: lowercase;
     text-decoration: none;
   }
+
+#post-pagination {
+  text-align: center;
+}
+#post-pagination p {
+  display: inline;
+}
+#post-pagination ul.pages {
+  display: inline;
+  padding: 0 25px;
+}
+#post-pagination li.page {
+  display: inline;
+  padding: 0 9px 0 10px;
+  border-left: 1px solid #333;
+  /*border-right/: 1px solid #333;*/
+}
+#post-pagination li.page:first-child {
+  border: none;
+}
