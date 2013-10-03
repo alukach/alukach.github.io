@@ -3,7 +3,7 @@ layout: content
 title: "About"
 ---
 
-## Welcome to my little part of the internet.
+# Welcome to my little part of the internet.
 
 I'm a GIS Developer / Cartographer / Hydrographer / Open Source celebrant from the Northwest of the United States.  I'm currently employed with [OneOcean Corporation](http://www.oneoceancorp.com), a Seattle-based ocean data startup.  While my professional background lies mainly with ocean data, I'm a lover of all types of spatial data.  I maintain and occasionally develop the [LivingCityMap](http://www.livingcitymap.com), an effort spatially index all things happening in Seattle's events.  I get my fix of what's new and fresh from Seattle's so-very-active OSGeo chapter, [CUGOS](http://www.cugos.org).
 

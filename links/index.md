@@ -1,7 +1,9 @@
 ---
-layout: layout
+layout: content
 title: "Links"
 ---
+
+# Links
 
 ## Personal Projects
 
