@@ -13,4 +13,4 @@ This blog is primarily intended to be a place for me to post small tips and tric
 
 ---
 
-![My Bike](/images/bike.gif)
+![My Bike](/images/about/bike.gif)
