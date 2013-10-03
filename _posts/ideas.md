@@ -8,3 +8,9 @@
 * Vector Formats mod
 * Sublime Text 2 add-ons
 * VPN + openwrt
+
+* Github Calendar
+    - How to work around CORS
+        - How to use Yahoo Query Language
+        - Other options for servers that work around CORS (why I did use them due to trust reasons)
+    - How to use D3.js
