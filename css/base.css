@@ -109,15 +109,16 @@ hr {
     color: #111;
     text-decoration: none; }
   .content h1 {
-    /*font-size: 36px;*/
     font-size: 3em;
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
+    font-weight: lighter;
     letter-spacing: 3px;
     text-transform: uppercase;
     margin: 18px 0 5px 0; }
   .content h2 {
     font-size: 18px;
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
+    font-weight: lighter;
     letter-spacing: 2px;
     text-transform: uppercase;
     margin-bottom: 15px; }
