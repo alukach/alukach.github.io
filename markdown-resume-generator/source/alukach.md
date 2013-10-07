@@ -1,7 +1,7 @@
 Anthony Lukach
 ==============
 
-Computer Systems Analyst
+Geospatial Web Developer
 -------------------------
 
 > <a class="button" href="alukach.pdf" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
@@ -14,19 +14,21 @@ Computer Systems Analyst
 
 ### Summary {#profile}
 
-Full-stack systems analyst familiar with an array of front-end and back-end tooling.  Strong experience with implementations of open-source technologies.  Specialized in developing web mapping and geospatial analytic platforms.
+Full-stack web developer familiar with an array of front-end and back-end methods.  Experienced in
+development on open-source stacks. Specialized in web mapping and geospatial data processing. Excellent
+communication skills and attention to detail.
 
 ------
 
 ### Skills {#skills}
 
-* Back-End Systems
+* Back-End Development
   : Experience with MVC architecture, designing and developing data models, views, and supporting RESTful APIs.
 
-* Front-End Systems
+* Front-End Development
   : Strong background in HTML, CSS, Javascript.  Capable of working with a wide array of modern libraries.
 
-* Geospatial Systems
+* Geospatial Processing
   : Capable of sourcing, processing, and visualizing large and varying datasets.
 
 -------

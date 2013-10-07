@@ -6,7 +6,7 @@ title: "R&eacute;sum&eacute;"
 <div class="resume">
     <h1>Anthony Lukach</h1>
 
-<h2>Computer Systems Analyst</h2>
+<h2>Geospatial Web Developer</h2>
 
 <blockquote>
   <p><a class="button" href="alukach.pdf" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
@@ -19,7 +19,9 @@ title: "R&eacute;sum&eacute;"
 
 <h3 id="profile">Summary</h3>
 
-<p>Full-stack systems analyst familiar with an array of front-end and back-end tooling.  Strong experience with implementations of open-source technologies.  Specialized in developing web mapping and geospatial analytic platforms.</p>
+<p>Full-stack web developer familiar with an array of front-end and back-end methods.  Experienced in
+development on open-source stacks. Specialized in web mapping and geospatial data processing. Excellent
+communication skills and attention to detail.</p>
 
 <hr />
 
@@ -27,15 +29,15 @@ title: "R&eacute;sum&eacute;"
 
 <ul>
 <li><dl>
-<dt>Back-End Systems</dt>
+<dt>Back-End Development</dt>
 <dd>Experience with MVC architecture, designing and developing data models, views, and supporting RESTful APIs.</dd>
 </dl></li>
 <li><dl>
-<dt>Front-End Systems</dt>
+<dt>Front-End Development</dt>
 <dd>Strong background in HTML, CSS, Javascript.  Capable of working with a wide array of modern libraries.</dd>
 </dl></li>
 <li><dl>
-<dt>Geospatial Systems</dt>
+<dt>Geospatial Processing</dt>
 <dd>Capable of sourcing, processing, and visualizing large and varying datasets.</dd>
 </dl></li>
 </ul>
