@@ -1,3 +1,7 @@
+body {
+  width: 100%
+}
+
 .sidebar {
   position: inherit;
   width: inherit;
