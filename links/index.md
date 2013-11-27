@@ -7,6 +7,8 @@ title: "Links"
 
 ## Personal Projects
 
+* [django_hstore](http://www.alukach.com/django-hstore) &mdash; A fork of `django-hstore` to support automatic JSON serialization of dictionary values.
+
 * [livingcitymap.com](http://www.livingcitymap.com) &mdash; A personal mapping project.
 
 * [VectorFormats Mod](/vectorformats_mod) &mdash; A GeoJSON serializer for Django models, capable of spanning relationships.
