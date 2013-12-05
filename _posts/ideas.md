@@ -14,3 +14,7 @@
         - How to use Yahoo Query Language
         - Other options for servers that work around CORS (why I did use them due to trust reasons)
     - How to use D3.js
+
+* Deploying GeoDjango to Heroku (https://github.com/cirlabs/heroku-buildpack-geodjango)
+* SublimeText2 Setup
+* Macbook Setup
