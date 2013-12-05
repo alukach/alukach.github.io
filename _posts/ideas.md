@@ -18,7 +18,7 @@
 * Deploying GeoDjango to Heroku (https://github.com/cirlabs/heroku-buildpack-geodjango)
 * SublimeText2 Setup
     - User Preferences
-        - Gist https://gist.github.com/alukach/7813650
+        - Gist https://gist.github.com/alukach/7813650 / {% gist 7813650 %}
     - Must-have Plugins
         - Package Control (https://sublime.wbond.net/installation)
         - Githubinator
