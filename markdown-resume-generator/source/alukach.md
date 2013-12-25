@@ -5,9 +5,9 @@ Geospatial Web Developer
 -------------------------
 
 > <a class="button" href="alukach.pdf" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
-> [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)  
-> [alukach.com](http://www.alukach.com)  
-> <span class='phone'>(425) 405-0654</span>  
+> [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)
+> [alukach.com](http://www.alukach.com)
+> <span class='phone'>(425) 405-0654</span>
 
 
 ---
@@ -52,16 +52,24 @@ communication skills and attention to detail.
 
 ### Experience {#experience}
 
+
+[Osprey Informatics](http://www.ospreyinformatics.com/)
+: *Senior Software Developer / Geomatics Computer Systems Analyst*
+  _October 2013 - Present_
+  _Calgary, AB_
+
+  Developed backend system for a visual intelligence platform to monitor remote assets.
+
 [OneOcean Corporation](https://www.oneoceancorp.com)
 : *GIS Software Developer*
-  _April 2012 - Present_
+  _April 2012 - October 2013_
   _Seattle, WA_
 
-  Assisted in the complete rewrite of cloud-based SAAS platform, taking code from 
-  conceptualization to deployment. 
+  Assisted in the complete rewrite of cloud-based SAAS platform, taking code from
+  conceptualization to deployment.
   Worked on all aspects of the project's development, including front-end design,
-  back-end development, API design, database administration duties, server 
-  configuration, and data processing. 
+  back-end development, API design, database administration duties, server
+  configuration, and data processing.
   Supported and developed undocumented legacy beta site.
 
 Flaxen Geo Consulting
@@ -77,13 +85,13 @@ Flaxen Geo Consulting
 
 [National Oceanic and Atmospheric Administration](http://www.noaa.gov)
 : *Pacific Hydrographic Branch, [Office of Coast Survey](http://www.nauticalcharts.noaa.gov/)*
-  *Hydrographer / Cartographer* 
+  *Hydrographer / Cartographer*
   _July 2008 - July 2011_
   _Seattle, WA_
 
   Performed data acquisition in field, working closely with otherís aboard
   hydrographic survey vessels.  Field projects included Deepwater Horizon
-  Spill, system shake-down along California coast, and general bathymetric 
+  Spill, system shake-down along California coast, and general bathymetric
   surveying in coastal Alaska and Washington.
   Refined and coupled data with positional and environmental correctors,
   insuring that quality met federal and international standards.
@@ -114,9 +122,9 @@ Flaxen Geo Consulting
   _[http://www.livingcitymap.com](http://www.livingcitymap.com)_
 
   An effort to provide spatial context to events within the Seattle area.
-  Spiders are dispatched nightly, extracting events and locations from local 
-  weeklies.  Each event's location is run through a geocoder, and then entered 
-  with event into a database.  API end-point returns GeoJSON serialization of 
+  Spiders are dispatched nightly, extracting events and locations from local
+  weeklies.  Each event's location is run through a geocoder, and then entered
+  with event into a database.  API end-point returns GeoJSON serialization of
   events based on supplied queries.
   Developed with GeoDjango, Scrapy, Leaflet.
 
@@ -130,9 +138,9 @@ Seattle Central Community College
   _Seattle, WA_
 
   Related coursework:
-  Javascript, 
-  C#.NET, 
-  HTML5 / CSS3 
+  Javascript,
+  C#.NET,
+  HTML5 / CSS3
 
 University of Victoria
 : *Bachelor of Science, Geography*
@@ -150,6 +158,6 @@ University of Victoria
 
 ### Footer {#footer}
 
-Anthony Lukach -- [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com) -- [alukach.com](http://www.alukach.com) <span class='phone'>-- (425) 405-0654</span>  
+Anthony Lukach -- [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com) -- [alukach.com](http://www.alukach.com) <span class='phone'>-- (425) 405-0654</span>
 
 ------
