@@ -5,8 +5,8 @@ Geospatial Web Developer
 -------------------------
 
 > <a class="button" href="alukach.pdf" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
-> [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)
-> [alukach.com](http://www.alukach.com)
+> [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)<br />
+> [alukach.com](http://www.alukach.com)<br />
 > <span class='phone'>(403) 804-2128</span>
 
 
