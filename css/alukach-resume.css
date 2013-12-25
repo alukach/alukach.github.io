@@ -149,6 +149,7 @@ body.pdf .resume {
   padding:40px 80px;
   color:#000000;
 }
+body.pdf .resume a { color:black; }
 body.pdf a[href$='.pdf'] { display:none; }
 body.pdf h1 {
   letter-spacing:0;

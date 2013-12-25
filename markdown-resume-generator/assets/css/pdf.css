@@ -17,9 +17,9 @@ body.pdf {
         color: #000;
     }
 
-/*    .resume {
-        position:relative;
-    }*/
+    .resume a {
+        color: black;
+    }
 
     a[href$='.pdf'] {
         display: none;
