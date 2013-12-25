@@ -93,10 +93,12 @@ Flaxen Geo Consulting
   hydrographic survey vessels.  Field projects included Deepwater Horizon
   Spill, system shake-down along California coast, and general bathymetric
   surveying in coastal Alaska and Washington.
+
   Refined and coupled data with positional and environmental correctors,
   insuring that quality met federal and international standards.
   Compiled gathered data into charts while maintaining data accuracy and c
   hart aesthetics.
+
   Developed multiple custom spreadsheets and scripting solutions to
   streamline the survey QC process and assist with in-office metrics
   assessments.  These incorporated a mix of SQL queries, VBA language,
