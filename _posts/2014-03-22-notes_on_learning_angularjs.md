@@ -12,4 +12,3 @@ Here is a quick dump of some of the better resources that I came across while le
 [egghead.io's AngularJS series by John Lindquist](https://www.youtube.com/playlist?list=PLP6DbQBkn9ymGQh2qpk9ImLHdSH5T7yw7) - Excellently cut up into discrete segments to to cover fundamentals.
 
 [Introduction to AngularJS](https://www.youtube.com/watch?v=8ILQOFAgaXE) - First in a series of developing an Angular app. Then watch [End to End](End to End with Angular JS), [Security](https://www.youtube.com/watch?v=18ifoT-Id54&list=UU8TXEl4mrSZ4BVOkOJdhXQA), [Frontend Workflows](https://www.youtube.com/watch?v=fSAgFxjFSqY&list=UU8TXEl4mrSZ4BVOkOJdhXQA), [Testing](https://www.youtube.com/watch?v=UYVcY9EJcRs&list=UU8TXEl4mrSZ4BVOkOJdhXQA)
-
