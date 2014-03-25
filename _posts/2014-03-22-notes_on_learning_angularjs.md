@@ -5,7 +5,7 @@ category: posts
 tags: [angularjs]
 ---
 
-Here is a quick dump of some of the better resources that I came across while learning [AngularJS](angularjs.org).
+Here is a quick dump of some of the better resources that I came across while learning [AngularJS](http://angularjs.org).
 
 [StackOverflow: How to 'thing in AngularJS'](http://stackoverflow.com/questions/14994391/how-do-i-think-in-angularjs-if-i-have-a-jquery-background) - Great for getting the appropriate mindset.
 
