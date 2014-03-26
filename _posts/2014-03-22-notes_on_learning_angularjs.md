@@ -7,7 +7,7 @@ tags: [angularjs]
 
 Here is a quick dump of some of the better resources that I came across while learning [AngularJS](http://angularjs.org).
 
-[StackOverflow: How to 'thing in AngularJS'](http://stackoverflow.com/questions/14994391/how-do-i-think-in-angularjs-if-i-have-a-jquery-background) - Great for getting the appropriate mindset.
+[StackOverflow: How to 'think in AngularJS'](http://stackoverflow.com/questions/14994391/how-do-i-think-in-angularjs-if-i-have-a-jquery-background) - Great for getting the appropriate mindset.
 
 [egghead.io's AngularJS series by John Lindquist](https://www.youtube.com/playlist?list=PLP6DbQBkn9ymGQh2qpk9ImLHdSH5T7yw7) - Excellently cut up into discrete segments to to cover fundamentals.
 
