@@ -2,6 +2,8 @@
 
 A simple blog...
 
+![Twitch bike!](http://alukach.com/images/about/bike.gif "A bike!")
+
 About:
 
 * Built with [Jekyll](https://github.com/mojombo/jekyll).
