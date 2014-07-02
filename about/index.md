@@ -7,7 +7,7 @@ title: "About"
 
 <br />
 
-I'm a GIS Developer / Cartographer / Pythonista / Open Source celebrant from the Northwest of the United States.  I'm currently employed with [Osprey Informatics](ospreyinformatics.com), a Calgary-based startup.  While my professional background lies mainly with ocean data, I'm a lover of all types of spatial data.  I maintain and occasionally develop the [LivingCityMap](http://www.livingcitymap.com), an to effort spatially index all things happening in Seattle, Portland, and elswhere.  I get my fix of what's new and fresh from Seattle's so-very-active OSGeo chapter, [CUGOS](http://www.cugos.org).
+I'm a GIS Developer / Cartographer / Pythonista / Open Source celebrant from the Northwest of the United States.  I'm currently employed with [OspreyInformatics][osprey], a Calgary-based startup.  While my professional background lies mainly with ocean data, I'm a lover of all types of spatial data.  I maintain and occasionally develop the [LivingCityMap][lcm], an to effort spatially index all things happening in Seattle, Portland, and elswhere.  I get my fix of what's new and fresh from Seattle's so-very-active OSGeo chapter, [CUGOS][cugos].
 
 When I'm not in my nerd-cave or at work, you can typically find me walking my dog in Calgary AB, making curries, or riding my bike.
 
@@ -16,3 +16,9 @@ This blog is primarily intended to be a place for me to post small tips and tric
 ---
 
 ![My Bike](/images/about/bike.gif)
+
+
+
+[osprey]: http://www.ospreyinformatics.com
+[lcm]: http://www.livingcitymap.com
+[cugos]: http://www.cugos.org
