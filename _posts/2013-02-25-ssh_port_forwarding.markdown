@@ -14,3 +14,13 @@ ssh -D 8080 -Nf login@server.whatever.com
 {% endhighlight %}
 
 Pointed my browser's connection settings to SOCKS proxy with server as `localhost` and port at `8080` and _BOOM_, was able to access my Seattle home's router's config page from Canada.  I've found this trick useful for all sorts of things, typically for one-offs where I need to access a website from the US while in Canada.
+
+<br />
+
+EDIT:
+
+Another useful command for when you need to connect to any given port on a remote server is the following:
+
+``` bash
+ssh -N -L [local_port]:[endpoint]:[remote_port]  [user]@[host] 
+```
