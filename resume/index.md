@@ -163,6 +163,11 @@ Developed with GeoDjango, Scrapy, Leaflet.</p>
 <h3>Education</h3>
 
 <dl>
+<dt>University of Washington</dt>
+<dd><em>Certificate in Data Science</em>
+<em>February 2014 - Present</em>
+<em>Victoria, BC</em></dd>
+
 <dt>Seattle Central Community College</dt>
 <dd>
 <p><em>Supplementary studies, Web Development</em>

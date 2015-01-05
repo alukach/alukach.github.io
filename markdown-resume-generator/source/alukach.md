@@ -134,6 +134,11 @@ Flaxen Geo Consulting
 
 ### Education
 
+University of Washington
+: *Certificate in Data Science*
+  _February 2014 - Present_
+  _Victoria, BC_
+
 Seattle Central Community College
 : *Supplementary studies, Web Development*
   _December 2011_
