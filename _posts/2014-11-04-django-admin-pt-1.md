@@ -15,4 +15,4 @@ It revolves around generating a fake model that you register to your app's admin
 
 {% gist 0a1b9e788b805e6242dd %}
 
-See more in [part 2]({% post_url 2014-12-15-django-admin-pt-2 %}) and [part 3]({% post_url 2014-12-19-django-admin-pt-3 %}).
+See more in [part 2]({% post_url 2014-12-15-django-admin-pt-2 %}).

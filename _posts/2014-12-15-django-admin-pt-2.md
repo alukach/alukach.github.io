@@ -16,5 +16,3 @@ Sometimes you may need an admin action that, when submitted, takes the user to a
 I do see where the docs are coming from and it would probably be easier to do as advised, but I think there could be something said about keeping all admin logic within the admin page. Doing something like the following would take the user to an intermediate form.
 
 {% gist 30422de26d25295f6289 %}
-
-Read more in [part 3]({% post_url 2014-12-19-django-admin-pt-3 %}).
