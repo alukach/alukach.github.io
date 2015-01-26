@@ -47,7 +47,11 @@ a img {
 blockquote {
 	color: @gray;
 	font-style: italic;
+	p {
+		margin-top: 0;
+	}
 }
+
 
 hr.small {
 	max-width: 100px;
@@ -157,8 +161,8 @@ hr.small {
 // Header
 
 .intro-header {
-	background-color: @gray; 
-	background: no-repeat center center; 
+	background-color: @gray;
+	background: no-repeat center center;
 	background-attachment: scroll;
 	.background-cover;
 	// NOTE: Background images are set within the HTML using inline CSS!
