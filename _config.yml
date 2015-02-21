@@ -7,7 +7,7 @@ rdiscount:
   extensions: [smart]
 
 name: Anthony Lukach
-url: http://www.alukach.com
+url: http://alukach.com
 description: A fantastic blog that is fantastic.
 twitter: anthonylukach
 github_id: alukach
