@@ -12,7 +12,7 @@
 
 ### Summary {#profile}
 
-Self-driven full-stack developer. Well-versed in open source Unix-based systems. Excellent communication skills, fan of team building and inter team mentorship. Affinity for debugging and tuning systems. Genuinely enthusiastic about learning, building, and shipping.
+Self-driven full-stack developer. Well-versed in open source Unix-based systems. Excellent communication skills, fan of team building and intra team mentorship. Affinity for debugging and tuning systems. Genuinely enthusiastic about learning, building, and shipping.
 
 ---
 
