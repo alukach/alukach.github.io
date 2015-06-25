@@ -12,7 +12,7 @@
 
 ### Summary {#profile}
 
-Self-driven full-stack developer. Well versed open-source Unix-based systems. Excellent communication skills, fan of team building and inter-team mentorship. Affinity for debugging and tuning systems. Genuinly enthusiastic about learning, building, and shipping.
+Self-driven full-stack developer. Well versed in open-source Unix-based systems. Excellent communication skills, fan of team building and inter-team mentorship. Affinity for debugging and tuning systems. Genuinely enthusiastic about learning, building, and shipping.
 
 ---
 
@@ -31,7 +31,7 @@ Self-driven full-stack developer. Well versed open-source Unix-based systems. Ex
   _April 2012 - October 2013_
   _Seattle, WA_
 
-  Assisted in the complete rewrite of cloud-based SAAS platform, taking code from conceptualization to deployment. Worked on all aspects of the project's development, including front-end design, back-end development, API design, database administration duties, server configuration, and data processing. Supported and developed undocumented legacy beta site.
+  Developed cloud-based SAAS platform for storing, visualizing, and searching spatial datasets. Heavily leveraged GDAL along with proprietary third-party point-cloud drivers. Created complimentary ArcGIS plugin to integrate with OneOcean's API.
 
 Flaxen Geo Consulting
 : _Programmer_
@@ -46,7 +46,7 @@ Flaxen Geo Consulting
   _July 2008 - July 2011_
   _Seattle, WA_
 
-  Performed data acquisition in field, working closely with others aboard hydrographic survey vessels. Field projects included Deepwater Horizon Spill, system shake-down along California coast, and general bathymetric surveying in coastal Alaska and Washington. Refined and coupled data with positional and environmental correctors, insuring that quality met federal and international standards. Compiled gathered data into charts while maintaining data accuracy and chart aesthetics. Utilized VBA, Python, and SQL to develop in-house tools to streamline the survey QC process and assist with in-office metrics assessments.
+  Refined and coupled data with positional and environmental correctors, insuring that quality met federal and international standards. Compiled gathered data into charts while maintaining data accuracy and chart aesthetics. Field projects included Deepwater Horizon Spill, system shake-down along California coast, and general bathymetric surveying in coastal Alaska and Washington. Utilized VBA, Python, and SQL to develop in-house tools to streamline the survey QC process and assist with in-office metrics assessments.
 
 [POWER Engineers](http://www.powereng.com/)
 : _GIS Analyst_
@@ -83,7 +83,7 @@ CalgaryAlerts
   _Winning Entry, [City of Calgary Hackathon](http://www.calgary.ca/CS/IIS/Pages/hackathon2015.aspx)_
   _April 2015_
 
-  An SMS based notification system. Users were able to subscribe to information pertanent to their interests and location, such as city events, traffic and transit updates, voting reminders, emergency alerts, and parking restrictions. Data was ingested from City of Calgary OpenData catalogue and routed to appropriate interested parties.
+  An SMS based notification system. Users were able to subscribe to information pertinent to their interests and location, such as city events, traffic and transit updates, voting reminders, emergency alerts, and parking restrictions. Data was ingested from City of Calgary OpenData catalogue and routed to appropriate interested parties.
 
 
 LineUps
@@ -110,8 +110,7 @@ University of Victoria
   _December 2006_
   _Victoria, BC_
 
-  Related coursework:
-  Digital Remote Sensing, GIS for Social Sciences, Digital Geomatics, Cartography, Map and Air Photo Interpretation
+  Digital Remote Sensing, Digital Geomatics, Cartography, Map and Air Photo Interpretation
 
 ---
 

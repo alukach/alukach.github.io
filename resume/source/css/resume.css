@@ -188,7 +188,7 @@
 
 .resume dl {
     display: inline-block;
-    width: 75%; /* Looks better at 75% but saves space with 84% */
+    width: 80%; /* Looks better at 75% but saves space with 84% */
     margin: 0;
     padding: 0;
     dt {
@@ -197,9 +197,9 @@
         font-size: 140%;
     }
     dd {
-        margin: 0 0 1.5em;
+        margin: 0 0 1.25em;
         padding: 0;
-        font-size: .8em;
+        font-size: .95em; /* Job description text font size */
         /*line-height: 1.5em;*/
     }
 

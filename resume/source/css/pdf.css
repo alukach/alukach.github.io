@@ -6,14 +6,14 @@ body.pdf {
         /*color: black;*/
     }
     .resume {
-        width: 840px;
+        width: 900px;
         margin: 0 auto;
         background: none;
         border: none;
         border-width: 8px 0 2px 0;
         text-align: left;
         position:relative;
-        padding: 40px 80px;
+        padding: 40px 80px 0;
         color: #000;
     }
 
@@ -86,7 +86,7 @@ body.pdf {
     }
 
     dl {
-        margin: .2em 0 .2em;
+        margin: 0;
         dt {
         }
         dd {
@@ -96,7 +96,7 @@ body.pdf {
             margin-top: -2em;
         }
         em {
-            font-size: 130%;
+            font-size: 120%;
             font-style: normal;
         }
 

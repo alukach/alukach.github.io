@@ -139,14 +139,14 @@ table {
 body.pdf { color:black; }
 body.pdf a { text-decoration:none; }
 body.pdf .resume {
-  width:840px;
+  width:900px;
   margin:0 auto;
   background:none;
   border:none;
   border-width:8px 0 2px 0;
   text-align:left;
   position:relative;
-  padding:40px 80px;
+  padding:40px 80px 0;
   color:#000000;
 }
 body.pdf a[href$='.pdf'] { display:none; }
@@ -203,13 +203,13 @@ body.pdf ol li {
 }
 body.pdf ol li:nth-child(3n) { width:34%; }
 body.pdf ol li:nth-child(1), body.pdf ol li:nth-child(2), body.pdf ol li:nth-child(3) { border-top:none; }
-body.pdf dl { margin:.2em 0 .2em; }
+body.pdf dl { margin:0; }
 body.pdf dl strong {
   float:right;
   margin-top:-2em;
 }
 body.pdf dl em {
-  font-size:130%;
+  font-size:120%;
   font-style:normal;
 }
 
@@ -355,7 +355,7 @@ body.pdf dl em {
 .resume ol li:nth-child(1) { border-top:none; }
 .resume dl {
   display:inline-block;
-  width:75%;
+  width:80%;
   margin:0;
   padding:0;
 }
@@ -365,9 +365,9 @@ body.pdf dl em {
   font-size:140%;
 }
 .resume dl dd {
-  margin:0 0 1.5em;
+  margin:0 0 1.25em;
   padding:0;
-  font-size:.8em;
+  font-size:.95em;
 }
 .resume dl dd p {
   margin:1em 0 1em;
