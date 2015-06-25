@@ -12,7 +12,7 @@
 
 ### Summary {#profile}
 
-Self-driven full-stack developer. Well versed in open-source Unix-based systems. Excellent communication skills, fan of team building and inter-team mentorship. Affinity for debugging and tuning systems. Genuinely enthusiastic about learning, building, and shipping.
+Self-driven full-stack developer. Well-versed in open source Unix-based systems. Excellent communication skills, fan of team building and inter team mentorship. Affinity for debugging and tuning systems. Genuinely enthusiastic about learning, building, and shipping.
 
 ---
 
@@ -46,7 +46,7 @@ Flaxen Geo Consulting
   _July 2008 - July 2011_
   _Seattle, WA_
 
-  Refined and coupled data with positional and environmental correctors, insuring that quality met federal and international standards. Compiled gathered data into charts while maintaining data accuracy and chart aesthetics. Field projects included Deepwater Horizon Spill, system shake-down along California coast, and general bathymetric surveying in coastal Alaska and Washington. Utilized VBA, Python, and SQL to develop in-house tools to streamline the survey QC process and assist with in-office metrics assessments.
+  Refined and coupled data with positional and environmental correctors, insuring that quality met federal and international standards. Compiled gathered data into charts while maintaining data accuracy and chart aesthetics. Field projects included Deepwater Horizon Spill, system shakedown along California coast, and general bathymetric surveying in coastal Alaska and Washington. Utilized VBA, Python, and SQL to develop in-house tools to streamline the survey QC process and assist with in-office metrics assessments.
 
 [POWER Engineers](http://www.powereng.com/)
 : _GIS Analyst_
@@ -69,7 +69,7 @@ Flaxen Geo Consulting
 : _Collaborator_
   _[http://dropchop.io](http://dropchop.io)_
 
-  An experimental browser-based GIS, aiming to provide an intuitive, modern, and free GIS platform. Developed publicly as an open-source project, relying heavily on remote collaboration through Github Issues and Pull Requests. Written utilizing object-oriented design principles with solid test coverage.
+  An experimental browser-based GIS, aiming to provide an intuitive, modern, and free GIS platform. Developed publicly as an open source project, relying heavily on remote collaboration through Github Issues and Pull Requests. Written utilizing object-oriented design principles with solid test coverage.
 
 [LivingCityMap](http://www.livingcitymap.com)
 : _Founder / Developer_
