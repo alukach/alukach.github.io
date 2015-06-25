@@ -35,6 +35,7 @@ body.pdf {
         font-weight: normal;
     }
     h3 {
+        font-size: 1.25em;
         float: left;
         width: 16%;
         font-style: normal;

@@ -164,6 +164,7 @@ body.pdf h2 {
   font-weight:normal;
 }
 body.pdf h3 {
+  font-size:1.25em;
   float:left;
   width:16%;
   font-style:normal;
@@ -303,7 +304,7 @@ body.pdf dl em {
 .resume h3 {
   margin:0;
   padding:0 0 .5em;
-  font-size:150%;
+  font-size:140%;
   font-style:italic;
   font-weight:normal;
 }
@@ -455,7 +456,7 @@ body.pdf dl em {
   }
   .resume ol li:nth-child(3n) { width:34%; }
   .resume ol li:nth-child(1), .resume ol li:nth-child(2), .resume ol li:nth-child(3) { border-top:none; }
-  .resume dl { margin:.2em 0 0; }
+  .resume dl { margin:0; }
   .resume dl strong {
     float:right;
     margin-top:-2em;

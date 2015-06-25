@@ -126,7 +126,7 @@
 .resume h3 {
     margin: 0;
     padding: 0 0 .5em;
-    font-size: 150%;
+    font-size: 140%;
     font-style: italic;
     font-weight: normal;
 }
@@ -188,7 +188,7 @@
 
 .resume dl {
     display: inline-block;
-    width: 75%;
+    width: 75%; /* Looks better at 75% but saves space with 84% */
     margin: 0;
     padding: 0;
     dt {
