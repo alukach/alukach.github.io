@@ -135,7 +135,7 @@
     margin: .6em 0 16px;
     padding: 0;
     display: block;
-    font-size: 114%;
+    font-size: 114%; /* Summary font-size */
     line-height: 24px;
 }
 

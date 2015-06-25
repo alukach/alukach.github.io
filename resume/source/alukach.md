@@ -83,7 +83,7 @@ CalgaryAlerts
   _Winning Entry, [City of Calgary Hackathon](http://www.calgary.ca/CS/IIS/Pages/hackathon2015.aspx)_
   _April 2015_
 
-  An SMS based notification system. Users were able to subscribe to information pertinent to their interests and location, such as city events, traffic and transit updates, voting reminders, emergency alerts, and parking restrictions. Data was ingested from City of Calgary OpenData catalogue and routed to appropriate interested parties.
+  An SMS-based local notification system. Users were able to subscribe to information pertinent to their interests and location, such as city events, traffic and transit updates, voting reminders, emergency alerts, and parking restrictions. Data was ingested from City of Calgary OpenData catalogue and routed to appropriate interested parties.
 
 
 LineUps
