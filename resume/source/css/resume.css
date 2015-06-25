@@ -45,7 +45,7 @@
     border-width: 8px 0 2px 0;
 
     font-family: 'Hoefler Text', Times New Roman, Times, serif;
-    color: #444;
+    color: #000;
     text-align: left;
 }
 
@@ -57,11 +57,11 @@
 .resume h4,
 .resume dl dt {
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
-    color: #444;
+    color: #000;
 }
 
 .resume a {
-    color: #444;
+    color: #000;
     text-decoration: none;
 }
 

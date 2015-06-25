@@ -96,8 +96,7 @@ Flaxen Geo Consulting
 
   Refined and coupled data with positional and environmental correctors,
   insuring that quality met federal and international standards.
-  Compiled gathered data into charts while maintaining data accuracy and c
-  hart aesthetics.
+  Compiled gathered data into charts while maintaining data accuracy and chart aesthetics.
 
   Developed multiple custom spreadsheets and scripting solutions to
   streamline the survey QC process and assist with in-office metrics
@@ -129,6 +128,9 @@ Flaxen Geo Consulting
   with event into a database.  API end-point returns GeoJSON serialization of
   events based on supplied queries.
   Developed with GeoDjango, Scrapy, Leaflet.
+
+HackYYC 2014 Winning Entry
+: *Winning Entry*
 
 ---
 

@@ -149,7 +149,6 @@ body.pdf .resume {
   padding:40px 80px;
   color:#000000;
 }
-body.pdf .resume a { color:black; }
 body.pdf a[href$='.pdf'] { display:none; }
 body.pdf h1 {
   letter-spacing:0;
@@ -246,16 +245,16 @@ body.pdf dl em {
   border:solid #666666;
   border-width:8px 0 2px 0;
   font-family:'Hoefler Text', Times New Roman, Times, serif;
-  color:#444444;
+  color:#000000;
   text-align:left;
 }
 .resume .button { display:none; }
 .resume h1, .resume h2, .resume h3, .resume h4, .resume dl dt {
   font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
-  color:#444444;
+  color:#000000;
 }
 .resume a {
-  color:#444444;
+  color:#000000;
   text-decoration:none;
 }
 .resume a:hover {

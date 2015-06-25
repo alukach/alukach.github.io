@@ -1,6 +1,7 @@
 <?php
 
 define('APPLICATION_BASE_PATH', realpath(__DIR__ . '/..'));
+define('OUTPUT_DIR', '../resume');
 
 spl_autoload_register(function ($className) {
     $namespaces = explode('\\', $className);
@@ -51,17 +52,18 @@ if (!isset($options['s'])) {
     exit("Please specify a source document: build.php -s resume/resume.pdf\n");
 }
 
+
 $basename     = pathinfo($options['s'], PATHINFO_FILENAME);
-$source       = './' . $options['s'];
-$pdf_source   = './../resume/' . $basename . '-print.html';
-$output_md  = './../resume/index.md';
-$output_html  = './../resume/' . $basename . '.html';
-$output_css   = './../css/' . $basename . '-resume.css';
-$pdf_output   = './../resume/' . $basename . '.pdf';
+$source       = $options['s'];
+$pdf_source   = OUTPUT_DIR . '/' . $basename . '-print.html';
+$output_md    = OUTPUT_DIR . '/' . 'index.md';
+$output_html  = OUTPUT_DIR . '/' . $basename . '.html';
+$output_css   = OUTPUT_DIR . '/' . $basename . '-resume.css';
+$pdf_output   = OUTPUT_DIR . '/' . $basename . '.pdf';
 
 $css = new AssetCollection(
     array(
-        new GlobAsset(APPLICATION_BASE_PATH . '/assets/css/*.css')
+        new GlobAsset(APPLICATION_BASE_PATH . '/../resume/source/css/*.css')
     ),
     array(
         new Filter\LessphpFilter(),
@@ -69,9 +71,9 @@ $css = new AssetCollection(
 );
 $style = $css->dump();
 
-$jekyll_templt = file_get_contents(APPLICATION_BASE_PATH . '/assets/templates/jekyll_template.html');
-$html_template = file_get_contents(APPLICATION_BASE_PATH . '/assets/templates/default.html');
-$css_template  = file_get_contents(APPLICATION_BASE_PATH . '/assets/templates/resume_style.css');
+$jekyll_templt = file_get_contents(APPLICATION_BASE_PATH . '/../resume/source/templates/jekyll_template.html');
+$html_template = file_get_contents(APPLICATION_BASE_PATH . '/../resume/source/templates/default.html');
+$css_template  = file_get_contents(APPLICATION_BASE_PATH . '/../resume/source/templates/resume_style.css');
 $resume        = file_get_contents($source);
 
 // Process with Markdown, and then use SmartyPants to clean up punctuation.
