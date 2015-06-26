@@ -86,6 +86,7 @@
     .resume h3 {
         float: left;
         width: 16%;
+        margin: 0;
     }
 
     .resume h3+p {
@@ -139,7 +140,7 @@
         }
         em {
             /*font-size: 130%;*/
-            font-style: normal;
+            /*font-style: normal;*/
         }
     }
 }

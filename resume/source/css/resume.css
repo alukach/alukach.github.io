@@ -49,6 +49,10 @@
     text-align: left;
 }
 
+em {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 .resume .button { display: none;}
 
 .resume h1,
@@ -58,6 +62,58 @@
 .resume dl dt {
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     color: #000;
+    font-weight: normal;
+}
+
+.resume h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 36px;
+    letter-spacing: -1px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.resume h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-style: italic;
+    letter-spacing: -1px;
+    font-weight: normal;
+
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.resume h3 {
+    margin: 0;
+    padding: 0 0 .5em;
+    font-size: 140%;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.resume h3+p {
+    margin: .6em 0 16px;
+    padding: 0;
+    display: block;
+    font-size: 114%; /* Summary font-size */
+    line-height: 24px;
+}
+
+.resume h4 {
+    margin: 0;
+    padding: 0 0 .5em;
+    font-weight: normal;
+}
+
+.resume h5 {
+    margin: 0;
+    padding: 0;
+    font-size: 110%;
+    font-weight: normal;
+    line-height: 1.45em;
 }
 
 .resume a {
@@ -102,43 +158,6 @@
 
     background-image: none;
 }
-
-.resume h1 {
-    margin: 0;
-    padding: 0;
-    font-size: 36px;
-    letter-spacing: -1px;
-    font-weight: normal;
-    text-transform: uppercase;
-}
-.resume h2 {
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
-    font-style: italic;
-    letter-spacing: -1px;
-    font-weight: normal;
-
-    text-transform: uppercase;
-    font-style: italic;
-}
-
-.resume h3 {
-    margin: 0;
-    padding: 0 0 .5em;
-    font-size: 140%;
-    font-style: italic;
-    font-weight: normal;
-}
-
-.resume h3+p {
-    margin: .6em 0 16px;
-    padding: 0;
-    display: block;
-    font-size: 114%; /* Summary font-size */
-    line-height: 24px;
-}
-
 
 .resume ul {
     margin: 0;
@@ -211,10 +230,10 @@
         display: block;
     }
     em {
-        display: block;
-        font-size: 110%;
-        margin: .15em 0 .25em;
-        font-style: normal;
+        /*display: block;*/
+        /*font-size: 110%;*/
+        /*margin: .15em 0 .25em;*/
+        /*font-style: normal;*/
     }
 }
 

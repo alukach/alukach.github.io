@@ -45,6 +45,10 @@ body.pdf {
         width: 84%;
     }
 
+    h5 {
+        font-size: 120%;
+    }
+
     blockquote {
         top: 40px;
         right: 50px;
@@ -96,8 +100,8 @@ body.pdf {
             margin-top: -2em;
         }
         em {
-            font-size: 120%;
-            font-style: normal;
+            /*font-size: 120%;*/
+            /*font-style: normal;*/
         }
 
     }

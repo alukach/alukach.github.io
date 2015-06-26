@@ -173,6 +173,7 @@ body.pdf h3+p {
   float:left;
   width:84%;
 }
+body.pdf h5 { font-size:120%; }
 body.pdf blockquote {
   top:40px;
   right:50px;
@@ -207,10 +208,6 @@ body.pdf dl { margin:0; }
 body.pdf dl strong {
   float:right;
   margin-top:-2em;
-}
-body.pdf dl em {
-  font-size:120%;
-  font-style:normal;
 }
 
 .content_area .resume {
@@ -249,39 +246,12 @@ body.pdf dl em {
   color:#000000;
   text-align:left;
 }
+em { font-family:'Times New Roman', Times, serif; }
 .resume .button { display:none; }
 .resume h1, .resume h2, .resume h3, .resume h4, .resume dl dt {
   font-family:Futura, 'Century Gothic', AppleGothic, sans-serif;
   color:#000000;
-}
-.resume a {
-  color:#000000;
-  text-decoration:none;
-}
-.resume a:hover {
-  color:#227ce8;
-  text-decoration:underline;
-}
-.resume blockquote {
-  margin:0;
-  padding:0;
-  line-height:1.4em;
-  font-style:normal;
-}
-.resume hr {
-  display:block;
-  position:relative;
-  padding:0;
-  margin:18px auto;
-  width:100%;
-  clear:both;
-  border:none;
-  border-top:1px solid #cccccc;
-  font-size:1px;
-  line-height:0;
-  overflow:visible;
-  page-break-after:avoid;
-  background-image:none;
+  font-weight:normal;
 }
 .resume h1 {
   margin:0;
@@ -314,6 +284,47 @@ body.pdf dl em {
   display:block;
   font-size:114%;
   line-height:24px;
+}
+.resume h4 {
+  margin:0;
+  padding:0 0 .5em;
+  font-weight:normal;
+}
+.resume h5 {
+  margin:0;
+  padding:0;
+  font-size:110%;
+  font-weight:normal;
+  line-height:1.45em;
+}
+.resume a {
+  color:#000000;
+  text-decoration:none;
+}
+.resume a:hover {
+  color:#227ce8;
+  text-decoration:underline;
+}
+.resume blockquote {
+  margin:0;
+  padding:0;
+  line-height:1.4em;
+  font-style:normal;
+}
+.resume hr {
+  display:block;
+  position:relative;
+  padding:0;
+  margin:18px auto;
+  width:100%;
+  clear:both;
+  border:none;
+  border-top:1px solid #cccccc;
+  font-size:1px;
+  line-height:0;
+  overflow:visible;
+  page-break-after:avoid;
+  background-image:none;
 }
 .resume ul {
   margin:0;
@@ -374,12 +385,6 @@ body.pdf dl em {
   line-height:1.5em;
 }
 .resume dl strong { display:block; }
-.resume dl em {
-  display:block;
-  font-size:110%;
-  margin:.15em 0 .25em;
-  font-style:normal;
-}
 .content_area .resume dl dd { font-size:100%; }
 .resume #footer { display:none; }
 .resume #footer + p {
@@ -430,6 +435,7 @@ body.pdf dl em {
   .resume h3 {
     float:left;
     width:16%;
+    margin:0;
   }
   .resume h3+p {
     float:left;
@@ -461,7 +467,6 @@ body.pdf dl em {
     float:right;
     margin-top:-2em;
   }
-  .resume dl em { font-style:normal; }
 }
 @media screen and (min-width: 118em) {
 }
