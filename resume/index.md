@@ -113,7 +113,7 @@ title: "R&eacute;sum&eacute;"
 
 <h5><a href="http://www.livingcitymap.com">http://www.livingcitymap.com</a></h5>
 
-<p>An effort to provide spatial context to events within the Seattle area. Spiders are dispatched nightly, extracting events and locations from local weeklies.  Each event&#8217;s location is run through a geocoder, and then entered with event into a database.  Data served via RESTful API. Data consumed by front-end single-page-app. <em>Developed with Python, GeoDjango, Scrapy, Celery, Leaflet, AngularJS, PostgreSQL, PostGIS.</em></p>
+<p>An effort to provide spatial context to events within the Seattle area. Spiders are dispatched nightly, extracting events and locations from local weeklies.  Each event&#8217;s location is run through a geocoder, and then entered with event into a database.  Data served via RESTful API. Data consumed by front-end single-page-app. <em>Developed with Python, GeoDjango, PostgreSQL, PostGIS, Scrapy, Celery, Leaflet, AngularJS.</em></p>
 </dd>
 
 <dt><h4>CalgaryAlerts</h4></dt>

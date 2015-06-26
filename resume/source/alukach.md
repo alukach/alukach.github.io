@@ -75,7 +75,7 @@ Self-driven full-stack developer. Well-versed in open source Unix-based systems.
 : ##### Founder / Developer
   ##### [http://www.livingcitymap.com](http://www.livingcitymap.com)
 
-  An effort to provide spatial context to events within the Seattle area. Spiders are dispatched nightly, extracting events and locations from local weeklies.  Each event's location is run through a geocoder, and then entered with event into a database.  Data served via RESTful API. Data consumed by front-end single-page-app. _Developed with Python, GeoDjango, Scrapy, Celery, Leaflet, AngularJS, PostgreSQL, PostGIS._
+  An effort to provide spatial context to events within the Seattle area. Spiders are dispatched nightly, extracting events and locations from local weeklies.  Each event's location is run through a geocoder, and then entered with event into a database.  Data served via RESTful API. Data consumed by front-end single-page-app. _Developed with Python, GeoDjango, PostgreSQL, PostGIS, Scrapy, Celery, Leaflet, AngularJS._
 
 
 #### CalgaryAlerts
