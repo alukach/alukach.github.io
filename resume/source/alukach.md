@@ -62,7 +62,7 @@ Self-driven full-stack developer. Well-versed in open source Unix-based systems.
   ##### November 2007 - January 2008
   ##### Boise, ID
 
-  Created and contributed to geodatabases through geocoding data sourced from aerial photos and scanned maps. Georeferenced imported rasters. Acquired and converted data from ArcIMS server. Created charts to assist with project planning.
+  Created and contributed to geodatabases through geocoding data sourced from aerial photos and scanned maps. Georeferenced imported rasters. Created charts to assist with project planning.
 
 
 ---
@@ -122,6 +122,5 @@ Self-driven full-stack developer. Well-versed in open source Unix-based systems.
 
 Anthony Lukach -- [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com) -- [alukach.com](http://www.alukach.com) -- [github.com/alukach](http://github.com/alukach) -- [@anthonylukach](http://twitter.com/anthonylukach) <span class='phone'>-- 403.804.2128</span>
 
-<!--
+
 ---
- -->

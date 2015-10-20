@@ -91,7 +91,7 @@ title: "R&eacute;sum&eacute;"
 
 <h5>Boise, ID</h5>
 
-<p>Created and contributed to geodatabases through geocoding data sourced from aerial photos and scanned maps. Georeferenced imported rasters. Acquired and converted data from ArcIMS server. Created charts to assist with project planning.</p>
+<p>Created and contributed to geodatabases through geocoding data sourced from aerial photos and scanned maps. Georeferenced imported rasters. Created charts to assist with project planning.</p>
 </dd>
 </dl>
 
@@ -171,8 +171,6 @@ title: "R&eacute;sum&eacute;"
 
 <p>Anthony Lukach &#8212; <a href="mailto:anthony.lukach@gmail.com">anthony.lukach@gmail.com</a> &#8212; <a href="http://www.alukach.com">alukach.com</a> &#8212; <a href="http://github.com/alukach">github.com/alukach</a> &#8212; <a href="http://twitter.com/anthonylukach">@anthonylukach</a> <span class='phone'>&#8212; 403.804.2128</span></p>
 
-<!--
----
- -->
+<hr />
 
 </div>
