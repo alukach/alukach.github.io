@@ -3,7 +3,6 @@ body.pdf {
 
     a {
         text-decoration: none;
-        /*color: black;*/
     }
     .resume {
         width: 900px;
@@ -13,7 +12,7 @@ body.pdf {
         border-width: 8px 0 2px 0;
         text-align: left;
         position:relative;
-        padding: 40px 80px 0;
+        padding: 30px 80px 0; /* Toggle head/tail height for fitting */
         color: #000;
     }
 
@@ -98,10 +97,6 @@ body.pdf {
         strong {
             float: right;
             margin-top: -2em;
-        }
-        em {
-            /*font-size: 120%;*/
-            /*font-style: normal;*/
         }
 
     }

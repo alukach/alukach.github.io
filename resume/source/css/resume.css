@@ -12,9 +12,6 @@
     top: 0;
 }
 
-/*.content_area .resume .buttons {
-    display: block;
-}*/
 .content_area .resume a.button {
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     color: #FFF;
@@ -40,7 +37,6 @@
     position:relative;
     margin: 0 auto;
     padding: 10px 20px;
-    /*background: whiteSmoke;*/
     border: solid #666;
     border-width: 8px 0 2px 0;
 
@@ -169,21 +165,6 @@ em {
     padding: 0;
 }
 
-.resume ul dl {
-    margin: .3em 0 0;
-    padding: 0;
-    width: 100%;
-    dt {
-        font-size: 100%;
-    }
-    dd {
-        margin: 0 0 1em;
-        padding: 0 2em 0 0;
-        font-size: .8em;
-        line-height: 1.5em;
-    }
-}
-
 .resume ol {
     margin: 0;
     padding: 0 0 .75em;
@@ -207,7 +188,7 @@ em {
 
 .resume dl {
     display: inline-block;
-    width: 80%; /* Looks better at 75% but saves space with 84% */
+    width: 75%; /* Toggle between 75% and 84% to adjust heights */
     margin: 0;
     padding: 0;
     dt {
@@ -219,7 +200,9 @@ em {
         margin: 0 0 1.25em;
         padding: 0;
         font-size: .95em; /* Job description text font size */
-        /*line-height: 1.5em;*/
+    }
+    dd:last-child {
+        margin-bottom: -1em;
     }
 
     dd p {
@@ -228,12 +211,6 @@ em {
     }
     strong {
         display: block;
-    }
-    em {
-        /*display: block;*/
-        /*font-size: 110%;*/
-        /*margin: .15em 0 .25em;*/
-        /*font-style: normal;*/
     }
 }
 

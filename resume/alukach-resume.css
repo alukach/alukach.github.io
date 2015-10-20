@@ -146,7 +146,7 @@ body.pdf .resume {
   border-width:8px 0 2px 0;
   text-align:left;
   position:relative;
-  padding:40px 80px 0;
+  padding:30px 80px 0;
   color:#000000;
 }
 body.pdf a[href$='.pdf'] { display:none; }
@@ -335,18 +335,6 @@ em { font-family:'Times New Roman', Times, serif; }
   margin:0;
   padding:0;
 }
-.resume ul dl {
-  margin:.3em 0 0;
-  padding:0;
-  width:100%;
-}
-.resume ul dl dt { font-size:100%; }
-.resume ul dl dd {
-  margin:0 0 1em;
-  padding:0 2em 0 0;
-  font-size:.8em;
-  line-height:1.5em;
-}
 .resume ol {
   margin:0;
   padding:0 0 .75em;
@@ -366,7 +354,7 @@ em { font-family:'Times New Roman', Times, serif; }
 .resume ol li:nth-child(1) { border-top:none; }
 .resume dl {
   display:inline-block;
-  width:80%;
+  width:75%;
   margin:0;
   padding:0;
 }
@@ -380,6 +368,7 @@ em { font-family:'Times New Roman', Times, serif; }
   padding:0;
   font-size:.95em;
 }
+.resume dl dd:last-child { margin-bottom:-1em; }
 .resume dl dd p {
   margin:1em 0 1em;
   line-height:1.5em;
