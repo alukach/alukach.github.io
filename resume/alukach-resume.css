@@ -172,6 +172,7 @@ body.pdf h3 {
 body.pdf h3+p {
   float:left;
   width:84%;
+  margin-top:.25em;
 }
 body.pdf h5 { font-size:120%; }
 body.pdf blockquote {
@@ -204,7 +205,10 @@ body.pdf ol li {
 }
 body.pdf ol li:nth-child(3n) { width:34%; }
 body.pdf ol li:nth-child(1), body.pdf ol li:nth-child(2), body.pdf ol li:nth-child(3) { border-top:none; }
-body.pdf dl { margin:0; }
+body.pdf dl {
+  margin:0;
+  margin-top:-1px;
+}
 body.pdf dl strong {
   float:right;
   margin-top:-2em;
