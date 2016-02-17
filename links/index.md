@@ -7,6 +7,8 @@ title: "Links"
 
 ## Personal Projects
 
+* [vector-ocean](https://alukach.com/vector-ocean/) &mdash; An experiment generating a vector tile set from a global raster dataset.
+
 * [django_hstore](http://www.alukach.com/django-hstore) &mdash; A fork of `django-hstore` to support automatic JSON serialization of dictionary values.
 
 * [livingcitymap.com](http://www.livingcitymap.com) &mdash; A personal mapping project.
