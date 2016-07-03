@@ -201,7 +201,7 @@ em {
         font-size: 140%;
     }
     dd {
-        margin: 0 0 1.25em;
+        margin: 0 0 2.0em; /* Decrease bottom to 1.25em for more compact */
         padding: 0;
         font-size: .95em; /* Job description text font size */
     }

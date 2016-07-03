@@ -23,10 +23,16 @@ title: "R&eacute;sum&eacute;"
 
 <hr />
 
+<h3 id="tools">Technologies</h3>
+
+<p>django, python, celery, rabbitmq, nodejs, expressjs, angularjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, aws, rest, oauth</p>
+
+<hr />
+
 <h3 id="professional">Professional</h3>
 
 <dl>
-<dt><h4>Manager of Development</h4></dt>
+<dt><h4>Team Lead / Manager of Development</h4></dt>
 <dd>
 <h5><a href="http://www.ospreyinformatics.com/">Osprey Informatics</a></h5>
 
@@ -34,7 +40,7 @@ title: "R&eacute;sum&eacute;"
 
 <h5>Calgary, AB</h5>
 
-<p>Interacted with various stakeholders for product planning and development. Performed project management within the development team. Promoted mentorship and communication amongst fellow developers.</p>
+<p>Managed team of 7 developers. Interacted with various stakeholders for product planning and development. Performed project management within the development team. Oversaw architecture design. Facilitated planning sessions with development groups and stakeholders.</p>
 </dd>
 
 <dt><h4>Senior Software Developer</h4></dt>
@@ -100,15 +106,6 @@ title: "R&eacute;sum&eacute;"
 <h3 id="personal">Personal</h3>
 
 <dl>
-<dt><h4><a href="http://maptimecalgary.github.io">MaptimeCalgary</a></h4></dt>
-<dd>
-<h5>Co-Founder</h5>
-
-<h5><a href="http://maptimecalgary.github.io">http://maptimecalgary.github.io</a></h5>
-
-<p>Calgary chapter of international <a href="http://maptime.io">Maptime</a> group. Focused on providing technical tutorials and presentations to local community. Additionally aims to serve as general support network for those looking to learn about mapping and troubleshoot mapping-related problems.</p>
-</dd>
-
 <dt><h4><a href="http://dropchop.io">Dropchop.io</a></h4></dt>
 <dd>
 <h5>Collaborator</h5>

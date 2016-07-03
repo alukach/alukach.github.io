@@ -19,14 +19,21 @@ Self-driven full-stack developer. Well-versed in open source Unix-based systems.
 ---
 
 
+### Technologies {#tools}
+
+django, python, celery, rabbitmq, nodejs, expressjs, angularjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, aws, rest, oauth
+
+
+---
+
 ### Professional {#professional}
 
-#### Manager of Development
+#### Team Lead / Manager of Development
 : ##### [Osprey Informatics](http://www.ospreyinformatics.com/)
   ##### July 2015 - Present
   ##### Calgary, AB
 
-  Interacted with various stakeholders for product planning and development. Performed project management within the development team. Promoted mentorship and communication amongst fellow developers.
+  Managed team of 7 developers. Interacted with various stakeholders for product planning and development. Performed project management within the development team. Oversaw architecture design. Facilitated planning sessions with development groups and stakeholders.
 
 #### Senior Software Developer
 : ##### [Osprey Informatics](http://www.ospreyinformatics.com/)
@@ -69,12 +76,6 @@ Self-driven full-stack developer. Well-versed in open source Unix-based systems.
 
 
 ### Personal {#personal}
-
-#### [MaptimeCalgary](http://maptimecalgary.github.io)
-: ##### Co-Founder
-  ##### [http://maptimecalgary.github.io](http://maptimecalgary.github.io)
-
-  Calgary chapter of international [Maptime](http://maptime.io) group. Focused on providing technical tutorials and presentations to local community. Additionally aims to serve as general support network for those looking to learn about mapping and troubleshoot mapping-related problems.
 
 #### [Dropchop.io](http://dropchop.io)
 : ##### Collaborator
