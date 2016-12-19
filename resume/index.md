@@ -25,7 +25,7 @@ title: "R&eacute;sum&eacute;"
 
 <h3 id="tools">Technologies</h3>
 
-<p>django, python, celery, rabbitmq, nodejs, expressjs, angularjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, aws, rest, oauth</p>
+<p>django, python, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular2, reactjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, rest, oauth2, git, aws, ec2, s3, mechanicalturk</p>
 
 <hr />
 
