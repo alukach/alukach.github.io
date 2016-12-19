@@ -1,16 +1,16 @@
-markdown: rdiscount
+markdown: kramdown
 highlighter: pygments
 permalink: /posts/:title
 rdiscount:
   extensions: [smart]
 
 name: Anthony Lukach
-url: http://alukach.com
+url: https://alukach.com
 description: A fantastic blog that is fantastic.
 twitter: anthonylukach
 github_id: alukach
 email: anthonylukach@gmail.com
-gravatar_url: http://gravatar.com/avatar/f027dc4105248fc3b10e70f4bdc4d25f
+gravatar_url: //gravatar.com/avatar/f027dc4105248fc3b10e70f4bdc4d25f
 gems:
   - jekyll-sitemap
 
