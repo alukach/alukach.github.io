@@ -1,18 +1,4 @@
-.content_area .resume {
-  height: 100%;
-  width: 100%;
-  max-width: 900px;
-  margin: 0;
-  padding: 0;
-
-  border-bottom: none;
-}
-
-.content_area .resume blockquote {
-    top: 0;
-}
-
-.content_area .resume a.button {
+.resume a.button {
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     color: #FFF;
     font-weight: normal;
@@ -24,19 +10,25 @@
     background-color: #666;
     display: block;
 }
-.content_area .resume a.button:hover {
+.resume a.button:hover {
     text-decoration: none;
     text-shadow: 2px 2px #333;
+    color: #FFF;
 }
 
-.content_area .resume .phone {
+.resume .phone {
     display:none;
 }
 
 .resume {
-    position:relative;
+    height: 100%;
+    width: 100%;
+    max-width: 900px;
     margin: 0 auto;
     padding: 10px 20px;
+
+    position:relative;
+    border-bottom: none;
     border: solid #666;
     border-width: 8px 0 2px 0;
 
@@ -48,8 +40,6 @@
 em {
     font-family: 'Times New Roman', Times, serif;
 }
-
-.resume .button { display: none;}
 
 .resume h1,
 .resume h2,
@@ -99,7 +89,7 @@ em {
     padding: 0;
     display: block;
     font-size: 114%; /* Summary font-size */
-    line-height: 24px;
+    line-height: 1.5em;
 }
 
 .resume h4 {
@@ -140,6 +130,8 @@ em {
     padding: 0;
     line-height: 1.4em;
     font-style: normal;
+    top: 0;
+    float: right;
 }
 
 .resume hr {
@@ -183,8 +175,8 @@ em {
     width: 100%;
     float: left;
     list-style: none;
-    line-height: 24px;
-    font-size: 14px;
+    line-height: 1.5em;
+    font-size: 1em;
 }
 .resume ol li:nth-child(1) {
     border-top: none;

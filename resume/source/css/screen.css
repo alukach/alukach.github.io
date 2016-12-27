@@ -4,7 +4,7 @@
   Zoomed out below 320 px
 */
 
-@media screen and (min-width: 15em) {
+@media screen and (max-width: 320px) {
 }
 
 
@@ -14,7 +14,7 @@
   Zoomed in above 480 px
 */
 
-@media screen and (min-width: 30em) {
+@media screen and (max-width: 480px) {
 }
 
 
@@ -24,19 +24,9 @@
   Zoomed in above 600 px
 */
 
-@media screen and (min-width: 37.5em) {
-    .resume blockquote {
-        top: 10px;
-        right: 50px;
-        position: absolute;
-    }
+@media screen and (max-width: 600px) {
     .resume h1 { /* Open up the top section height so we don't collapse on the blockquote */
         margin-top: .5em;
-        /*text-transform: uppercase;*/
-    }
-    .resume h2 {
-        /*text-transform: uppercase;*/
-        /*font-style: italic;*/
     }
     .resume ol {
         margin: 0 0 0 1em;
@@ -58,40 +48,39 @@
   Zoomed in above 912 px
 */
 
-@media screen and (min-width: 57em) {
+@media screen and (max-width: 912px) {
     .resume {
-        width: 912px;
+        font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        color: #333;
         position:relative;
-        padding: 40px 50px;
+        max-width: inherit;
     }
     .resume blockquote {
-        top: 40px;
-        right: 50px;
-        position: absolute;
+        float:none;
+        position:initial;
     }
     .resume h1 {
-        margin-top: 0;
-        font-size: 3em;
-        /*text-transform: uppercase;*/
-        letter-spacing: 3px;
-        font-weight: normal;
+        display: none;
     }
     .resume h2 {
-        /*text-transform: uppercase;*/
-        /*font-style: italic;*/
-        letter-spacing: 2px;
-        font-weight: normal;
+        display: none;
     }
 
     .resume h3 {
-        float: left;
-        width: 16%;
         margin: 0;
+
+        font-style: normal;
+        font-size: 1.3em;
+        font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
+        font-weight: lighter;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        padding-bottom: 0;
     }
 
     .resume h3+p {
-        float: left;
-        width: 84%;
+        font-size: 1em;
     }
 
     .resume ul li {
@@ -130,6 +119,7 @@
 
     .resume dl {
         margin: 0;
+        width: inherit;
         dt {
         }
         dd {
@@ -145,14 +135,63 @@
     }
 }
 
-
-/*
-  Huge-screen layout
-  1888-2520 px
-  Zoomed in above 1920 px
-*/
-
-@media screen and (min-width: 118em) {
-
-
+/* Anything larger than mobile
+Code here could likely be cleaned up, likely lots of redundant code
+from above */
+@media screen and (min-width: 912px) {
+  .resume {
+    width:912px;
+    position:relative;
+    padding:40px 50px;
+  }
+  .resume blockquote {
+    top:40px;
+    right:50px;
+    position:absolute;
+  }
+  .resume h1 {
+    margin-top:0;
+    font-size:3em;
+    letter-spacing:3px;
+    font-weight:normal;
+  }
+  .resume h2 {
+    letter-spacing:2px;
+    font-weight:normal;
+  }
+  .resume h3 {
+    float:left;
+    width:16%;
+    margin:0;
+  }
+  .resume h3+p {
+    float:left;
+    width:84%;
+  }
+  .resume ul li {
+    width:28%;
+    float:left;
+  }
+  .resume ul dl dt {
+    font-size:122%;
+    font-weight:normal;
+    margin-bottom:.75em;
+  }
+  .resume ul dl dd { padding:0 4em 0 0; }
+  .resume ol {
+    float:left;
+    width:84%;
+    margin:.6em 0 0;
+  }
+  .resume ol li {
+    width:33%;
+    margin:0;
+  }
+  .resume ol li:nth-child(3n) { width:34%; }
+  .resume ol li:nth-child(1), .resume ol li:nth-child(2), .resume ol li:nth-child(3) { border-top:none; }
+  .resume dl { margin:0; }
+  .resume dl strong {
+    float:right;
+    margin-top:-2em;
+  }
 }
