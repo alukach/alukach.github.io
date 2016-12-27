@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url(http://fonts.googleapis.com/css?family=Lato:400,400italic);
+@import url(//fonts.googleapis.com/css?family=Lato:400,400italic);
 
 body {
   font: 14px/1.5 'Lato', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -170,7 +170,7 @@ hr {
     margin-bottom: 17px;
     padding-left: 0px;
     font-size: 17px;
-    color: #777; 
+    color: #777;
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     letter-spacing: 3px;
     text-transform: uppercase;
