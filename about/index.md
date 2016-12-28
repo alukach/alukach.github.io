@@ -3,7 +3,7 @@ layout: content
 title: "About"
 ---
 
-# Welcome to my little part of the internet.
+# Hello.
 
 <br />
 
