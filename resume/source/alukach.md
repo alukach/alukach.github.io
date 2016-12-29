@@ -11,7 +11,7 @@
 ---
 
 
-### Summary {#profile}
+### Summary {#summary}
 
 Self-driven full-stack developer. Well-versed in open source Unix-based systems. Excellent communication skills, fan of team building and intra-team mentorship. Affinity for debugging and tuning systems. Genuinely enthusiastic about learning, building, and shipping.
 
@@ -19,7 +19,7 @@ Self-driven full-stack developer. Well-versed in open source Unix-based systems.
 ---
 
 
-### Technologies {#tools}
+### Technologies {#tech}
 
 django, python, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular2, reactjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, rest, oauth2, git, aws, ec2, s3, mechanicalturk
 
