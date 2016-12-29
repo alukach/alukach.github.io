@@ -5,6 +5,8 @@ category: posts
 tags: [jupyter, machine-learning, cloudflare, devops]
 ---
 
+_Full Disclosure: I am NOT an expert at Jupyter or Anaconda (which I am using in this project), there may be some bad habits below..._
+
 Below is a quick scratchpad of the steps I took to serve Jupyter from a subdomain. Jupyter is running behind NGINX on an OpenStack instance and the domain's DNS is set up to use Cloudflare to provides convenient SSL support. I was suprised by the lack of documentation for this process, prompting me to document my steps taken here.
 
 ## Cloudflare
@@ -52,6 +54,12 @@ c.NotebookApp.notebook_dir = '/home/MY_USER/notebooks'
 c.NotebookApp.open_browser = False
 c.NotebookApp.password = 'some_password_hash'
 c.NotebookApp.port = 8888
+c.NotebookApp.kernel_spec_manager_class = "nb_conda_kernels.CondaKernelSpecManager"
+c.NotebookApp.nbserver_extensions = {
+  "nb_conda": True,
+  "nb_anacondacloud": True,
+  "nbpresent": True
+}
 {% endhighlight %}
 
 ## Wire Jupyter up with Nginx
