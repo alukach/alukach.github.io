@@ -87,8 +87,7 @@ hr {
     color: #333;
     text-decoration: none; }
   .content h1 a:hover {
-    border-bottom: 4px solid #333;
-     }
+    border-bottom: 4px solid #333; }
   .content h2 {
     color: #333;
     font-weight: normal; }
@@ -108,7 +107,7 @@ hr {
     color: #111;
     text-decoration: none; }
   .content h1 {
-    font-size: 3em;
+    font-size: 2.2em;
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     font-weight: lighter;
     letter-spacing: 3px;
@@ -163,9 +162,9 @@ hr {
       color: #111;
       font-style: normal; }
   .content .byline {
-    margin-bottom: 17px;
+    margin-bottom: 1em;
     padding-left: 0px;
-    font-size: 1.25em;
+    font-size: 1em;
     color: #777;
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     letter-spacing: 3px;
