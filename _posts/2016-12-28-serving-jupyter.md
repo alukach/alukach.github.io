@@ -35,11 +35,12 @@ respawn
 respawn limit 10 90
 
 description "Jupyter / IPython Notebook Upstart script"
+setuid "MY_USER"
+setgid "MY_USER"
+chdir "/home/MY_USER/notebooks"
 
 script
-    export HOME="/home/MY_USER/notebooks"; cd $HOME
-    echo $$ > /var/run/ipython_start.pid
-    exec su -s /bin/sh -c 'exec "$0" "$@"' MY_USER -- /home/MY_USER/.anaconda3/bin/jupyter-notebook --config='/home/MY_USER/.jupyter/jupyter_notebook_config.py'
+    exec /home/MY_USER/.anaconda3/bin/jupyter notebook --config='/home/MY_USER/.jupyter/jupyter_notebook_config.py'
 end script
 {% endhighlight %}
 
