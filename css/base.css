@@ -126,7 +126,7 @@ hr {
     font-size: 1em;
     padding-bottom: 5px;
     margin-bottom: 10px; }
-  .content p {
+  .content p, .content li {
     font-size: 1em;
     margin-top: 0;
     margin-bottom: 1.2em;
@@ -148,9 +148,6 @@ hr {
     background-image: url("/images/hr.png");
     background-repeat: repeat-x;
     margin: 2em 3em; }
-  .content li {
-    margin-bottom: 10px;
-    line-height: 1.4em; }
   .content blockquote {
     font-style: italic;
     font-size: 1em;
