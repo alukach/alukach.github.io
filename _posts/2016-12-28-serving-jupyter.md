@@ -7,7 +7,7 @@ tags: [jupyter, machine-learning, cloudflare, devops]
 
 _Full Disclosure: I am NOT an expert at Jupyter or Anaconda (which I am using in this project), there may be some bad habits below..._
 
-Below is a quick scratchpad of the steps I took to serve Jupyter from a subdomain. Jupyter is running behind NGINX on an OpenStack instance and the domain's DNS is set up to use Cloudflare to provides convenient SSL support. I was suprised by the lack of documentation for this process, prompting me to document my steps taken here.
+Below is a quick scratchpad of the steps I took to serve Jupyter from a subdomain. Jupyter is running behind NGINX on an OpenStack Ubuntu instance and the domain's DNS is set up to use Cloudflare to provides convenient SSL support. I was suprised by the lack of documentation for this process, prompting me to document my steps taken here.
 
 ## Cloudflare
 
@@ -17,6 +17,10 @@ Below is a quick scratchpad of the steps I took to serve Jupyter from a subdomai
 3. Ensure Crypto settings are set correctly. You should probably be using [Full SSL (Strict)](https://blog.cloudflare.com/introducing-strict-ssl-protecting-against-a-man-in-the-middle-attack-on-origin-traffic/) rather than Flexible SSL as shown in the image below, however that is outside the scope of this post.
 ![SSL Settings](/images/2016-12-28-jupyter/ssl_settings.png)
 ![Auto-rewrite to HTTPS](/images/2016-12-28-jupyter/https_rewrite.png)
+
+## Install Anaconda
+
+Follow instructions described [here](https://docs.continuum.io/anaconda/install#linux-install).
 
 ## Set up an Upstart script
 
