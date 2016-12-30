@@ -270,6 +270,9 @@ ul.pagination {
     text-decoration: none;
   }
 
+.post {
+  margin-bottom: 20px;
+}
 #post-pagination {
   text-align: center;
 }
