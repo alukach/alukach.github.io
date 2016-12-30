@@ -8,7 +8,7 @@ body.pdf .resume {
   border-width:8px 0 2px 0;
   text-align:left;
   position:relative;
-  padding:30px 80px 0;
+  padding:34px 80px 0;
   color:#000000;
 }
 body.pdf a[href$='.pdf'] { display:none; }
@@ -39,7 +39,7 @@ body.pdf h3+p {
 body.pdf h5 { font-size:120%; }
 body.pdf blockquote {
   top:40px;
-  right:50px;
+  right:82px;
   position:absolute;
 }
 body.pdf ul li {
@@ -99,7 +99,6 @@ body.pdf hr:last-child { margin-bottom:0; }
   height:100%;
   width:100%;
   max-width:900px;
-  margin:0 auto;
   padding:10px 20px;
   position:relative;
   border-bottom:none;
@@ -142,7 +141,7 @@ em { font-family:'Times New Roman', Times, serif; }
 }
 .resume h3+p, .resume dd p { font-size:1.1em; }
 .resume h3+p {
-  margin:.6em 0 16px;
+  margin:.5px 0 16px;
   padding:0;
   display:block;
   font-size:114%;
@@ -173,6 +172,7 @@ em { font-family:'Times New Roman', Times, serif; }
   padding:0;
   line-height:1.4em;
   font-style:normal;
+  text-align:right;
   top:0;
   float:right;
 }
@@ -265,7 +265,7 @@ em { font-family:'Times New Roman', Times, serif; }
     font:1em / 1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
     color:#333333;
     position:relative;
-    max-width:inherit;
+    width:inherit;
   }
   .resume blockquote {
     float:none;
@@ -319,12 +319,12 @@ em { font-family:'Times New Roman', Times, serif; }
   .resume {
     width:912px;
     position:relative;
-    padding:40px 50px;
   }
   .resume blockquote {
-    top:40px;
+    top:0px;
     right:50px;
     position:absolute;
+    text-align:right;
   }
   .resume h1 {
     margin-top:0;

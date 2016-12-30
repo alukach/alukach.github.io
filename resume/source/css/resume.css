@@ -24,7 +24,7 @@
     height: 100%;
     width: 100%;
     max-width: 900px;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
     padding: 10px 20px;
 
     position:relative;
@@ -85,7 +85,7 @@ em {
 }
 
 .resume h3+p {
-    margin: .6em 0 16px;
+    margin: .5px 0 16px;
     padding: 0;
     display: block;
     font-size: 114%; /* Summary font-size */
@@ -116,20 +116,12 @@ em {
     text-decoration: underline;
 }
 
-/*a[href$='.pdf'] {
-    display: inline-block;
-    background: #666;
-    color: white;
-    padding: 6px 12px;
-    margin-bottom: 6px;
-    text-decoration: none;
-}*/
-
 .resume blockquote {
     margin: 0;
     padding: 0;
     line-height: 1.4em;
     font-style: normal;
+    text-align: right;
     top: 0;
     float: right;
 }

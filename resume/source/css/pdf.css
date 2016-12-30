@@ -12,7 +12,7 @@ body.pdf {
         border-width: 8px 0 2px 0;
         text-align: left;
         position:relative;
-        padding: 30px 80px 0; /* Toggle head/tail height for fitting */
+        padding: 34px 80px 0; /* Toggle head/tail height for fitting */
         color: #000;
     }
 
@@ -51,7 +51,7 @@ body.pdf {
 
     blockquote {
         top: 40px;
-        right: 50px;
+        right: 82px;
         position: absolute;
     }
 
