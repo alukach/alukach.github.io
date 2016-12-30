@@ -9,7 +9,7 @@ title: "R&eacute;sum&eacute;"
 <h2>Software Developer</h2>
 
 <blockquote>
-  <p><a class="button" href="alukach.pdf" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
+  <p><a class="button" href="alukach.pdf" target="_blank" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
   <a href="mailto:anthony.lukach@gmail.com">anthony.lukach@gmail.com</a><br />
   <a href="http://www.alukach.com">alukach.com</a><br />
   <span class='phone'>403.804.2128</span></p>
