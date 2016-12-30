@@ -77,7 +77,6 @@ hr {
   padding-left: 10px; }
   .content {
     max-width: 650px;
-    border-top: 8px solid #666;
   }
   .content h1 {
     color: #333;
@@ -112,7 +111,7 @@ hr {
     font-weight: lighter;
     letter-spacing: 3px;
     text-transform: uppercase;
-    margin: 18px 0 5px 0; }
+    margin: 2px 0 5px; }
   .content h2 {
     font-size: 1.3em;
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;

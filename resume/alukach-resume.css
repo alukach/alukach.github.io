@@ -101,9 +101,6 @@ body.pdf hr:last-child { margin-bottom:0; }
   max-width:900px;
   padding:10px 20px;
   position:relative;
-  border-bottom:none;
-  border:solid #666666;
-  border-width:8px 0 2px 0;
   font-family:'Hoefler Text', Times New Roman, Times, serif;
   color:#000000;
   text-align:left;
