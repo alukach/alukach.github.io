@@ -74,7 +74,7 @@ hr {
   margin-left: 110px;
   margin-right: 20px;
   margin-bottom: 50px;
- }
+  padding-left: 10px; }
   .content {
     max-width: 650px;
     border-top: 8px solid #666;
