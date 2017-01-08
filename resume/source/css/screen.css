@@ -11,7 +11,7 @@
 /*
   Wide mobile layout
   480-767 px
-  Zoomed in above 480 px
+  Zoomed in below 480 px
 */
 
 @media screen and (max-width: 480px) {
@@ -21,7 +21,7 @@
 /*
   Tablet layout
   600-911 px
-  Zoomed in above 600 px
+  Zoomed in below 600 px
 */
 
 @media screen and (max-width: 600px) {
@@ -45,7 +45,7 @@
 /*
   Widescreen layout
   912-1887 px
-  Zoomed in above 912 px
+  Zoomed in below 912 px
 */
 
 @media screen and (max-width: 912px) {
@@ -54,6 +54,7 @@
         color: #333;
         position:relative;
         width: inherit;
+        padding: 0px;
     }
     .resume blockquote {
         float:none;
@@ -133,7 +134,7 @@
 
 /* Anything larger than mobile
 Code here could likely be cleaned up, likely lots of redundant code
-from above */
+from below */
 @media screen and (min-width: 912px) {
   .resume {
     width:912px;

@@ -263,6 +263,7 @@ em { font-family:'Times New Roman', Times, serif; }
     color:#333333;
     position:relative;
     width:inherit;
+    padding:0px;
   }
   .resume blockquote {
     float:none;
