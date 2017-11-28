@@ -21,26 +21,34 @@ Self-driven full-stack developer. Well-versed in open source Unix-based systems.
 
 ### Technologies {#tech}
 
-python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular2, reactjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, rest, oauth2, git, aws, ec2, s3, mechanicalturk
+python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular2, reactjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, ansible, docker, rest, oauth2, git, aws (ec2, ecs, s3, mechanicalturk, sns, route53, cloudfront, elb)
 
 
 ---
 
 ### Professional {#professional}
 
-#### Team Lead / Manager of Development
-: ##### [Osprey Informatics](http://www.ospreyinformatics.com/)
-  ##### July 2015 - Present
+#### Backend Developer
+: ##### [Cadasta Foundation](https://cadasta.org/)
+  ##### March 2017 - Present
   ##### Calgary, AB
 
-  Managed team of 7 developers. Interacted with various stakeholders for product planning and development. Performed project management within the development team. Oversaw architecture design. Facilitated planning sessions with development groups and stakeholders.
+  On a distributed team developing a suite of open-source tools to allow users to collect, manage, and store data on land and resource rights in a secure cloud platform.
+
+
+#### Team Lead / Manager of Development
+: ##### [Osprey Informatics](http://www.ospreyinformatics.com/)
+  ##### July 2015 - March 2017
+  ##### Calgary, AB
+
+  Managed team of 7 developers rapidly spec'ing out and developing SAAS platform. Interacted with various stakeholders for product planning and development. Performed project management within the development team. Oversaw R&D efforts developing and utilizing machine learning/computer vision based solutions, including the automated curation of large training sets. Promoted mentorship, engagement, and communication amongst fellow developers.
 
 #### Senior Software Developer
 : ##### [Osprey Informatics](http://www.ospreyinformatics.com/)
-  ##### October 2013 - Present
+  ##### October 2013 - March 2017
   ##### Calgary, AB
 
-  Developed fault-tolerant system to configure and control array of remote IP cameras. Designed remotely-installed system nodes to overcome limitations of network connectivity. Implemented continuous integration, infrastructure management, automated internal-failure resolution, and greatly improved test coverage. Provided project management assistance, planning and prioritizing features. Strengthened adherence to process within development lifecycle in efforts to adopt 'best practice' workflows. Supported computer-vision and search implementation. Focused on team building and mentorship amongst fellow developers.
+  Developed fault-tolerant IoT system to configure and control array of remote IP cameras. Designed remotely-installed system nodes to overcome limitations of network connectivity. Implemented continuous integration, infrastructure management, automated internal-failure resolution, and greatly improved test coverage. Provided project management assistance, planning and prioritizing features. Strengthened adherence to process within development lifecycle in efforts to adopt 'best practice' workflows. Supported computer-vision and search implementation. Focused on team building and mentorship amongst fellow developers.
 
 #### GIS Software Developer
 : ##### [OneOcean Corporation](https://www.oneoceancorp.com)
@@ -82,12 +90,6 @@ python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular
   ##### [http://dropchop.io](http://dropchop.io)
 
   An experimental browser-based GIS, aiming to provide an intuitive, modern, and free GIS platform. Developed publicly as an open source project, relying heavily on remote collaboration through Github Issues and Pull Requests. Written utilizing object-oriented design principles with solid test coverage. _Developed with Javascript, HTML5, Leaflet.js/Mapbox.js, Turf.js, Karma, Mocha, Chai, Sinon, Grunt._
-
-#### [LivingCityMap](http://www.livingcitymap.com)
-: ##### Founder / Developer
-  ##### [http://www.livingcitymap.com](http://www.livingcitymap.com)
-
-  An effort to provide spatial context to events within the Seattle area. Spiders are dispatched nightly, extracting events and locations from local weeklies.  Each event's location is run through a geocoder, and then entered with event into a database.  Data served via RESTful API. Data consumed by front-end single-page-app. _Developed with Python, GeoDjango, PostgreSQL, PostGIS, Scrapy, Celery, Leaflet, AngularJS._
 
 #### CalgaryAlerts
 : ##### Team Member

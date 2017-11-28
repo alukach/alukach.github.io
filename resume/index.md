@@ -25,33 +25,44 @@ title: "R&eacute;sum&eacute;"
 
 <h3 id="tech">Technologies</h3>
 
-<p>python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular2, reactjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, rest, oauth2, git, aws, ec2, s3, mechanicalturk</p>
+<p>python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular2, reactjs, sass, html5, css3, leaflet, postgresql, postgis, elasticsearch, puppet, ansible, docker, rest, oauth2, git, aws (ec2, ecs, s3, mechanicalturk, sns, route53, cloudfront, elb)</p>
 
 <hr />
 
 <h3 id="professional">Professional</h3>
 
 <dl>
+<dt><h4>Backend Developer</h4></dt>
+<dd>
+<h5><a href="https://cadasta.org/">Cadasta Foundation</a></h5>
+
+<h5>March 2017 - Present</h5>
+
+<h5>Calgary, AB</h5>
+
+<p>On a distributed team developing a suite of open-source tools to allow users to collect, manage, and store data on land and resource rights in a secure cloud platform.</p>
+</dd>
+
 <dt><h4>Team Lead / Manager of Development</h4></dt>
 <dd>
 <h5><a href="http://www.ospreyinformatics.com/">Osprey Informatics</a></h5>
 
-<h5>July 2015 - Present</h5>
+<h5>July 2015 - March 2017</h5>
 
 <h5>Calgary, AB</h5>
 
-<p>Managed team of 7 developers. Interacted with various stakeholders for product planning and development. Performed project management within the development team. Oversaw architecture design. Facilitated planning sessions with development groups and stakeholders.</p>
+<p>Managed team of 7 developers rapidly spec&#8217;ing out and developing SAAS platform. Interacted with various stakeholders for product planning and development. Performed project management within the development team. Oversaw R&amp;D efforts developing and utilizing machine learning/computer vision based solutions, including the automated curation of large training sets. Promoted mentorship, engagement, and communication amongst fellow developers.</p>
 </dd>
 
 <dt><h4>Senior Software Developer</h4></dt>
 <dd>
 <h5><a href="http://www.ospreyinformatics.com/">Osprey Informatics</a></h5>
 
-<h5>October 2013 - Present</h5>
+<h5>October 2013 - March 2017</h5>
 
 <h5>Calgary, AB</h5>
 
-<p>Developed fault-tolerant system to configure and control array of remote IP cameras. Designed remotely-installed system nodes to overcome limitations of network connectivity. Implemented continuous integration, infrastructure management, automated internal-failure resolution, and greatly improved test coverage. Provided project management assistance, planning and prioritizing features. Strengthened adherence to process within development lifecycle in efforts to adopt &#8216;best practice&#8217; workflows. Supported computer-vision and search implementation. Focused on team building and mentorship amongst fellow developers.</p>
+<p>Developed fault-tolerant IoT system to configure and control array of remote IP cameras. Designed remotely-installed system nodes to overcome limitations of network connectivity. Implemented continuous integration, infrastructure management, automated internal-failure resolution, and greatly improved test coverage. Provided project management assistance, planning and prioritizing features. Strengthened adherence to process within development lifecycle in efforts to adopt &#8216;best practice&#8217; workflows. Supported computer-vision and search implementation. Focused on team building and mentorship amongst fellow developers.</p>
 </dd>
 
 <dt><h4>GIS Software Developer</h4></dt>
@@ -113,15 +124,6 @@ title: "R&eacute;sum&eacute;"
 <h5><a href="http://dropchop.io">http://dropchop.io</a></h5>
 
 <p>An experimental browser-based GIS, aiming to provide an intuitive, modern, and free GIS platform. Developed publicly as an open source project, relying heavily on remote collaboration through Github Issues and Pull Requests. Written utilizing object-oriented design principles with solid test coverage. <em>Developed with Javascript, HTML5, Leaflet.js/Mapbox.js, Turf.js, Karma, Mocha, Chai, Sinon, Grunt.</em></p>
-</dd>
-
-<dt><h4><a href="http://www.livingcitymap.com">LivingCityMap</a></h4></dt>
-<dd>
-<h5>Founder / Developer</h5>
-
-<h5><a href="http://www.livingcitymap.com">http://www.livingcitymap.com</a></h5>
-
-<p>An effort to provide spatial context to events within the Seattle area. Spiders are dispatched nightly, extracting events and locations from local weeklies.  Each event&#8217;s location is run through a geocoder, and then entered with event into a database.  Data served via RESTful API. Data consumed by front-end single-page-app. <em>Developed with Python, GeoDjango, PostgreSQL, PostGIS, Scrapy, Celery, Leaflet, AngularJS.</em></p>
 </dd>
 
 <dt><h4>CalgaryAlerts</h4></dt>
