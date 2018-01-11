@@ -11,7 +11,7 @@ title: "R&eacute;sum&eacute;"
 <blockquote>
   <p><a class="button" href="alukach.pdf" target="_blank" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
   <a href="mailto:anthony.lukach@gmail.com">anthony.lukach@gmail.com</a><br />
-  <a href="http://www.alukach.com">alukach.com</a><br />
+  <a href="https://www.github.com/alukach">github.com/alukach</a><br />
   <span class='phone'>403.804.2128</span></p>
 </blockquote>
 
@@ -38,9 +38,9 @@ title: "R&eacute;sum&eacute;"
 
 <h5>March 2017 - Present</h5>
 
-<h5>Calgary, AB</h5>
+<h5>Remote</h5>
 
-<p>On a distributed team developing a suite of open-source tools to allow users to collect, manage, and store data on land and resource rights in a secure cloud platform.</p>
+<p>On a distributed team developing a suite of open-source tools to allow users to collect, manage, and store data on land and resource rights in a secure cloud platform. Focused on scalability through expanding distributed system of microservices, profiling and performance improvements of current system, and general dev-ops related tasks.</p>
 </dd>
 
 <dt><h4>Team Lead / Manager of Development</h4></dt>
@@ -84,7 +84,7 @@ title: "R&eacute;sum&eacute;"
 
 <h5>Seattle, WA</h5>
 
-<p>Developed web crawlers to accept search queries and scrape websites for imagery and supporting metadata. Rendered Javascript content in a headless browser, allowing for client-side content to be scraped. Worked independently and within a strict budget and timeframe.</p>
+<p>Worked on DARPA contract, developing web crawlers to accept search queries and scrape websites for imagery and supporting metadata. Rendered Javascript content in a headless browser, allowing for client-side content to be scraped. Worked independently and within a strict budget and timeframe.</p>
 </dd>
 
 <dt><h4>Hydrographer / Cartographer</h4></dt>
@@ -109,32 +109,6 @@ title: "R&eacute;sum&eacute;"
 <h5>Boise, ID</h5>
 
 <p>Created and contributed to geodatabases through geocoding data sourced from aerial photos and scanned maps. Georeferenced imported rasters. Created charts to assist with project planning.</p>
-</dd>
-</dl>
-
-<hr />
-
-<h3 id="personal">Personal</h3>
-
-<dl>
-<dt><h4><a href="http://dropchop.io">Dropchop.io</a></h4></dt>
-<dd>
-<h5>Collaborator</h5>
-
-<h5><a href="http://dropchop.io">http://dropchop.io</a></h5>
-
-<p>An experimental browser-based GIS, aiming to provide an intuitive, modern, and free GIS platform. Developed publicly as an open source project, relying heavily on remote collaboration through Github Issues and Pull Requests. Written utilizing object-oriented design principles with solid test coverage. <em>Developed with Javascript, HTML5, Leaflet.js/Mapbox.js, Turf.js, Karma, Mocha, Chai, Sinon, Grunt.</em></p>
-</dd>
-
-<dt><h4>CalgaryAlerts</h4></dt>
-<dd>
-<h5>Team Member</h5>
-
-<h5>Winning Entry, <a href="http://www.calgary.ca/CS/IIS/Pages/hackathon2015.aspx">2015 City of Calgary Hackathon</a></h5>
-
-<h5>April 2015</h5>
-
-<p>An SMS-based local notification system. Users were able to subscribe to information pertinent to their interests and location, such as city events, traffic and transit updates, voting reminders, emergency alerts, and parking restrictions. Data was ingested from City of Calgary OpenData catalogue and routed to appropriate interested parties. <em>Developed with Python, GeoDjango, PostgreSQL, PostGIS, AngularJS.</em></p>
 </dd>
 </dl>
 

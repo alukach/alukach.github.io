@@ -4,7 +4,7 @@
 
 > <a class="button" href="alukach.pdf" target="_blank" title="Download r&eacute;sum&eacute; as PDF">Download PDF</a>
 > [anthony.lukach@gmail.com](mailto:anthony.lukach@gmail.com)<br />
-> [alukach.com](http://www.alukach.com)<br />
+> [github.com/alukach](https://www.github.com/alukach)<br />
 > <span class='phone'>403.804.2128</span>
 
 
@@ -31,9 +31,9 @@ python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular
 #### Backend Developer
 : ##### [Cadasta Foundation](https://cadasta.org/)
   ##### March 2017 - Present
-  ##### Calgary, AB
+  ##### Remote
 
-  On a distributed team developing a suite of open-source tools to allow users to collect, manage, and store data on land and resource rights in a secure cloud platform.
+  On a distributed team developing a suite of open-source tools to allow users to collect, manage, and store data on land and resource rights in a secure cloud platform. Focused on scalability through expanding distributed system of microservices, profiling and performance improvements of current system, and general dev-ops related tasks.
 
 
 #### Team Lead / Manager of Development
@@ -62,7 +62,7 @@ python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular
   ##### December 2011 - February 2012
   ##### Seattle, WA
 
-  Developed web crawlers to accept search queries and scrape websites for imagery and supporting metadata. Rendered Javascript content in a headless browser, allowing for client-side content to be scraped. Worked independently and within a strict budget and timeframe.
+  Worked on DARPA contract, developing web crawlers to accept search queries and scrape websites for imagery and supporting metadata. Rendered Javascript content in a headless browser, allowing for client-side content to be scraped. Worked independently and within a strict budget and timeframe.
 
 #### Hydrographer / Cartographer
 : ##### [National Oceanic and Atmospheric Administration](http://www.noaa.gov)
@@ -78,25 +78,6 @@ python, django, celery, twisted, rabbitmq, nodejs, expressjs, angularjs, angular
   ##### Boise, ID
 
   Created and contributed to geodatabases through geocoding data sourced from aerial photos and scanned maps. Georeferenced imported rasters. Created charts to assist with project planning.
-
-
----
-
-
-### Personal {#personal}
-
-#### [Dropchop.io](http://dropchop.io)
-: ##### Collaborator
-  ##### [http://dropchop.io](http://dropchop.io)
-
-  An experimental browser-based GIS, aiming to provide an intuitive, modern, and free GIS platform. Developed publicly as an open source project, relying heavily on remote collaboration through Github Issues and Pull Requests. Written utilizing object-oriented design principles with solid test coverage. _Developed with Javascript, HTML5, Leaflet.js/Mapbox.js, Turf.js, Karma, Mocha, Chai, Sinon, Grunt._
-
-#### CalgaryAlerts
-: ##### Team Member
-  ##### Winning Entry, [2015 City of Calgary Hackathon](http://www.calgary.ca/CS/IIS/Pages/hackathon2015.aspx)
-  ##### April 2015
-
-  An SMS-based local notification system. Users were able to subscribe to information pertinent to their interests and location, such as city events, traffic and transit updates, voting reminders, emergency alerts, and parking restrictions. Data was ingested from City of Calgary OpenData catalogue and routed to appropriate interested parties. _Developed with Python, GeoDjango, PostgreSQL, PostGIS, AngularJS._
 
 
 ---

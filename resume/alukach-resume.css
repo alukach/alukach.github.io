@@ -1,5 +1,6 @@
 body.pdf { color:black; }
 body.pdf a { text-decoration:none; }
+body.pdf .phone { display:inline; }
 body.pdf .resume {
   width:900px;
   margin:0 auto;
@@ -46,16 +47,6 @@ body.pdf ul li {
   width:28%;
   float:left;
 }
-body.pdf ul dl {
-  margin:0;
-  padding:0.3em 0 0;
-}
-body.pdf ul dl dt {
-  font-size:122%;
-  font-weight:normal;
-  margin:0 0 .75em;
-}
-body.pdf ul dl dd { padding:0 4em 0 0; }
 body.pdf ol {
   float:left;
   width:84%;
@@ -226,7 +217,7 @@ em { font-family:'Times New Roman', Times, serif; }
   font-size:140%;
 }
 .resume dl dd {
-  margin:0 0 2.0em;
+  margin:0 0 3em;
   padding:0;
   font-size:.95em;
 }

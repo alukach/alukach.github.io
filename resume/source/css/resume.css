@@ -181,7 +181,8 @@ em {
         font-size: 140%;
     }
     dd {
-        margin: 0 0 2.0em; /* Decrease bottom to 1.25em for more compact */
+        /* Increasing / Decreasing bottom margin good way to control heights */
+        margin: 0 0 3em;
         padding: 0;
         font-size: .95em; /* Job description text font size */
     }

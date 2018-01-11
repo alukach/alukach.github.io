@@ -4,6 +4,10 @@ body.pdf {
     a {
         text-decoration: none;
     }
+    .phone {
+        /* Don't hide phone number on PDF */
+        display: inline;
+    }
     .resume {
         width: 900px;
         margin: 0 auto;
@@ -59,18 +63,6 @@ body.pdf {
         width: 28%;
         float: left;
     }
-    ul dl {
-        margin: 0;
-        padding: 0.3em 0 0;
-        dt {
-            font-size: 122%;
-            font-weight: normal;
-            margin: 0 0 .75em;
-        }
-        dd {
-            padding: 0 4em 0 0;
-        }
-    }
 
     ol {
         float: left;
@@ -106,5 +98,4 @@ body.pdf {
     hr:last-child {
         margin-bottom: 0;
     }
-
 }
