@@ -11,4 +11,4 @@ When an [Esri Web AppBuilder](https://www.esri.com/en-us/arcgis/products/web-app
 
 {% gist 8d7d50e05306aa2b81eac64a04a6d8ba %}
 
-The script should be saved alongside the `config.json` in the root of the web app. I would recommend running `chmod a+x runserver` to enable you to execute the server directly via `./runserver`. Alternatively, you could install this somewhere on your system path to invoke from any directory (something like `cp runserver /usr/local/bin/run-esri-app` for a unix-based system). 
+The script should be saved alongside the `config.json` in the root of the web app. I would recommend running `chmod a+x runserver` to enable you to execute the server directly via `./runserver`. Alternatively, you could install this somewhere on your system path to invoke from any directory (something like `cp runserver /usr/local/bin/serve-esri-app` for a unix-based system). 
