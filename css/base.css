@@ -111,14 +111,15 @@ hr {
     font-weight: lighter;
     letter-spacing: 3px;
     text-transform: uppercase;
-    margin: 2px 0 5px; }
+    margin: 2px 0 0.5em; }
   .content h2 {
     font-size: 1.3em;
     font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
     font-weight: lighter;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 15px; }
+    margin-top: 1.5em;
+    margin-bottom: 0.5em; }
   .content h3 {
     color: #777;
     font-size: 1em;
@@ -127,15 +128,14 @@ hr {
   .content p, .content li {
     font-size: 1em;
     margin-top: 0;
-    margin-bottom: 1.2em;
     line-height: 1.7em;
     color: #333; }
-    .content p code {
-      font-size: .9em;
-      background-color: #eeeeee;
-      border: 1px solid #777777;
-      border-radius: 3px;
-      padding: 2px 3px; }
+  .content p code {
+    font-size: .9em;
+    background-color: #eeeeee;
+    border: 1px solid #777777;
+    border-radius: 3px;
+    padding: 2px 3px; }
   .content img {
     padding: 3px;
     border: 1px solid #eeeeee;
