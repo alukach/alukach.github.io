@@ -1,15 +1,17 @@
 .highlight {
-  margin: 0 0 1.2em;
-  /*background-color: #eee;*/
+  margin: 0;
   font-size: 12px;
-  padding: 0px 15px;
   /*-webkit-border-radius: 10px;
   -moz-border-radius: 10px;*/
   overflow: hidden;
   text-shadow: none;
   color: #111;
-
+  background-color: #fff;
+}
+div.highlight {
   border: 1px solid #eee;
+  padding: 1em;
+  margin-bottom: 1.5em;
 }
 .hightlight code{
   float: left;
