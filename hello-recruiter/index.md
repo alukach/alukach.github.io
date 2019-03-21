@@ -25,7 +25,7 @@ No, I am actively not looking for a new position (I will remove this sentence if
 I'm interested in working on jobs that:
 
 - utilize Python, TypeScript/JavaScript (particularly node.js, React.js), Go (aka Golang)
-- have a focus on spatial data
+- have a focus on spatial or scientific data
 - are remote or offer a good work-from-home/flexible-schedule policy
 - have a positive/altruistic impact on the world
 - contribute to open-source technologies
