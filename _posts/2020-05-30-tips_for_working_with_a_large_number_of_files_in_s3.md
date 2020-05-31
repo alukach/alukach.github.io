@@ -23,7 +23,8 @@ However, when you do need to access the data locally, downloading and reading al
 
 <details>
   <summary>Stream S3 Inventory Report Python script</summary>
-  
+
+
 ```py
 import json
 import csv
@@ -61,6 +62,7 @@ Sometimes you may need a subset of the files within S3, based some metadata prop
   <summary>1. Create a table</summary>
 
 _This example assumes that you chose `CSV` as the S3 Inventory Output Format. For information on other formats, review [the docs.](https://docs.aws.amazon.com/athena/latest/ug/supported-format.html)_
+
 
 ```sql
 CREATE EXTERNAL TABLE your_table_name(
