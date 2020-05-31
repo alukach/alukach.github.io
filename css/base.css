@@ -290,3 +290,7 @@ ul.pagination {
 #post-pagination li.page:first-child {
   border: none;
 }
+
+summary {
+  cursor: pointer;
+}
