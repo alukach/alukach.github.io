@@ -1,4 +1,4 @@
-markdown: commonmarkghpages
+markdown: CommonMarkGhPages
 highlighter: rouge
 permalink: /posts/:title
 rdiscount:
