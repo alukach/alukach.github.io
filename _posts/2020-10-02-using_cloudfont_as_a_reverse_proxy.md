@@ -11,14 +11,14 @@ The basic idea of this ticket is to demonstrate how CloudFront can be utilized a
 
 ## Why
 
-Within the NASA organization, it has been a pain to get a subdomain for the SmallSat (aka CSDAP) project. NASA maintains tight control over their subdomains and it took us months to get `csdap.earthdata.nasa.gov`. We don’t want to have to deal with this process to spin up service-specific subdomains (e.g. `api.csdap.earthdata.nasa.gov` or `thumbnails.csdap.earthdata.nasa.gov`). As a result, we've settled on adopting a pattern where we use CloudFront to proxy all of our domain's incoming requests to their appropriate service.
+Within the large organizations, it can be a pain to get a subdomain for a project. At times, we won’t want to have to deal with the process to spin up service-specific subdomains (e.g. `api.my-project.big-institution.gov` or `thumbnails.my-project.big-institution.gov`). As a result, we've settled on adopting a pattern where we use CloudFront to proxy all of our domain's incoming requests to their appropriate service.
 
 ## How it works
 
 CloudFront has the ability to support multiple origin configurations. We can utilize the [Path Pattern](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesPathPattern) setting to direct web requests by URL path to their appropriate service. CloudFront behaves like a typical router libraries, wherein it routes traffic to the first path with a pattern matching the incoming request and routes requests that don't match route patterns to a default route. For example, our current infrastructure looks like this:
 
 ```
-csdap.earthdata.nasa.gov/
+my-project.big-institution.gov/
 ├── api/*         <- Application Load Balancer (ALB) that distributes traffic to order
 │                    management API service running on Elastic Container Service (ECS).
 ├── stac/*        <- ALB that distributes traffic to STAC API service running on ECS.
