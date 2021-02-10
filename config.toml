@@ -27,12 +27,12 @@ googleAnalyticsAsync = true # not required
     link = "https://twitter.com/anthonylukach"
 
   [[params.social]]
-    name = "email"
-    link = "anthony.lukach+blog@gmail.com"
-
-  [[params.social]]
     name = "linkedin"
     link = "https://www.linkedin.com/in/alukach/"
+
+  [[params.social]]
+    name = "email"
+    link = "anthony.lukach+blog@gmail.com"
 
 
 [[menu.main]]
