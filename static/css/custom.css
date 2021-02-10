@@ -1,0 +1,12 @@
+.highlight {
+  margin: 0;
+  padding: 0;
+}
+.highlight pre {
+  margin: 1rem 0;
+  padding: 10px 15px;
+}
+
+details summary {
+  cursor: pointer;
+}
