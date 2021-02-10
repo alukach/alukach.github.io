@@ -1,0 +1,61 @@
+baseURL = "http://alukach.com/"
+languageCode = "en-us"
+title = "anthony lukach"
+copyright = "Anthony Lukach"
+
+theme = "cactus"  # https://themes.gohugo.io/hugo-theme-cactus/
+paginate = 50
+
+googleAnalytics = "UA-16401510-1"
+googleAnalyticsAsync = true # not required
+
+[params]
+  description = "A collection of notes."
+  mainSection = "posts"
+  showAllPostsOnHomePage = true
+  colortheme = "white"
+  rss = true
+  css = ["css/custom.css"]
+  tagsOverview = true
+
+  [[params.social]]
+    name = "github"
+    link = "https://github.com/alukach"
+
+  [[params.social]]
+    name = "twitter"
+    link = "https://twitter.com/anthonylukach"
+
+  [[params.social]]
+    name = "email"
+    link = "anthony.lukach+blog@gmail.com"
+
+  [[params.social]]
+    name = "linkedin"
+    link = "https://www.linkedin.com/in/alukach/"
+
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Writings"
+  url = "/posts"
+  weight = 2
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = false
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = true
+    style = "rainbow_dash" # https://xyproto.github.io/splash/docs/longer/all.html
+    tabWidth = 2
+
+
+  [markup.goldmark.renderer]
+    unsafe = true  # Enable HTML in markdown
