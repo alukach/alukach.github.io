@@ -16,7 +16,7 @@ googleAnalyticsAsync = true # not required
   colortheme = "white"
   rss = true
   css = ["css/custom.css"]
-  tagsOverview = true
+  tagsOverview = false # tag cloud on homepage
 
   [[params.social]]
     name = "github"
