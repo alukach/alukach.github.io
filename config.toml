@@ -59,3 +59,9 @@ googleAnalyticsAsync = true # not required
 
   [markup.goldmark.renderer]
     unsafe = true  # Enable HTML in markdown
+
+[minify]
+  minifyOutput = true
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepWhitespace = true  # Persist whitespace to avoid tight clustering of icons on "Find me on..." section of homepage
