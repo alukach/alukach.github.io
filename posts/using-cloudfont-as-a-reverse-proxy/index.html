@@ -12,7 +12,7 @@
 The basic idea of this post is to demonstrate how CloudFront can be utilized as a serverless reverse-proxy, allowing you to host all of your application&rsquo;s content and services from a single domain. This minimizes a project&rsquo;s TLD footprint while providing project organization and performance along the way.
 Why Within large organizations, bureaucracy can make it a challenge to obtain a subdomain for a project.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://alukach.com/posts/using_cloudfont_as_a_reverse_proxy/">
+<meta property="og:url" content="https://alukach.com/posts/using-cloudfont-as-a-reverse-proxy/">
 <meta property="article:published_time" content="2020-10-02T00:00:00+00:00">
 <meta property="article:modified_time" content="2020-10-02T00:00:00+00:00">
 <meta name=twitter:card content="summary">
@@ -43,12 +43,12 @@ Why Within large organizations, bureaucracy can make it a challenge to obtain a 
 <span id=actions>
 <ul>
 <li>
-<a class=icon href=https://alukach.com/posts/database_uri_from_secret/>
+<a class=icon href=https://alukach.com/posts/database-uri-from-secret/>
 <i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
 </a>
 </li>
 <li>
-<a class=icon href=https://alukach.com/posts/ecr_deployment_script/>
+<a class=icon href=https://alukach.com/posts/ecr-deployment-script/>
 <i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
 </a>
 </li>
@@ -72,57 +72,57 @@ Why Within large organizations, bureaucracy can make it a challenge to obtain a 
 <div id=share style=display:none>
 <ul>
 <li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f">
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f">
 <i class="fab fa-facebook" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&text=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&text=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-twitter" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-linkedin" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&is_video=false&description=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&is_video=false&description=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-pinterest" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="mailto:?subject=Using%20CloudFront%20as%20a%20Reverse%20Proxy&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f">
+<a class=icon href="mailto:?subject=Using%20CloudFront%20as%20a%20Reverse%20Proxy&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f">
 <i class="fas fa-envelope" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-get-pocket" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-reddit" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-stumbleupon" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-digg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&name=Using%20CloudFront%20as%20a%20Reverse%20Proxy&description=Alternate%20title%3a%20How%20to%20be%20master%20of%20your%20domain.%0aThe%20basic%20idea%20of%20this%20post%20is%20to%20demonstrate%20how%20CloudFront%20can%20be%20utilized%20as%20a%20serverless%20reverse-proxy%2c%20allowing%20you%20to%20host%20all%20of%20your%20application%26rsquo%3bs%20content%20and%20services%20from%20a%20single%20domain.%20This%20minimizes%20a%20project%26rsquo%3bs%20TLD%20footprint%20while%20providing%20project%20organization%20and%20performance%20along%20the%20way.%0aWhy%20Within%20large%20organizations%2c%20bureaucracy%20can%20make%20it%20a%20challenge%20to%20obtain%20a%20subdomain%20for%20a%20project.">
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&name=Using%20CloudFront%20as%20a%20Reverse%20Proxy&description=Alternate%20title%3a%20How%20to%20be%20master%20of%20your%20domain.%0aThe%20basic%20idea%20of%20this%20post%20is%20to%20demonstrate%20how%20CloudFront%20can%20be%20utilized%20as%20a%20serverless%20reverse-proxy%2c%20allowing%20you%20to%20host%20all%20of%20your%20application%26rsquo%3bs%20content%20and%20services%20from%20a%20single%20domain.%20This%20minimizes%20a%20project%26rsquo%3bs%20TLD%20footprint%20while%20providing%20project%20organization%20and%20performance%20along%20the%20way.%0aWhy%20Within%20large%20organizations%2c%20bureaucracy%20can%20make%20it%20a%20challenge%20to%20obtain%20a%20subdomain%20for%20a%20project.">
 <i class="fab fa-tumblr" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&t=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&t=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-hacker-news" aria-hidden=true></i>
 </a>
 </li>
@@ -564,57 +564,57 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
 <div id=share-footer style=display:none>
 <ul>
 <li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f">
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f">
 <i class="fab fa-facebook fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&text=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&text=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-twitter fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&is_video=false&description=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&is_video=false&description=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="mailto:?subject=Using%20CloudFront%20as%20a%20Reverse%20Proxy&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f">
+<a class=icon href="mailto:?subject=Using%20CloudFront%20as%20a%20Reverse%20Proxy&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f">
 <i class="fas fa-envelope fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-reddit fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-stumbleupon fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&title=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-digg fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&name=Using%20CloudFront%20as%20a%20Reverse%20Proxy&description=Alternate%20title%3a%20How%20to%20be%20master%20of%20your%20domain.%0aThe%20basic%20idea%20of%20this%20post%20is%20to%20demonstrate%20how%20CloudFront%20can%20be%20utilized%20as%20a%20serverless%20reverse-proxy%2c%20allowing%20you%20to%20host%20all%20of%20your%20application%26rsquo%3bs%20content%20and%20services%20from%20a%20single%20domain.%20This%20minimizes%20a%20project%26rsquo%3bs%20TLD%20footprint%20while%20providing%20project%20organization%20and%20performance%20along%20the%20way.%0aWhy%20Within%20large%20organizations%2c%20bureaucracy%20can%20make%20it%20a%20challenge%20to%20obtain%20a%20subdomain%20for%20a%20project.">
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&name=Using%20CloudFront%20as%20a%20Reverse%20Proxy&description=Alternate%20title%3a%20How%20to%20be%20master%20of%20your%20domain.%0aThe%20basic%20idea%20of%20this%20post%20is%20to%20demonstrate%20how%20CloudFront%20can%20be%20utilized%20as%20a%20serverless%20reverse-proxy%2c%20allowing%20you%20to%20host%20all%20of%20your%20application%26rsquo%3bs%20content%20and%20services%20from%20a%20single%20domain.%20This%20minimizes%20a%20project%26rsquo%3bs%20TLD%20footprint%20while%20providing%20project%20organization%20and%20performance%20along%20the%20way.%0aWhy%20Within%20large%20organizations%2c%20bureaucracy%20can%20make%20it%20a%20challenge%20to%20obtain%20a%20subdomain%20for%20a%20project.">
 <i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fusing_cloudfont_as_a_reverse_proxy%2f&t=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fusing-cloudfont-as-a-reverse-proxy%2f&t=Using%20CloudFront%20as%20a%20Reverse%20Proxy">
 <i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
 </a>
 </li>

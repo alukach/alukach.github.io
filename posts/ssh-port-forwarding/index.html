@@ -10,7 +10,7 @@
 <meta property="og:title" content="SSH Port Forwarding">
 <meta property="og:description" content="The other week I found myself up at 2am in Canada setting up a VPN between my home computer (running Ubuntu) in Seattle and my laptop <partyhard.jpg>. I had enabled SSH access on my home computer and had set up port forwarding on my router to allow for access from the outside world ahead of time, but had forgotten that I would need to have a port forwarded for the VPN server as well.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://alukach.com/posts/ssh_port_forwarding/">
+<meta property="og:url" content="https://alukach.com/posts/ssh-port-forwarding/">
 <meta property="article:published_time" content="2013-02-25T00:00:00+00:00">
 <meta property="article:modified_time" content="2013-02-25T00:00:00+00:00">
 <meta name=twitter:card content="summary">
@@ -39,12 +39,12 @@
 <span id=actions>
 <ul>
 <li>
-<a class=icon href=https://alukach.com/posts/hello_world/>
+<a class=icon href=https://alukach.com/posts/hello-world/>
 <i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
 </a>
 </li>
 <li>
-<a class=icon href=https://alukach.com/posts/pushd_all_day_long/>
+<a class=icon href=https://alukach.com/posts/pushd-all-day-long/>
 <i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
 </a>
 </li>
@@ -68,57 +68,57 @@
 <div id=share style=display:none>
 <ul>
 <li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f">
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f">
 <i class="fab fa-facebook" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&text=SSH%20Port%20Forwarding">
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&text=SSH%20Port%20Forwarding">
 <i class="fab fa-twitter" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-linkedin" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&is_video=false&description=SSH%20Port%20Forwarding">
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&is_video=false&description=SSH%20Port%20Forwarding">
 <i class="fab fa-pinterest" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="mailto:?subject=SSH%20Port%20Forwarding&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f">
+<a class=icon href="mailto:?subject=SSH%20Port%20Forwarding&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f">
 <i class="fas fa-envelope" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-get-pocket" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-reddit" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-stumbleupon" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-digg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&name=SSH%20Port%20Forwarding&description=The%20other%20week%20I%20found%20myself%20up%20at%202am%20in%20Canada%20setting%20up%20a%20VPN%20between%20my%20home%20computer%20%28running%20Ubuntu%29%20in%20Seattle%20and%20my%20laptop%20%26lt%3bpartyhard.jpg%26gt%3b.%20I%20had%20enabled%20SSH%20access%20on%20my%20home%20computer%20and%20had%20set%20up%20port%20forwarding%20on%20my%20router%20to%20allow%20for%20access%20from%20the%20outside%20world%20ahead%20of%20time%2c%20but%20had%20forgotten%20that%20I%20would%20need%20to%20have%20a%20port%20forwarded%20for%20the%20VPN%20server%20as%20well.">
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&name=SSH%20Port%20Forwarding&description=The%20other%20week%20I%20found%20myself%20up%20at%202am%20in%20Canada%20setting%20up%20a%20VPN%20between%20my%20home%20computer%20%28running%20Ubuntu%29%20in%20Seattle%20and%20my%20laptop%20%26lt%3bpartyhard.jpg%26gt%3b.%20I%20had%20enabled%20SSH%20access%20on%20my%20home%20computer%20and%20had%20set%20up%20port%20forwarding%20on%20my%20router%20to%20allow%20for%20access%20from%20the%20outside%20world%20ahead%20of%20time%2c%20but%20had%20forgotten%20that%20I%20would%20need%20to%20have%20a%20port%20forwarded%20for%20the%20VPN%20server%20as%20well.">
 <i class="fab fa-tumblr" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&t=SSH%20Port%20Forwarding">
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&t=SSH%20Port%20Forwarding">
 <i class="fab fa-hacker-news" aria-hidden=true></i>
 </a>
 </li>
@@ -184,57 +184,57 @@ SSH Port Forwarding
 <div id=share-footer style=display:none>
 <ul>
 <li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f">
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f">
 <i class="fab fa-facebook fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&text=SSH%20Port%20Forwarding">
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&text=SSH%20Port%20Forwarding">
 <i class="fab fa-twitter fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&is_video=false&description=SSH%20Port%20Forwarding">
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&is_video=false&description=SSH%20Port%20Forwarding">
 <i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="mailto:?subject=SSH%20Port%20Forwarding&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f">
+<a class=icon href="mailto:?subject=SSH%20Port%20Forwarding&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f">
 <i class="fas fa-envelope fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-reddit fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-stumbleupon fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&title=SSH%20Port%20Forwarding">
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&title=SSH%20Port%20Forwarding">
 <i class="fab fa-digg fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&name=SSH%20Port%20Forwarding&description=The%20other%20week%20I%20found%20myself%20up%20at%202am%20in%20Canada%20setting%20up%20a%20VPN%20between%20my%20home%20computer%20%28running%20Ubuntu%29%20in%20Seattle%20and%20my%20laptop%20%26lt%3bpartyhard.jpg%26gt%3b.%20I%20had%20enabled%20SSH%20access%20on%20my%20home%20computer%20and%20had%20set%20up%20port%20forwarding%20on%20my%20router%20to%20allow%20for%20access%20from%20the%20outside%20world%20ahead%20of%20time%2c%20but%20had%20forgotten%20that%20I%20would%20need%20to%20have%20a%20port%20forwarded%20for%20the%20VPN%20server%20as%20well.">
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&name=SSH%20Port%20Forwarding&description=The%20other%20week%20I%20found%20myself%20up%20at%202am%20in%20Canada%20setting%20up%20a%20VPN%20between%20my%20home%20computer%20%28running%20Ubuntu%29%20in%20Seattle%20and%20my%20laptop%20%26lt%3bpartyhard.jpg%26gt%3b.%20I%20had%20enabled%20SSH%20access%20on%20my%20home%20computer%20and%20had%20set%20up%20port%20forwarding%20on%20my%20router%20to%20allow%20for%20access%20from%20the%20outside%20world%20ahead%20of%20time%2c%20but%20had%20forgotten%20that%20I%20would%20need%20to%20have%20a%20port%20forwarded%20for%20the%20VPN%20server%20as%20well.">
 <i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
 </a>
 </li>
 <li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fssh_port_forwarding%2f&t=SSH%20Port%20Forwarding">
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fssh-port-forwarding%2f&t=SSH%20Port%20Forwarding">
 <i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
 </a>
 </li>
