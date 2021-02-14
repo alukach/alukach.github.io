@@ -4,6 +4,7 @@ layout: post
 title: SSH Port Forwarding
 category: posts
 tags: [command-line-foo]
+aliases: [ssh_port_forwarding]
 ---
 
 The other week I found myself up at 2am in Canada setting up a VPN between my home computer (running Ubuntu) in Seattle and my laptop `<partyhard.jpg>`.  I had enabled SSH access on my home computer and had set up port forwarding on my router to allow for access from the outside world ahead of time, but had forgotten that I would need to have a port forwarded for the VPN server as well.  I tried to SSH into my home box and access the router's admin interface from the commandline browser (using [Lynx](http://packages.ubuntu.com/search?keywords=lynx) and [w3m](http://packages.ubuntu.com/search?keywords=w3m)).  This was a bad idea and didn't work, as the browser's admin page required JavaScript for some odd reason.

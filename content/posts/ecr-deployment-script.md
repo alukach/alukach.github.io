@@ -4,6 +4,7 @@ layout: post
 title: An ECR Deployment Script
 category: posts
 tags: [ecr,aws]
+aliases: [ecr_deployment_script]
 ---
 
 Below is a simple script to deploy a Docker image to ECR...

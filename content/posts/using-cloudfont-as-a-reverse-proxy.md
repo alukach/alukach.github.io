@@ -4,6 +4,7 @@ layout: post
 title: Using CloudFront as a Reverse Proxy
 category: posts
 tags: [python, aws, cdk, cloudfront]
+aliases: [using_cloudfont_as_a_reverse_proxy]
 ---
 
 _Alternate title: How to be master of your domain._
@@ -66,9 +67,9 @@ Assuming that the service has a DNS name, it can be set up as an origin for Clou
 
 Data from a standard S3 bucket can be configured by pointing to the bucket's REST endpoint (e.g. `<bucket-name>.s3.<region>.amazonaws.com`). More information: [Using Amazon S3 Buckets for Your Origin](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/DownloadDistS3AndCustomOrigins.html).
 
-This can be a public bucket, in which case would benefit from the CDN and caching provided by CloudFront. 
+This can be a public bucket, in which case would benefit from the CDN and caching provided by CloudFront.
 
-When using a private bucket, CloudFront additionally can serve as a "trusted signer" to enable an application with access to the CloudFront security keys to create signed URLs/cookies to grant temporary access to particular private content. In order for CloudFront to access content within a private bucket, its Origin Access Identity must be given read privileges within the bucket's policy.  More information: [Restricting Access to Amazon S3 Content by Using an Origin Access Identity](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html) 
+When using a private bucket, CloudFront additionally can serve as a "trusted signer" to enable an application with access to the CloudFront security keys to create signed URLs/cookies to grant temporary access to particular private content. In order for CloudFront to access content within a private bucket, its Origin Access Identity must be given read privileges within the bucket's policy. More information: [Restricting Access to Amazon S3 Content by Using an Origin Access Identity](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html)
 
 ## Caveats
 
@@ -101,7 +102,7 @@ Furthermore, if you have an S3 bucket serving content from `https://d1234abcde.c
 
 ## Summary
 
-After learning this technique, it feels kind of obvious. I'm honestly not sure if this is AWS 101 level technique or something that is rarely done; however I never knew of it before this project and therefore felt it was worth sharing. 
+After learning this technique, it feels kind of obvious. I'm honestly not sure if this is AWS 101 level technique or something that is rarely done; however I never knew of it before this project and therefore felt it was worth sharing.
 
 A quick summary of some of the advantages that come with using CloudFront for all application endpoints:
 

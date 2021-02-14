@@ -4,6 +4,7 @@ layout: post
 title: Learning AngularJS
 category: posts
 tags: [angularjs]
+aliases: [nots_on_learning_angularjs]
 ---
 
 Here is a quick dump of some of the better resources that I came across while learning [AngularJS](http://angularjs.org).

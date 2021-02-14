@@ -4,6 +4,7 @@ layout: post
 title: Hello World
 category: posts
 tags: [jekyll]
+aliases: [hello_world]
 ---
 
 I'm just getting things set up with this new blog.  I've been hearing about this movement towards static-generated blogs for a while now, ever since reading [this article](http://kylerush.net/blog/meet-the-obama-campaigns-250-million-fundraising-platform/) about the Obama Campaign's fundraising platform.  The idea of stepping away from databases and [convulated CMS's](http://www.wordpress.com) and PHP attracted me.
