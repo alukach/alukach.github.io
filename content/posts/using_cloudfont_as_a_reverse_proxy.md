@@ -8,15 +8,15 @@ tags: [python, aws, cdk, cloudfront]
 
 _Alternate title: How to be master of your domain._
 
-The basic idea of this ticket is to demonstrate how CloudFront can be utilized as a serverless [reverse-proxy](https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/), allowing you to host all of your application's content and services from a single domain. This minimizes a project's [TLD](https://en.wikipedia.org/wiki/Top-level_domain) footprint while providing project organization and performance along the way.
+The basic idea of this post is to demonstrate how CloudFront can be utilized as a serverless [reverse-proxy](https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/), allowing you to host all of your application's content and services from a single domain. This minimizes a project's [TLD](https://en.wikipedia.org/wiki/Top-level_domain) footprint while providing project organization and performance along the way.
 
 ## Why
 
-Within the large organizations, it can be a pain to get a subdomain for a project. At times, we won’t want to have to deal with the process to spin up service-specific subdomains (e.g. `api.my-project.big-institution.gov` or `thumbnails.my-project.big-institution.gov`). As a result, we've settled on adopting a pattern where we use CloudFront to proxy all of our domain's incoming requests to their appropriate service.
+Within large organizations, bureaucracy can make it a challenge to obtain a subdomain for a project. This means that utilizing multiple service-specific subdomains (e.g. `api.my-project.big-institution.gov` or `thumbnails.my-project.big-institution.gov`) is an arduous process. To avoid this in a recent project, we settled on adopting a pattern where we use CloudFront to proxy all of our domain's incoming requests to their appropriate service.
 
 ## How it works
 
-CloudFront has the ability to support multiple origin configurations. We can utilize the [Path Pattern](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesPathPattern) setting to direct web requests by URL path to their appropriate service. CloudFront behaves like a typical router libraries, wherein it routes traffic to the first path with a pattern matching the incoming request and routes requests that don't match route patterns to a default route. For example, our current infrastructure looks like this:
+CloudFront has the ability to support multiple origin configurations (i.e. multiple sources of content). We can utilize the [Path Pattern](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesPathPattern) setting to direct web requests by URL path to their appropriate service. CloudFront behaves like a typical router libraries, wherein it routes traffic to the first path with a pattern matching the incoming request and routes requests that don't match route patterns to a default route. For example, our current infrastructure looks like this:
 
 ```
 my-project.big-institution.gov/
