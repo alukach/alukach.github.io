@@ -7,6 +7,14 @@
   padding: 10px 15px;
 }
 
-details summary {
+.content details summary {
   cursor: pointer;
+  font-weight: 600;
+}
+.content p {
+  /* Cactus is justified by default */
+  text-align: inherit;
+}
+.content ul li, .content ol li {
+  margin-bottom: 0.5em;
 }
