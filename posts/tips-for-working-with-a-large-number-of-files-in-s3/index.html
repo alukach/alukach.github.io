@@ -259,32 +259,32 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>CREATE</span> <span style=color:#2c5dcd;font-weight:700>EXTERNAL</span> <span style=color:#2c5dcd;font-weight:700>TABLE</span> your_table_name(
-  <span style=color:#2c5dcd>`</span>bucket<span style=color:#2c5dcd>`</span> string,
-  <span style=color:#2c5dcd;font-weight:700>key</span> string,
-  version_id string,
-  is_latest <span style=color:#5918bb;font-weight:700>boolean</span>,
-  is_delete_marker <span style=color:#5918bb;font-weight:700>boolean</span>,
-  <span style=color:#2c5dcd;font-weight:700>size</span> <span style=color:#5918bb;font-weight:700>bigint</span>,
-  last_modified_date <span style=color:#2c5dcd;font-weight:700>timestamp</span>,
-  e_tag string,
-  storage_class string,
-  is_multipart_uploaded <span style=color:#5918bb;font-weight:700>boolean</span>,
-  replication_status string,
-  encryption_status string,
-  object_lock_retain_until_date <span style=color:#2c5dcd;font-weight:700>timestamp</span>,
-  object_lock_mode string,
-  object_lock_legal_hold_status string
-  )
-  PARTITIONED <span style=color:#2c5dcd;font-weight:700>BY</span> (dt string)
-  <span style=color:#2c5dcd;font-weight:700>ROW</span> FORMAT DELIMITED
-    FIELDS TERMINATED <span style=color:#2c5dcd;font-weight:700>BY</span> <span style=color:#0c6>&#39;,&#39;</span>
-    ESCAPED <span style=color:#2c5dcd;font-weight:700>BY</span> <span style=color:#0c6>&#39;\\&#39;</span>
-    LINES TERMINATED <span style=color:#2c5dcd;font-weight:700>BY</span> <span style=color:#0c6>&#39;\n&#39;</span>
-  STORED <span style=color:#2c5dcd;font-weight:700>AS</span> INPUTFORMAT <span style=color:#0c6>&#39;org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat&#39;</span>
-  OUTPUTFORMAT  <span style=color:#0c6>&#39;org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat&#39;</span>
-  <span style=color:#2c5dcd;font-weight:700>LOCATION</span> <span style=color:#0c6>&#39;s3://destination-prefix/source-bucket/YOUR_CONFIG_ID/hive/&#39;</span>;
-</code></pre></td></tr></table>
+<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>CREATE</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>EXTERNAL</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>TABLE</span><span style=color:#cbcbcb> </span>your_table_name(<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd>`</span>bucket<span style=color:#2c5dcd>`</span><span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>key</span><span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>version_id<span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>is_latest<span style=color:#cbcbcb> </span><span style=color:#5918bb;font-weight:700>boolean</span>,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>is_delete_marker<span style=color:#cbcbcb> </span><span style=color:#5918bb;font-weight:700>boolean</span>,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>size</span><span style=color:#cbcbcb> </span><span style=color:#5918bb;font-weight:700>bigint</span>,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>last_modified_date<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>timestamp</span>,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>e_tag<span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>storage_class<span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>is_multipart_uploaded<span style=color:#cbcbcb> </span><span style=color:#5918bb;font-weight:700>boolean</span>,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>replication_status<span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>encryption_status<span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>object_lock_retain_until_date<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>timestamp</span>,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>object_lock_mode<span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>object_lock_legal_hold_status<span style=color:#cbcbcb> </span>string<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>)<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>PARTITIONED<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>BY</span><span style=color:#cbcbcb> </span>(dt<span style=color:#cbcbcb> </span>string)<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>ROW</span><span style=color:#cbcbcb> </span>FORMAT<span style=color:#cbcbcb> </span>DELIMITED<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span>FIELDS<span style=color:#cbcbcb> </span>TERMINATED<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>BY</span><span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;,&#39;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span>ESCAPED<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>BY</span><span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;\\&#39;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span>LINES<span style=color:#cbcbcb> </span>TERMINATED<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>BY</span><span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;\n&#39;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>STORED<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>AS</span><span style=color:#cbcbcb> </span>INPUTFORMAT<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;org.apache.hadoop.hive.ql.io.SymlinkTextInputFormat&#39;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span>OUTPUTFORMAT<span style=color:#cbcbcb>  </span><span style=color:#0c6>&#39;org.apache.hadoop.hive.ql.io.IgnoreKeyTextOutputFormat&#39;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>LOCATION</span><span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;s3://destination-prefix/source-bucket/YOUR_CONFIG_ID/hive/&#39;</span>;<span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
 </div>
 </div></details>
 <details>
@@ -294,8 +294,8 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 <pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql>MSCK REPAIR <span style=color:#2c5dcd;font-weight:700>TABLE</span> your_table_name;
-</code></pre></td></tr></table>
+<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql>MSCK<span style=color:#cbcbcb> </span>REPAIR<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>TABLE</span><span style=color:#cbcbcb> </span>your_table_name;<span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
 </div>
 </div></details>
 <details>
@@ -308,11 +308,11 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>SELECT</span> storage_class, <span style=color:#2c5dcd;font-weight:700>count</span>(<span style=color:#2c5dcd>*</span>) <span style=color:#2c5dcd;font-weight:700>as</span> <span style=color:#2c5dcd;font-weight:700>count</span>
-<span style=color:#2c5dcd;font-weight:700>FROM</span> your_table_name
-<span style=color:#2c5dcd;font-weight:700>WHERE</span> dt <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#39;2019-12-22-00-00&#39;</span>
-<span style=color:#2c5dcd;font-weight:700>GROUP</span> <span style=color:#2c5dcd;font-weight:700>BY</span> storage_class
-</code></pre></td></tr></table>
+<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>SELECT</span><span style=color:#cbcbcb> </span>storage_class,<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>count</span>(<span style=color:#2c5dcd>*</span>)<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>as</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>count</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>FROM</span><span style=color:#cbcbcb> </span>your_table_name<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>WHERE</span><span style=color:#cbcbcb> </span>dt<span style=color:#cbcbcb> </span><span style=color:#2c5dcd>=</span><span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2019-12-22-00-00&#39;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>GROUP</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>BY</span><span style=color:#cbcbcb> </span>storage_class<span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
 </div>
 </div></details>
 <p>More information about querying Storage Inventory files with Athena can be <a href=https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html#storage-inventory-athena-query>found here</a>.</p>
