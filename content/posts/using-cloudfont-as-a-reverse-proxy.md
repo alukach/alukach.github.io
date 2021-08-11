@@ -114,7 +114,7 @@ A quick summary of some of the advantages that come with using CloudFront for al
 - Out of the box, AWS Shield Standard is applied to CloudFront to provide protection against DDoS attacks 🏰.
 - Static content is regionally cached and served from [Edge Locations](https://aws.amazon.com/cloudfront/features/#Amazon_CloudFront_Infrastructure) closer to the viewer 🌏.
 - Dynamic content is also served from Edge Locations, which connect to the origin server via AWS' global private network. This is faster than connecting to an origin server over the public internet 🚀.
-- All data is served from the same domain origin. Goodbye CORS errors 👋!
+- Externally, all data is served from the same domain origin. Goodbye CORS errors 👋!
 - Data egress costs are lower through CloudFront than other services. This can be ensured by only selecting [Price Class 100](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PriceClass.html), other price classes can be chosen if enabling a global CDN is worth the higher egress costs 💴.
 
 ## Example
