@@ -162,7 +162,7 @@ Using CloudFormation's Fn::Sub with Bash parameter substitution
 <p>Let&rsquo;s say that you need to inject a large bash script into a CloudFormation <code>AWS::EC2::Instance</code> Resource&rsquo;s <code>UserData</code> property. CloudFormation makes this easy with the <a href=https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-base64.html><code>Fn::Base64</code> intrinsic function</a>:</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -176,7 +176,7 @@ Using CloudFormation's Fn::Sub with Bash parameter substitution
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>Resources</span>:<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>VPNServerInstance</span>:<span style=color:#cbcbcb>
@@ -193,7 +193,7 @@ Using CloudFormation's Fn::Sub with Bash parameter substitution
 </div><p>In your bash script, you may even want to reference a parameter created elsewhere in the CloudFormation template. This is no problem with Cloudformation&rsquo;s <a href=https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-sub.html><code>Fn::Sub</code> instrinsic function</a>:</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -217,7 +217,7 @@ Using CloudFormation's Fn::Sub with Bash parameter substitution
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>Parameters</span>:<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>Username</span>:<span style=color:#cbcbcb>
@@ -244,7 +244,7 @@ Using CloudFormation's Fn::Sub with Bash parameter substitution
 </div><p>The downside of the <code>Fn::Sub</code> function is that it does not play nice with bash' <a href=https://www.tldp.org/LDP/abs/html/parameter-substitution.html>parameter substitution</a> expressions:</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -269,7 +269,7 @@ Using CloudFormation's Fn::Sub with Bash parameter substitution
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>Parameters</span>:<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>Username</span>:<span style=color:#cbcbcb>
@@ -297,12 +297,12 @@ Using CloudFormation's Fn::Sub with Bash parameter substitution
 </div><p>The above template fails validation:</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sh data-lang=sh>$ aws cloudformation validate-template --template-body file://test.yaml
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sh data-lang=sh>$ aws cloudformation validate-template --template-body file://test.yaml
 
 An error occurred <span style=color:#2c5dcd>(</span>ValidationError<span style=color:#2c5dcd>)</span> when calling the ValidateTemplate operation: Template error: variable names in Fn::Sub syntax must contain only alphanumeric characters, underscores, periods, and colons
 </code></pre></td></tr></table>
@@ -310,7 +310,7 @@ An error occurred <span style=color:#2c5dcd>(</span>ValidationError<span style=c
 </div><p><strong>The work-around is to rely on another intrinsic function: <a href=https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-join.html><code>Fn::Join</code></a>:</strong></p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -338,7 +338,7 @@ An error occurred <span style=color:#2c5dcd>(</span>ValidationError<span style=c
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>AWSTemplateFormatVersion</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2010-09-09&#39;</span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>Parameters</span>:<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>Username</span>:<span style=color:#cbcbcb>
@@ -372,7 +372,7 @@ An error occurred <span style=color:#2c5dcd>(</span>ValidationError<span style=c
 <p>While we&rsquo;re talking about CloudFormation, another good trick comes from <a href=https://cloudonaut.io>cloudonaut.io</a> regarding using a <a href=https://cloudonaut.io/optional-parameter-in-cloudformation/>Optional Parameter in CloudFormation</a>.</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -397,7 +397,7 @@ An error occurred <span style=color:#2c5dcd>(</span>ValidationError<span style=c
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>Parameters</span>:<span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>Parameters</span>:<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>KeyName</span>:<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>Description</span>:<span style=color:#cbcbcb> </span>(Optional) Select an ssh key pair if you will need SSH access to the machine<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>Type</span>:<span style=color:#cbcbcb> </span>String<span style=color:#cbcbcb>

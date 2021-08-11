@@ -199,7 +199,7 @@ end script
 <p>Populate Jupyter with required configuration. You should probably auto-generate the configuration first and then just change the applicable variables.</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -213,17 +213,17 @@ end script
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#0080ff;font-style:italic># .jupyter/jupyter_notebook_config.py</span>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=color:#0080ff;font-style:italic># .jupyter/jupyter_notebook_config.py</span>
 c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>allow_origin <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#39;https://jupyter.mydomain.com&#39;</span>
 c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>notebook_dir <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#39;/home/MY_USER/notebooks&#39;</span>
-c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>open_browser <span style=color:#2c5dcd>=</span> False
+c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>open_browser <span style=color:#2c5dcd>=</span> <span style=color:#2c5dcd;font-weight:700>False</span>
 c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>password <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#39;some_password_hash&#39;</span>
 c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>port <span style=color:#2c5dcd>=</span> <span style=color:#5918bb;font-weight:700>8888</span>
 c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>kernel_spec_manager_class <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#34;nb_conda_kernels.CondaKernelSpecManager&#34;</span>
 c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>nbserver_extensions <span style=color:#2c5dcd>=</span> {
-  <span style=color:#0c6>&#34;nb_conda&#34;</span>: True,
-  <span style=color:#0c6>&#34;nb_anacondacloud&#34;</span>: True,
-  <span style=color:#0c6>&#34;nbpresent&#34;</span>: True
+  <span style=color:#0c6>&#34;nb_conda&#34;</span>: <span style=color:#2c5dcd;font-weight:700>True</span>,
+  <span style=color:#0c6>&#34;nb_anacondacloud&#34;</span>: <span style=color:#2c5dcd;font-weight:700>True</span>,
+  <span style=color:#0c6>&#34;nbpresent&#34;</span>: <span style=color:#2c5dcd;font-weight:700>True</span>
 }
 </code></pre></td></tr></table>
 </div>
@@ -231,7 +231,7 @@ c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>
 <p>To be able to access Jupyter at port 80, we&rsquo;ll need to reverse proxy to the service. Nginx can take care of this for us. Jupyter uses websockets to stream data to the client, so some</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -272,7 +272,7 @@ c<span style=color:#2c5dcd>.</span>NotebookApp<span style=color:#2c5dcd>.</span>
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-nginx data-lang=nginx><span style=color:#0080ff;font-style:italic># /etc/nginx/sites-enabled/jupyter.conf
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-nginx data-lang=nginx><span style=color:#0080ff;font-style:italic># /etc/nginx/sites-enabled/jupyter.conf
 </span><span style=color:#0080ff;font-style:italic># Based on example: https://gist.github.com/cboettig/8643341bd3c93b62b5c2
 </span><span style=color:#0080ff;font-style:italic></span><span style=color:#2c5dcd;font-weight:700>upstream</span> <span style=color:#0c6>jupyter</span> {
     <span style=color:#2c5dcd;font-weight:700>server</span> 127.0.0.1:<span style=color:#5918bb;font-weight:700>8888</span> <span style=color:#0c6>fail_timeout=0</span>;

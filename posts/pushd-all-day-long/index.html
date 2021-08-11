@@ -152,7 +152,7 @@ pushd and popd forever
 <p>Additionally, when exploring the idea, I came across <a href=http://unix.stackexchange.com/questions/4290/aliasing-cd-to-pushd-is-it-a-good-idea>this StackExchange post</a> illustrating a <code>back</code> function, allowing you to switch back and forth between your current and previous directory with removing either from the stack. In the end, this is what I put in my <a href=https://raw.github.com/alukach/.mySetup/master/.bash_profile>bash profile</a>:</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -175,7 +175,7 @@ pushd and popd forever
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#0080ff;font-style:italic># CD is now silent pushd</span>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=color:#0080ff;font-style:italic># CD is now silent pushd</span>
 cd<span style=color:#2c5dcd>()</span>
 <span style=color:#2c5dcd>{</span>
   <span style=color:#2c5dcd;font-weight:700>if</span> <span style=color:#2c5dcd>[</span> $# -eq <span style=color:#5918bb;font-weight:700>0</span> <span style=color:#2c5dcd>]</span>; <span style=color:#2c5dcd;font-weight:700>then</span>

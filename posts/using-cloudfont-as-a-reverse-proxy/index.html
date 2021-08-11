@@ -179,10 +179,12 @@ Using CloudFront as a Reverse Proxy
 <pre><code>my-project.big-institution.gov/
 ├── api/*         &lt;- Application Load Balancer (ALB) that distributes traffic to order
 │                    management API service running on Elastic Container Service (ECS).
+│
 ├── stac/*        &lt;- ALB that distributes traffic to STAC API service running on ECS.
 │
 ├── storage/*     &lt;- Private S3 bucket storing private data. Only URLs that have been
 │                    signed with our CloudFront keypair will be successful.
+│
 ├── thumbnails/*  &lt;- Public S3 bucket storing thumbnail imagery.
 │
 └── *             &lt;- Public S3 website bucket storing our single page application frontend.
@@ -193,7 +195,7 @@ Using CloudFront as a Reverse Proxy
 <blockquote>
 <p>My bucket is private. Can CloudFront serve a website from this bucket?</p>
 </blockquote>
-<p>If your bucket is private, the website endpoint will not work (<a href=https://aws.amazon.com/premiumsupport/knowledge-center/s3-cloudfront-website-access/>source</a>). You could configure CloudFront to send traffic to the buckets REST API endpoint, however this will prevent you from being able to utilize S3&rsquo;s custom error document feature which is essential for hosting single page applications on S3.</p>
+<p>If your bucket is private, the website endpoint will not work (<a href=https://aws.amazon.com/premiumsupport/knowledge-center/s3-cloudfront-website-access/>source</a>). You could configure CloudFront to send traffic to the buckets REST API endpoint, however this will prevent you from being able to utilize S3&rsquo;s custom error document feature which may be essential for hosting single page applications on S3. Tools like <a href=https://nextjs.org/>Next.js</a> and [Gatsby.js] support rendering HTML documents for all routes, which can avoid the need for custom error pages; however care must be given to ensure that any dynamic portion of the page&rsquo;s routes (e.g. <code>/docs/3</code>, where <code>3</code> is the ID of a record to be fetched from an API) must be specified as either a query parameter (e.g. <code>/docs?3</code>) or a hash (e.g. `/docs#3).</p>
 <blockquote>
 <p>CloudFront itself has support for custom error pages. Why can&rsquo;t I use that to enable hosting private S3 buckets as websites?</p>
 </blockquote>
@@ -221,7 +223,7 @@ Using CloudFront as a Reverse Proxy
 <summary>Configuring FastAPI to be served under a non-root path</summary>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -235,22 +237,22 @@ Using CloudFront as a Reverse Proxy
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>from</span> fastapi <span style=color:#2c5dcd;font-weight:700>import</span> FastAPI, APIRouter
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>from</span> fastapi <span style=color:#2c5dcd;font-weight:700>import</span> FastAPI, APIRouter
 
 API_BASE_PATH <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#39;/api&#39;</span>
 
 app <span style=color:#2c5dcd>=</span> FastAPI(
     title<span style=color:#2c5dcd>=</span><span style=color:#0c6>&#34;Example API&#34;</span>,
     docs_url<span style=color:#2c5dcd>=</span>API_BASE_PATH,
-    swagger_ui_oauth2_redirect_url<span style=color:#2c5dcd>=</span>f<span style=color:#0c6>&#34;{API_BASE_PATH}/oauth2-redirect&#34;</span>,
-    openapi_url<span style=color:#2c5dcd>=</span>f<span style=color:#0c6>&#34;{API_BASE_PATH}/openapi.json&#34;</span>,
+    swagger_ui_oauth2_redirect_url<span style=color:#2c5dcd>=</span><span style=color:#0c6>f</span><span style=color:#0c6>&#34;</span><span style=color:#0c6>{</span>API_BASE_PATH<span style=color:#0c6>}</span><span style=color:#0c6>/oauth2-redirect&#34;</span>,
+    openapi_url<span style=color:#2c5dcd>=</span><span style=color:#0c6>f</span><span style=color:#0c6>&#34;</span><span style=color:#0c6>{</span>API_BASE_PATH<span style=color:#0c6>}</span><span style=color:#0c6>/openapi.json&#34;</span>,
 )
 api_router <span style=color:#2c5dcd>=</span> APIRouter()
 app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=color:#2c5dcd>=</span>API_BASE_PATH)
 </code></pre></td></tr></table>
 </div>
 </div></details>
-<p>Furthermore, if you have an S3 bucket serving content from <code>https://d1234abcde.cloudfront.net/bucket</code>, only keys that with a prefix of <code>bucket/</code> will be available to that origin. In the event that keys are not prefixed with a path matching the origins configured path pattern, there are two options:</p>
+<p>Furthermore, if you have an S3 bucket serving content from <code>https://d1234abcde.cloudfront.net/bucket</code>, only keys with a prefix of <code>bucket/</code> will be available to that origin. In the event that keys are not prefixed with a path matching the origins configured path pattern, there are two options:</p>
 <ol>
 <li>Move all of the files, likely utilizing something like S3 Batch (see #253 for more details)</li>
 <li>Use a Lambda@Edge function to rewrite the path of any incoming request for a non-cached resource to conform to the key structure of the S3 bucket&rsquo;s objects.</li>
@@ -273,7 +275,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
 <summary>An example of a reverse-proxy CloudFront Distribution written with CDK in Python</summary>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
@@ -400,7 +402,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">125
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>from</span> aws_cdk <span style=color:#2c5dcd;font-weight:700>import</span> (
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>from</span> aws_cdk <span style=color:#2c5dcd;font-weight:700>import</span> (
     aws_s3 <span style=color:#2c5dcd;font-weight:700>as</span> s3,
     aws_certificatemanager <span style=color:#2c5dcd;font-weight:700>as</span> certmgr,
     aws_iam <span style=color:#2c5dcd;font-weight:700>as</span> iam,
@@ -418,10 +420,10 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
         api_lb: elbv2<span style=color:#2c5dcd>.</span>ApplicationLoadBalancer,
         assets_bucket: s3<span style=color:#2c5dcd>.</span>Bucket,
         website_bucket: s3<span style=color:#2c5dcd>.</span>Bucket,
-        domain_name: <span style=color:#5918bb;font-weight:700>str</span> <span style=color:#2c5dcd>=</span> None,
-        using_gcc_acct: <span style=color:#5918bb;font-weight:700>bool</span> <span style=color:#2c5dcd>=</span> False,
+        domain_name: <span style=color:#5918bb;font-weight:700>str</span> <span style=color:#2c5dcd>=</span> <span style=color:#2c5dcd;font-weight:700>None</span>,
+        using_gcc_acct: <span style=color:#5918bb;font-weight:700>bool</span> <span style=color:#2c5dcd>=</span> <span style=color:#2c5dcd;font-weight:700>False</span>,
         <span style=color:#2c5dcd>**</span>kwargs,
-    ) <span style=color:#2c5dcd>-&gt;</span> None:
+    ) <span style=color:#2c5dcd>-&gt;</span> <span style=color:#2c5dcd;font-weight:700>None</span>:
         <span style=color:#5918bb;font-weight:700>super</span>()<span style=color:#2c5dcd>.</span>__init__(scope, <span style=color:#5918bb;font-weight:700>id</span>, <span style=color:#2c5dcd>**</span>kwargs)
 
         oai <span style=color:#2c5dcd>=</span> cf<span style=color:#2c5dcd>.</span>OriginAccessIdentity(
@@ -433,7 +435,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
         certificate <span style=color:#2c5dcd>=</span> (
             certmgr<span style=color:#2c5dcd>.</span>Certificate(self, <span style=color:#0c6>&#34;Certificate&#34;</span>, domain_name<span style=color:#2c5dcd>=</span>domain_name)
             <span style=color:#2c5dcd;font-weight:700>if</span> domain_name
-            <span style=color:#2c5dcd;font-weight:700>else</span> None
+            <span style=color:#2c5dcd;font-weight:700>else</span> <span style=color:#2c5dcd;font-weight:700>None</span>
         )
 
         self<span style=color:#2c5dcd>.</span>distribution <span style=color:#2c5dcd>=</span> cf<span style=color:#2c5dcd>.</span>CloudFrontWebDistribution(
@@ -444,7 +446,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
                     acm_cert_ref<span style=color:#2c5dcd>=</span>certificate<span style=color:#2c5dcd>.</span>certificate_arn, names<span style=color:#2c5dcd>=</span>[domain_name]
                 )
                 <span style=color:#2c5dcd;font-weight:700>if</span> certificate
-                <span style=color:#2c5dcd;font-weight:700>else</span> None
+                <span style=color:#2c5dcd;font-weight:700>else</span> <span style=color:#2c5dcd;font-weight:700>None</span>
             ),
             comment<span style=color:#2c5dcd>=</span>core<span style=color:#2c5dcd>.</span>Stack<span style=color:#2c5dcd>.</span>of(self)<span style=color:#2c5dcd>.</span>stack_name,
             origin_configs<span style=color:#2c5dcd>=</span>[
@@ -459,7 +461,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
                         domain_name<span style=color:#2c5dcd>=</span>website_bucket<span style=color:#2c5dcd>.</span>bucket_website_domain_name,
                         origin_protocol_policy<span style=color:#2c5dcd>=</span>cf<span style=color:#2c5dcd>.</span>OriginProtocolPolicy<span style=color:#2c5dcd>.</span>HTTP_ONLY,  <span style=color:#0080ff;font-style:italic># In website-mode, S3 only serves HTTP # noqa: E501</span>
                     ),
-                    behaviors<span style=color:#2c5dcd>=</span>[cf<span style=color:#2c5dcd>.</span>Behavior(is_default_behavior<span style=color:#2c5dcd>=</span>True)],
+                    behaviors<span style=color:#2c5dcd>=</span>[cf<span style=color:#2c5dcd>.</span>Behavior(is_default_behavior<span style=color:#2c5dcd>=</span><span style=color:#2c5dcd;font-weight:700>True</span>)],
                 ),
                 <span style=color:#0080ff;font-style:italic># API load balancer</span>
                 cf<span style=color:#2c5dcd>.</span>SourceConfiguration(
@@ -472,7 +474,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
                             path_pattern<span style=color:#2c5dcd>=</span><span style=color:#0c6>&#34;/api*&#34;</span>,  <span style=color:#0080ff;font-style:italic># No trailing slash to permit access to root path of API # noqa: E501</span>
                             allowed_methods<span style=color:#2c5dcd>=</span>cf<span style=color:#2c5dcd>.</span>CloudFrontAllowedMethods<span style=color:#2c5dcd>.</span>ALL,
                             forwarded_values<span style=color:#2c5dcd>=</span>{
-                                <span style=color:#0c6>&#34;query_string&#34;</span>: True,
+                                <span style=color:#0c6>&#34;query_string&#34;</span>: <span style=color:#2c5dcd;font-weight:700>True</span>,
                                 <span style=color:#0c6>&#34;headers&#34;</span>: [
                                     <span style=color:#0c6>&#34;referer&#34;</span>,
                                     <span style=color:#0c6>&#34;authorization&#34;</span>,
@@ -501,7 +503,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
                 ),
             ],
         )
-        self<span style=color:#2c5dcd>.</span>assets_path <span style=color:#2c5dcd>=</span> f<span style=color:#0c6>&#34;https://{self.distribution.domain_name}/storage&#34;</span>
+        self<span style=color:#2c5dcd>.</span>assets_path <span style=color:#2c5dcd>=</span> <span style=color:#0c6>f</span><span style=color:#0c6>&#34;https://</span><span style=color:#0c6>{</span>self<span style=color:#2c5dcd>.</span>distribution<span style=color:#2c5dcd>.</span>domain_name<span style=color:#0c6>}</span><span style=color:#0c6>/storage&#34;</span>
         core<span style=color:#2c5dcd>.</span>CfnOutput(self, <span style=color:#0c6>&#34;Endpoint&#34;</span>, value<span style=color:#2c5dcd>=</span>self<span style=color:#2c5dcd>.</span>distribution<span style=color:#2c5dcd>.</span>domain_name)
 
     <span style=color:#2c5dcd;font-weight:700>def</span> <span style=color:#ff8000;font-weight:700>grant_oai_read</span>(self, oai: cf<span style=color:#2c5dcd>.</span>OriginAccessIdentity, bucket: s3<span style=color:#2c5dcd>.</span>Bucket):
@@ -517,7 +519,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
 </span><span style=color:#0c6>        &#34;&#34;&#34;</span>
         policy_statement <span style=color:#2c5dcd>=</span> iam<span style=color:#2c5dcd>.</span>PolicyStatement(
             actions<span style=color:#2c5dcd>=</span>[<span style=color:#0c6>&#34;s3:GetObject*&#34;</span>, <span style=color:#0c6>&#34;s3:List*&#34;</span>],
-            resources<span style=color:#2c5dcd>=</span>[bucket<span style=color:#2c5dcd>.</span>bucket_arn, f<span style=color:#0c6>&#34;{bucket.bucket_arn}/storage*&#34;</span>],
+            resources<span style=color:#2c5dcd>=</span>[bucket<span style=color:#2c5dcd>.</span>bucket_arn, <span style=color:#0c6>f</span><span style=color:#0c6>&#34;</span><span style=color:#0c6>{</span>bucket<span style=color:#2c5dcd>.</span>bucket_arn<span style=color:#0c6>}</span><span style=color:#0c6>/storage*&#34;</span>],
             principals<span style=color:#2c5dcd>=</span>[],
         )
         policy_statement<span style=color:#2c5dcd>.</span>add_canonical_user_principal(

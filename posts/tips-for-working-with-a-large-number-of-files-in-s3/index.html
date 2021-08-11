@@ -170,7 +170,7 @@ Tips for working with a large number of files in S3
 <summary>Stream S3 Inventory Report Python script</summary>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -197,7 +197,7 @@ Tips for working with a large number of files in S3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>import</span> json
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>import</span> json
 <span style=color:#2c5dcd;font-weight:700>import</span> csv
 <span style=color:#2c5dcd;font-weight:700>import</span> gzip
 
@@ -210,8 +210,8 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
     manifest <span style=color:#2c5dcd>=</span> json<span style=color:#2c5dcd>.</span>load(s3<span style=color:#2c5dcd>.</span>Object(bucket, manifest_key)<span style=color:#2c5dcd>.</span>get()[<span style=color:#0c6>&#39;Body&#39;</span>])
     <span style=color:#2c5dcd;font-weight:700>for</span> obj <span style=color:#2c5dcd;font-weight:700>in</span> manifest[<span style=color:#0c6>&#39;files&#39;</span>]:
         gzip_obj <span style=color:#2c5dcd>=</span> s3<span style=color:#2c5dcd>.</span>Object(bucket_name<span style=color:#2c5dcd>=</span>bucket, key<span style=color:#2c5dcd>=</span>obj[<span style=color:#0c6>&#39;key&#39;</span>])
-        <span style=color:#5918bb;font-weight:700>buffer</span> <span style=color:#2c5dcd>=</span> gzip<span style=color:#2c5dcd>.</span>open(gzip_obj<span style=color:#2c5dcd>.</span>get()[<span style=color:#0c6>&#34;Body&#34;</span>], mode<span style=color:#2c5dcd>=</span><span style=color:#0c6>&#39;rt&#39;</span>)
-        reader <span style=color:#2c5dcd>=</span> csv<span style=color:#2c5dcd>.</span>reader(<span style=color:#5918bb;font-weight:700>buffer</span>)
+        buffer <span style=color:#2c5dcd>=</span> gzip<span style=color:#2c5dcd>.</span>open(gzip_obj<span style=color:#2c5dcd>.</span>get()[<span style=color:#0c6>&#34;Body&#34;</span>], mode<span style=color:#2c5dcd>=</span><span style=color:#0c6>&#39;rt&#39;</span>)
+        reader <span style=color:#2c5dcd>=</span> csv<span style=color:#2c5dcd>.</span>reader(buffer)
         <span style=color:#2c5dcd;font-weight:700>for</span> row <span style=color:#2c5dcd;font-weight:700>in</span> reader:
             <span style=color:#2c5dcd;font-weight:700>yield</span> row
 
@@ -221,7 +221,7 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
     manifest_key <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#39;path/to/my/inventory/2019-12-15T00-00Z/manifest.json&#39;</span>
 
     <span style=color:#2c5dcd;font-weight:700>for</span> bucket, key, <span style=color:#2c5dcd>*</span>rest <span style=color:#2c5dcd;font-weight:700>in</span> list_keys(bucket, manifest_key):
-        <span style=color:#2c5dcd;font-weight:700>print</span>(bucket, key, <span style=color:#2c5dcd>*</span>rest)
+        <span style=color:#5918bb;font-weight:700>print</span>(bucket, key, <span style=color:#2c5dcd>*</span>rest)
 </code></pre></td></tr></table>
 </div>
 </div></details>
@@ -232,7 +232,7 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 <p><em>This example assumes that you chose <code>CSV</code> as the S3 Inventory Output Format. For information on other formats, review <a href=https://docs.aws.amazon.com/athena/latest/ug/supported-format.html>the docs.</a></em></p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -259,7 +259,7 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>CREATE</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>EXTERNAL</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>TABLE</span><span style=color:#cbcbcb> </span>your_table_name(<span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>CREATE</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>EXTERNAL</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>TABLE</span><span style=color:#cbcbcb> </span>your_table_name(<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd>`</span>bucket<span style=color:#2c5dcd>`</span><span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>key</span><span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb>  </span>version_id<span style=color:#cbcbcb> </span>string,<span style=color:#cbcbcb>
@@ -291,10 +291,10 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 <summary>2. Add inventory reports partitions</summary>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql>MSCK<span style=color:#cbcbcb> </span>REPAIR<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>TABLE</span><span style=color:#cbcbcb> </span>your_table_name;<span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql>MSCK<span style=color:#cbcbcb> </span>REPAIR<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>TABLE</span><span style=color:#cbcbcb> </span>your_table_name;<span style=color:#cbcbcb>
 </span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -302,13 +302,13 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 <summary>3. Query for S3 keys by their filename, size, storage class, etc</summary>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">4
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>SELECT</span><span style=color:#cbcbcb> </span>storage_class,<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>count</span>(<span style=color:#2c5dcd>*</span>)<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>as</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>count</span><span style=color:#cbcbcb>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sql data-lang=sql><span style=color:#2c5dcd;font-weight:700>SELECT</span><span style=color:#cbcbcb> </span>storage_class,<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>count</span>(<span style=color:#2c5dcd>*</span>)<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>as</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>count</span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>FROM</span><span style=color:#cbcbcb> </span>your_table_name<span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>WHERE</span><span style=color:#cbcbcb> </span>dt<span style=color:#cbcbcb> </span><span style=color:#2c5dcd>=</span><span style=color:#cbcbcb> </span><span style=color:#0c6>&#39;2019-12-22-00-00&#39;</span><span style=color:#cbcbcb>
 </span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>GROUP</span><span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>BY</span><span style=color:#cbcbcb> </span>storage_class<span style=color:#cbcbcb>
@@ -327,7 +327,7 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 <summary>S3 Batch Operation Boilerplate Python script</summary>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -403,7 +403,7 @@ s3 <span style=color:#2c5dcd>=</span> boto3<span style=color:#2c5dcd>.</span>res
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">74
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>import</span> urllib
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>import</span> urllib
 
 <span style=color:#2c5dcd;font-weight:700>import</span> boto3
 <span style=color:#2c5dcd;font-weight:700>from</span> botocore.exceptions <span style=color:#2c5dcd;font-weight:700>import</span> ClientError
@@ -467,10 +467,10 @@ SUCCESS <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#34;Succeeded
                 TMP_FAILURE, <span style=color:#0c6>&#34;Retry request to Amazon S3 due to timeout.&#34;</span>
             )
         <span style=color:#2c5dcd;font-weight:700>else</span>:
-            result <span style=color:#2c5dcd>=</span> build_result(FAILURE, f<span style=color:#0c6>&#34;{errorCode}: {errorMessage}&#34;</span>)
+            result <span style=color:#2c5dcd>=</span> build_result(FAILURE, <span style=color:#0c6>f</span><span style=color:#0c6>&#34;</span><span style=color:#0c6>{</span>errorCode<span style=color:#0c6>}</span><span style=color:#0c6>: </span><span style=color:#0c6>{</span>errorMessage<span style=color:#0c6>}</span><span style=color:#0c6>&#34;</span>)
     <span style=color:#2c5dcd;font-weight:700>except</span> <span style=color:#5918bb;font-weight:700>Exception</span> <span style=color:#2c5dcd;font-weight:700>as</span> e:
         <span style=color:#0080ff;font-style:italic># Catch all exceptions to permanently fail the task</span>
-        result <span style=color:#2c5dcd>=</span> build_result(FAILURE, f<span style=color:#0c6>&#34;Exception: {e}&#34;</span>)
+        result <span style=color:#2c5dcd>=</span> build_result(FAILURE, <span style=color:#0c6>f</span><span style=color:#0c6>&#34;Exception: </span><span style=color:#0c6>{</span>e<span style=color:#0c6>}</span><span style=color:#0c6>&#34;</span>)
 
     <span style=color:#2c5dcd;font-weight:700>return</span> {
         <span style=color:#2c5dcd>**</span>job_params,
@@ -485,7 +485,7 @@ SUCCESS <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#34;Succeeded
 <summary>Example Manifest Result File</summary>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -506,7 +506,7 @@ SUCCESS <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#34;Succeeded
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json>{
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json>{
   <span style=color:#2c5dcd;font-weight:700>&#34;Format&#34;</span>: <span style=color:#0c6>&#34;Report_CSV_20180820&#34;</span>,
   <span style=color:#2c5dcd;font-weight:700>&#34;ReportCreationDate&#34;</span>: <span style=color:#0c6>&#34;2019-04-05T17:48:39.725Z&#34;</span>,
   <span style=color:#2c5dcd;font-weight:700>&#34;Results&#34;</span>: [

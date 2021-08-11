@@ -149,10 +149,10 @@ SSH Port Forwarding
 <p>And then I remembered this command:</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>ssh -D <span style=color:#5918bb;font-weight:700>8080</span> -Nf login@server.whatever.com
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>ssh -D <span style=color:#5918bb;font-weight:700>8080</span> -Nf login@server.whatever.com
 </code></pre></td></tr></table>
 </div>
 </div><p>Pointed my browser&rsquo;s connection settings to SOCKS proxy with server as <code>localhost</code> and port at <code>8080</code> and <em>BOOM</em>, was able to access my Seattle home&rsquo;s router&rsquo;s config page from Canada. I&rsquo;ve found this trick useful for all sorts of things, typically for one-offs where I need to access a website from the US while in Canada.</p>
@@ -161,10 +161,10 @@ SSH Port Forwarding
 <p>Another useful command for when you need to connect to any given port on a remote server is the following:</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>ssh -N -L <span style=color:#2c5dcd>[</span>local_port<span style=color:#2c5dcd>]</span>:<span style=color:#2c5dcd>[</span>endpoint<span style=color:#2c5dcd>]</span>:<span style=color:#2c5dcd>[</span>remote_port<span style=color:#2c5dcd>]</span>  <span style=color:#2c5dcd>[</span>user<span style=color:#2c5dcd>]</span>@<span style=color:#2c5dcd>[</span>host<span style=color:#2c5dcd>]</span>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash>ssh -N -L <span style=color:#2c5dcd>[</span>local_port<span style=color:#2c5dcd>]</span>:<span style=color:#2c5dcd>[</span>endpoint<span style=color:#2c5dcd>]</span>:<span style=color:#2c5dcd>[</span>remote_port<span style=color:#2c5dcd>]</span>  <span style=color:#2c5dcd>[</span>user<span style=color:#2c5dcd>]</span>@<span style=color:#2c5dcd>[</span>host<span style=color:#2c5dcd>]</span>
 </code></pre></td></tr></table>
 </div>
 </div>

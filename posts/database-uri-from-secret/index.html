@@ -156,7 +156,7 @@ How to generate a database URI from an AWS Secret
 <p>A quick note about how to generate a database URI (or any other derived string) from an AWS SecretsManager <a href=https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-secretsmanager.SecretTargetAttachment.html>SecretTargetAttachment</a> (such as what&rsquo;s provided via a RDS DatabaseInstance&rsquo;s <a href=https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-rds.DatabaseInstance.html#secret-span-class-api-icon-api-icon-experimental-title-this-api-element-is-experimental-it-may-change-without-notice-span><code>secret</code> property</a>).</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
 <table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
@@ -169,14 +169,14 @@ How to generate a database URI from an AWS Secret
 </span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
-<pre style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py>db <span style=color:#2c5dcd>=</span> rds<span style=color:#2c5dcd>.</span>DatabaseInstance(
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py>db <span style=color:#2c5dcd>=</span> rds<span style=color:#2c5dcd>.</span>DatabaseInstance(
     <span style=color:#0080ff;font-style:italic># ...</span>
 )
 db_val <span style=color:#2c5dcd>=</span> <span style=color:#2c5dcd;font-weight:700>lambda</span> field: db<span style=color:#2c5dcd>.</span>secret<span style=color:#2c5dcd>.</span>secret_value_from_json(field)<span style=color:#2c5dcd>.</span>to_string()
 task_definition<span style=color:#2c5dcd>.</span>add_container(
     environment<span style=color:#2c5dcd>=</span><span style=color:#5918bb;font-weight:700>dict</span>(
         <span style=color:#0080ff;font-style:italic># ...</span>
-        PGRST_DB_URI<span style=color:#2c5dcd>=</span>f<span style=color:#0c6>&#34;postgres://{db_val(&#39;username&#39;)}:{db_val(&#39;password&#39;)}@{db_val(&#39;host&#39;)}:{db_val(&#39;port&#39;)}/&#34;</span>,
+        PGRST_DB_URI<span style=color:#2c5dcd>=</span><span style=color:#0c6>f</span><span style=color:#0c6>&#34;postgres://</span><span style=color:#0c6>{</span>db_val(<span style=color:#0c6>&#39;username&#39;</span>)<span style=color:#0c6>}</span><span style=color:#0c6>:</span><span style=color:#0c6>{</span>db_val(<span style=color:#0c6>&#39;password&#39;</span>)<span style=color:#0c6>}</span><span style=color:#0c6>@</span><span style=color:#0c6>{</span>db_val(<span style=color:#0c6>&#39;host&#39;</span>)<span style=color:#0c6>}</span><span style=color:#0c6>:</span><span style=color:#0c6>{</span>db_val(<span style=color:#0c6>&#39;port&#39;</span>)<span style=color:#0c6>}</span><span style=color:#0c6>/&#34;</span>,
     ),
     <span style=color:#0080ff;font-style:italic># ...</span>
 )
