@@ -23,10 +23,12 @@ CloudFront has the ability to support multiple origin configurations (i.e. multi
 my-project.big-institution.gov/
 ├── api/*         <- Application Load Balancer (ALB) that distributes traffic to order
 │                    management API service running on Elastic Container Service (ECS).
+│
 ├── stac/*        <- ALB that distributes traffic to STAC API service running on ECS.
 │
 ├── storage/*     <- Private S3 bucket storing private data. Only URLs that have been
 │                    signed with our CloudFront keypair will be successful.
+│
 ├── thumbnails/*  <- Public S3 bucket storing thumbnail imagery.
 │
 └── *             <- Public S3 website bucket storing our single page application frontend.
@@ -42,7 +44,7 @@ To enable the usage of a custom error page, the S3 bucket's website endpoint (i.
 
 > My bucket is private. Can CloudFront serve a website from this bucket?
 
-If your bucket is private, the website endpoint will not work ([source](https://aws.amazon.com/premiumsupport/knowledge-center/s3-cloudfront-website-access/)). You could configure CloudFront to send traffic to the buckets REST API endpoint, however this will prevent you from being able to utilize S3's custom error document feature which is essential for hosting single page applications on S3.
+If your bucket is private, the website endpoint will not work ([source](https://aws.amazon.com/premiumsupport/knowledge-center/s3-cloudfront-website-access/)). You could configure CloudFront to send traffic to the buckets REST API endpoint, however this will prevent you from being able to utilize S3's custom error document feature which may be essential for hosting single page applications on S3.  Tools like [Next.js](https://nextjs.org/) and [Gatsby.js] support rendering HTML documents for all routes, which can avoid the need for custom error pages; however care must be given to ensure that any dynamic portion of the page's routes (e.g. `/docs/3`, where `3` is the ID of a record to be fetched from an API) must be specified as either a query parameter (e.g. `/docs?3`) or a hash (e.g. `/docs#3).
 
 > CloudFront itself has support for custom error pages. Why can't I use that to enable hosting private S3 buckets as websites?
 
@@ -95,7 +97,7 @@ app.include_router(router, prefix=API_BASE_PATH)
 
 </details>
 
-Furthermore, if you have an S3 bucket serving content from `https://d1234abcde.cloudfront.net/bucket`, only keys that with a prefix of `bucket/` will be available to that origin. In the event that keys are not prefixed with a path matching the origins configured path pattern, there are two options:
+Furthermore, if you have an S3 bucket serving content from `https://d1234abcde.cloudfront.net/bucket`, only keys with a prefix of `bucket/` will be available to that origin. In the event that keys are not prefixed with a path matching the origins configured path pattern, there are two options:
 
 1. Move all of the files, likely utilizing something like S3 Batch (see #253 for more details)
 2. Use a Lambda@Edge function to rewrite the path of any incoming request for a non-cached resource to conform to the key structure of the S3 bucket's objects.
