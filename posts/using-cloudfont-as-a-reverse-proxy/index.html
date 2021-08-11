@@ -267,7 +267,7 @@ app<span style=color:#2c5dcd>.</span>include_router(router, prefix<span style=co
 <li>Out of the box, AWS Shield Standard is applied to CloudFront to provide protection against DDoS attacks 🏰.</li>
 <li>Static content is regionally cached and served from <a href=https://aws.amazon.com/cloudfront/features/#Amazon_CloudFront_Infrastructure>Edge Locations</a> closer to the viewer 🌏.</li>
 <li>Dynamic content is also served from Edge Locations, which connect to the origin server via AWS' global private network. This is faster than connecting to an origin server over the public internet 🚀.</li>
-<li>All data is served from the same domain origin. Goodbye CORS errors 👋!</li>
+<li>Externally, all data is served from the same domain origin. Goodbye CORS errors 👋!</li>
 <li>Data egress costs are lower through CloudFront than other services. This can be ensured by only selecting <a href=https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PriceClass.html>Price Class 100</a>, other price classes can be chosen if enabling a global CDN is worth the higher egress costs 💴.</li>
 </ul>
 <h2 id=example>Example</h2>
