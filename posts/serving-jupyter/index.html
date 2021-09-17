@@ -176,7 +176,7 @@ Hosting Jupyter at a subdomain via Cloudflare
 <p>Follow instructions described <a href=https://docs.continuum.io/anaconda/install#linux-install>here</a>.</p>
 <h2 id=set-up-an-upstart-script>Set up an Upstart script</h2>
 <p>On the server, you&rsquo;ll want Jupyter to start running as soon as the server starts. We&rsquo;ll use an Upstart script to acheive this.</p>
-<pre><code class=language-upstart data-lang=upstart># /etc/init/ipython-notebook.conf
+<pre tabindex=0><code class=language-upstart data-lang=upstart># /etc/init/ipython-notebook.conf
 start on filesystem or runlevel [2345]
 stop on shutdown
 

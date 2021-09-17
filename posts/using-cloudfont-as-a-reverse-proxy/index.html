@@ -176,7 +176,7 @@ Using CloudFront as a Reverse Proxy
 <p>Within large organizations, bureaucracy can make it a challenge to obtain a subdomain for a project. This means that utilizing multiple service-specific subdomains (e.g. <code>api.my-project.big-institution.gov</code> or <code>thumbnails.my-project.big-institution.gov</code>) is an arduous process. To avoid this in a recent project, we settled on adopting a pattern where we use CloudFront to proxy all of our domain&rsquo;s incoming requests to their appropriate service.</p>
 <h2 id=how-it-works>How it works</h2>
 <p>CloudFront has the ability to support multiple origin configurations (i.e. multiple sources of content). We can utilize the <a href=https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesPathPattern>Path Pattern</a> setting to direct web requests by URL path to their appropriate service. CloudFront behaves like a typical router libraries, wherein it routes traffic to the first path with a pattern matching the incoming request and routes requests that don&rsquo;t match route patterns to a default route. For example, our current infrastructure looks like this:</p>
-<pre><code>my-project.big-institution.gov/
+<pre tabindex=0><code>my-project.big-institution.gov/
 ├── api/*         &lt;- Application Load Balancer (ALB) that distributes traffic to order
 │                    management API service running on Elastic Container Service (ECS).
 │
