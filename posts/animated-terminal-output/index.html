@@ -185,376 +185,751 @@ Putting animated SVGs of Terminal Output into Github READMEs
 <p>asciinema will place the file in a temporary directory. The output &ldquo;cast&rdquo; is a <a href=https://discourse.asciinema.org/t/can-i-edit-post-process-the-recording/25>simple newline-delimeted JSON file</a>, which a savvy user could edit by hand to scrub out any mistakes or personal information.</p>
 <details>
 <summary>example asciinema cast</summary>
-<pre tabindex=0><code>{&quot;version&quot;: 2, &quot;width&quot;: 82, &quot;height&quot;: 20, &quot;timestamp&quot;: 1632512435, &quot;env&quot;: {&quot;SHELL&quot;: &quot;/bin/zsh&quot;, &quot;TERM&quot;: &quot;xterm-256color&quot;}}
-[0.3937, &quot;o&quot;, &quot;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&quot;]
-[0.401958, &quot;o&quot;, &quot;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&quot;]
-[0.402028, &quot;o&quot;, &quot;\u001b[?1h\u001b=\u001b[?2004h&quot;]
-[1.397944, &quot;o&quot;, &quot;asciinema rec&quot;]
-[2.038988, &quot;o&quot;, &quot;\u001b[?1l\u001b&gt;&quot;]
-[2.039271, &quot;o&quot;, &quot;\u001b[?2004l\r\r\n&quot;]
-[2.040939, &quot;o&quot;, &quot;\u001b]2;asciinema rec\u0007\u001b]1;asciinema\u0007&quot;]
-[2.12754, &quot;o&quot;, &quot;\u001b[0;32masciinema: recording asciicast to /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn/T/tmp0m0d4ri1-ascii.cast\u001b[0m\r\n\u001b[0;32masciinema: press &lt;ctrl-d&gt; or type \&quot;exit\&quot; when you're done\u001b[0m\r\n&quot;]
-[2.531341, &quot;o&quot;, &quot;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&quot;]
-[2.539224, &quot;o&quot;, &quot;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&quot;]
-[2.539294, &quot;o&quot;, &quot;\u001b[?1h\u001b=\u001b[?2004h&quot;]
-[3.437282, &quot;o&quot;, &quot;p&quot;]
-[3.573817, &quot;o&quot;, &quot;\bpy&quot;]
-[3.751574, &quot;o&quot;, &quot;t&quot;]
-[3.813398, &quot;o&quot;, &quot;h&quot;]
-[3.893245, &quot;o&quot;, &quot;o&quot;]
-[3.993249, &quot;o&quot;, &quot;n&quot;]
-[4.091641, &quot;o&quot;, &quot;3&quot;]
-[4.227577, &quot;o&quot;, &quot; &quot;]
-[4.631549, &quot;o&quot;, &quot;/&quot;]
-[4.759173, &quot;o&quot;, &quot;t&quot;]
-[4.858853, &quot;o&quot;, &quot;m&quot;]
-[4.992652, &quot;o&quot;, &quot;\u001b[31m…\u001b[39m&quot;]
-[5.028749, &quot;o&quot;, &quot;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00mpython3 /tmp\u001b[1m/\u001b[0m\u001b[K\u001b[63C\u001b[33m \u001b[00m\u001b[64D&quot;]
-[5.257958, &quot;o&quot;, &quot;\b\u001b[0m/e&quot;]
-[5.436696, &quot;o&quot;, &quot;x&quot;]
-[5.7675, &quot;o&quot;, &quot;\u001b[31m…\u001b[39m&quot;]
-[5.776614, &quot;o&quot;, &quot;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00mpython3 /tmp/example.py\u001b[1m \u001b[0m\u001b[K\u001b[52C\u001b[33m \u001b[00m\u001b[53D&quot;]
-[6.590538, &quot;o&quot;, &quot;\b\u001b[0m \b&quot;]
-[6.590824, &quot;o&quot;, &quot;\u001b[?1l\u001b&gt;\u001b[?2004l&quot;]
-[6.590975, &quot;o&quot;, &quot;\r\r\n&quot;]
-[6.592687, &quot;o&quot;, &quot;\u001b]2;python3 /tmp/example.py\u0007\u001b]1;python3\u0007&quot;]
-[6.656795, &quot;o&quot;, &quot;\r#2, est. 1.20s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]&quot;]
-[6.656895, &quot;o&quot;, &quot;\r\n&quot;]
-[6.656981, &quot;o&quot;, &quot;\r#6, est. 0.62s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A&quot;]
-[6.65715, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[6.657262, &quot;o&quot;, &quot;\r#1, est. 1.70s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A&quot;]
-[6.657347, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[6.657453, &quot;o&quot;, &quot;\r#0, est. 2.50s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[6.657583, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r#4, est. 0.83s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.657683, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.657779, &quot;o&quot;, &quot;\r#5, est. 0.71s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]&quot;]
-[6.657931, &quot;o&quot;, &quot;\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.658118, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.658213, &quot;o&quot;, &quot;\r#3, est. 1.00s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.658368, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.658434, &quot;o&quot;, &quot;\r#7, est. 0.56s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.658526, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.658623, &quot;o&quot;, &quot;\r#8, est. 0.50s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.757006, &quot;o&quot;, &quot;\r\n&quot;]
-[6.757143, &quot;o&quot;, &quot;\r#6, est. 0.62s:  13%|███                     | 647/5000 [00:00&lt;00:00, 6468.12it/s]\u001b[A&quot;]
-[6.757228, &quot;o&quot;, &quot;\r#2, est. 1.20s:   7%|█▌                      | 334/5000 [00:00&lt;00:01, 3327.45it/s]&quot;]
-[6.757531, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[6.757582, &quot;o&quot;, &quot;\r#1, est. 1.70s:   5%|█▏                      | 254/5000 [00:00&lt;00:01, 2533.69it/s]\u001b[A\u001b[A&quot;]
-[6.757652, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[6.757714, &quot;o&quot;, &quot;\r#4, est. 0.83s:  10%|██▎                     | 492/5000 [00:00&lt;00:00, 4915.24it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.75778, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[6.75784, &quot;o&quot;, &quot;\r#0, est. 2.50s:   3%|▊                       | 169/5000 [00:00&lt;00:02, 1683.67it/s]&quot;]
-[6.757884, &quot;o&quot;, &quot;\u001b[A\u001b[A\u001b[A&quot;]
-[6.758049, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.758097, &quot;o&quot;, &quot;\r#5, est. 0.71s:  11%|██▋                     | 567/5000 [00:00&lt;00:00, 5665.80it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.758387, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.758455, &quot;o&quot;, &quot;\r#3, est. 1.00s:   8%|█▉                      | 409/5000 [00:00&lt;00:01, 4082.16it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.758509, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.758555, &quot;o&quot;, &quot;\r#7, est. 0.56s:  14%|███▍                    | 716/5000 [00:00&lt;00:00, 7159.09it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.758726, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.758759, &quot;o&quot;, &quot;\r#8, est. 0.50s:  16%|███▊                    | 790/5000 [00:00&lt;00:00, 7890.77it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.857141, &quot;o&quot;, &quot;\r\n&quot;]
-[6.85724, &quot;o&quot;, &quot;\r#6, est. 0.62s:  26%|█████▉                 | 1302/5000 [00:00&lt;00:00, 6511.76it/s]\u001b[A&quot;]
-[6.857278, &quot;o&quot;, &quot;\r#2, est. 1.20s:  13%|███▏                    | 674/5000 [00:00&lt;00:01, 3368.38it/s]&quot;]
-[6.85771, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[6.857762, &quot;o&quot;, &quot;\r#4, est. 0.83s:  20%|████▋                   | 986/5000 [00:00&lt;00:00, 4928.32it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.858337, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.858396, &quot;o&quot;, &quot;\r#5, est. 0.71s:  23%|█████▏                 | 1134/5000 [00:00&lt;00:00, 5658.36it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.858422, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.858496, &quot;o&quot;, &quot;\r#7, est. 0.56s:  29%|██████▌                | 1434/5000 [00:00&lt;00:00, 7170.93it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.858554, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.858584, &quot;o&quot;, &quot;\r#3, est. 1.00s:  16%|███▉                    | 819/5000 [00:00&lt;00:01, 4089.50it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.858642, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[6.858674, &quot;o&quot;, &quot;\r#0, est. 2.50s:   7%|█▌                      | 338/5000 [00:00&lt;00:02, 1679.15it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[6.858728, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[6.858775, &quot;o&quot;, &quot;\r#1, est. 1.70s:  10%|██▍                     | 508/5000 [00:00&lt;00:01, 2519.60it/s]\u001b[A\u001b[A&quot;]
-[6.858828, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.85887, &quot;o&quot;, &quot;\r#8, est. 0.50s:  32%|███████▎               | 1585/5000 [00:00&lt;00:00, 7921.04it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.957251, &quot;o&quot;, &quot;\r\n&quot;]
-[6.957276, &quot;o&quot;, &quot;\r#6, est. 0.62s:  39%|████████▉              | 1954/5000 [00:00&lt;00:00, 6513.12it/s]\u001b[A&quot;]
-[6.957367, &quot;o&quot;, &quot;\r#2, est. 1.20s:  20%|████▋                  | 1012/5000 [00:00&lt;00:01, 3372.64it/s]&quot;]
-[6.958144, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[6.958194, &quot;o&quot;, &quot;\r#4, est. 0.83s:  30%|██████▊                | 1479/5000 [00:00&lt;00:00, 4919.50it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.958383, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.958432, &quot;o&quot;, &quot;\r#5, est. 0.71s:  34%|███████▊               | 1703/5000 [00:00&lt;00:00, 5671.37it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.958528, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.958576, &quot;o&quot;, &quot;\r#7, est. 0.56s:  43%|█████████▉             | 2161/5000 [00:00&lt;00:00, 7212.74it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.958631, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.95866, &quot;o&quot;, &quot;\r#3, est. 1.00s:  25%|█████▋                 | 1233/5000 [00:00&lt;00:00, 4110.89it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.958857, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[6.958912, &quot;o&quot;, &quot;\r#8, est. 0.50s:  48%|██████████▉            | 2384/5000 [00:00&lt;00:00, 7950.66it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[6.959242, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[6.959296, &quot;o&quot;, &quot;\r#0, est. 2.50s:  10%|██▍                     | 506/5000 [00:00&lt;00:02, 1674.81it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[6.959352, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[6.959393, &quot;o&quot;, &quot;\r#1, est. 1.70s:  15%|███▋                    | 760/5000 [00:00&lt;00:01, 2512.95it/s]\u001b[A\u001b[A&quot;]
-[7.057416, &quot;o&quot;, &quot;\r\n&quot;]
-[7.057472, &quot;o&quot;, &quot;\r#6, est. 0.62s:  52%|███████████▉           | 2608/5000 [00:00&lt;00:00, 6519.76it/s]\u001b[A&quot;]
-[7.057578, &quot;o&quot;, &quot;\r#2, est. 1.20s:  27%|██████▏                | 1351/5000 [00:00&lt;00:01, 3376.65it/s]&quot;]
-[7.058204, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[7.058246, &quot;o&quot;, &quot;\r#4, est. 0.83s:  39%|█████████              | 1974/5000 [00:00&lt;00:00, 4930.20it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.058631, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.058679, &quot;o&quot;, &quot;\r#7, est. 0.56s:  58%|█████████████▎         | 2890/5000 [00:00&lt;00:00, 7240.83it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.058766, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.058825, &quot;o&quot;, &quot;\r#5, est. 0.71s:  45%|██████████▍            | 2271/5000 [00:00&lt;00:00, 5666.41it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.058875, &quot;o&quot;, &quot;\r#3, est. 1.00s:  33%|███████▌               | 1647/5000 [00:00&lt;00:00, 4118.91it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.058936, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.058983, &quot;o&quot;, &quot;\r#8, est. 0.50s:  64%|██████████████▋        | 3182/5000 [00:00&lt;00:00, 7961.79it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.059486, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.059523, &quot;o&quot;, &quot;\r#1, est. 1.70s:  20%|████▋                  | 1012/5000 [00:00&lt;00:01, 2514.31it/s]\u001b[A\u001b[A&quot;]
-[7.059677, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.059715, &quot;o&quot;, &quot;\r#0, est. 2.50s:  14%|███▏                    | 676/5000 [00:00&lt;00:02, 1681.78it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.157472, &quot;o&quot;, &quot;\r\n&quot;]
-[7.157542, &quot;o&quot;, &quot;\r#6, est. 0.62s:  65%|███████████████        | 3266/5000 [00:00&lt;00:00, 6538.76it/s]\u001b[A&quot;]
-[7.157691, &quot;o&quot;, &quot;\r#2, est. 1.20s:  34%|███████▊               | 1689/5000 [00:00&lt;00:00, 3376.30it/s]&quot;]
-[7.158976, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[7.159029, &quot;o&quot;, &quot;\r#4, est. 0.83s:  49%|███████████▎           | 2468/5000 [00:00&lt;00:00, 4919.98it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.159074, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.159127, &quot;o&quot;, &quot;\r#3, est. 1.00s:  41%|█████████▍             | 2061/5000 [00:00&lt;00:00, 4123.10it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.159181, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.159211, &quot;o&quot;, &quot;\r#5, est. 0.71s:  57%|█████████████          | 2838/5000 [00:00&lt;00:00, 5659.82it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.159252, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.159291, &quot;o&quot;, &quot;\r#8, est. 0.50s:  80%|██████████████████▎    | 3979/5000 [00:00&lt;00:00, 7954.54it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.159639, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.159686, &quot;o&quot;, &quot;\r#7, est. 0.56s:  72%|████████████████▋      | 3615/5000 [00:00&lt;00:00, 7217.32it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.159745, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.159798, &quot;o&quot;, &quot;\r#1, est. 1.70s:  25%|█████▊                 | 1264/5000 [00:00&lt;00:01, 2513.88it/s]\u001b[A\u001b[A&quot;]
-[7.159854, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.159911, &quot;o&quot;, &quot;\r#0, est. 2.50s:  17%|████                    | 845/5000 [00:00&lt;00:02, 1683.62it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.25807, &quot;o&quot;, &quot;\r\n&quot;]
-[7.258125, &quot;o&quot;, &quot;\r#6, est. 0.62s:  78%|██████████████████     | 3920/5000 [00:00&lt;00:00, 6526.80it/s]\u001b[A&quot;]
-[7.25849, &quot;o&quot;, &quot;\r#2, est. 1.20s:  41%|█████████▎             | 2027/5000 [00:00&lt;00:00, 3368.46it/s]&quot;]
-[7.259193, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[7.259222, &quot;o&quot;, &quot;\r#4, est. 0.83s:  59%|█████████████▋         | 2962/5000 [00:00&lt;00:00, 4923.60it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.259282, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.259315, &quot;o&quot;, &quot;\r#5, est. 0.71s:  68%|███████████████▋       | 3404/5000 [00:00&lt;00:00, 5657.50it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.259372, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.259421, &quot;o&quot;, &quot;\r#8, est. 0.50s:  96%|█████████████████████▉ | 4775/5000 [00:00&lt;00:00, 7952.80it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.259472, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.259508, &quot;o&quot;, &quot;\r#3, est. 1.00s:  49%|███████████▍           | 2474/5000 [00:00&lt;00:00, 4120.16it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.259866, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.259917, &quot;o&quot;, &quot;\r#1, est. 1.70s:  30%|██████▉                | 1516/5000 [00:00&lt;00:01, 2514.82it/s]\u001b[A\u001b[A&quot;]
-[7.259962, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.260017, &quot;o&quot;, &quot;\r#7, est. 0.56s:  87%|███████████████████▉   | 4337/5000 [00:00&lt;00:00, 7210.60it/s]&quot;]
-[7.26007, &quot;o&quot;, &quot;\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.260299, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.260351, &quot;o&quot;, &quot;\r#0, est. 2.50s:  20%|████▋                  | 1014/5000 [00:00&lt;00:02, 1683.28it/s]&quot;]
-[7.260394, &quot;o&quot;, &quot;\u001b[A\u001b[A\u001b[A&quot;]
-[7.288047, &quot;o&quot;, &quot;\r#8, est. 0.50s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 7944.93it/s]\r\n&quot;]
-[7.353676, &quot;o&quot;, &quot;\r#7, est. 0.56s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 7192.40it/s]\r\n&quot;]
-[7.359093, &quot;o&quot;, &quot;\r#2, est. 1.20s:  47%|██████████▊            | 2364/5000 [00:00&lt;00:00, 3363.69it/s]&quot;]
-[7.359563, &quot;o&quot;, &quot;\r\n&quot;]
-[7.359669, &quot;o&quot;, &quot;\r#6, est. 0.62s:  91%|█████████████████████  | 4573/5000 [00:00&lt;00:00, 6494.58it/s]\u001b[A&quot;]
-[7.359716, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.359768, &quot;o&quot;, &quot;\r#3, est. 1.00s:  58%|█████████████▎         | 2887/5000 [00:00&lt;00:00, 4120.15it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.359776, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.359835, &quot;o&quot;, &quot;\r#5, est. 0.71s:  79%|██████████████████▎    | 3970/5000 [00:00&lt;00:00, 5648.96it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.360318, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.360379, &quot;o&quot;, &quot;\r#1, est. 1.70s:  35%|████████▏              | 1768/5000 [00:00&lt;00:01, 2512.84it/s]\u001b[A\u001b[A&quot;]
-[7.360572, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.360613, &quot;o&quot;, &quot;\r#0, est. 2.50s:  24%|█████▍                 | 1183/5000 [00:00&lt;00:02, 1683.97it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.361952, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[7.362002, &quot;o&quot;, &quot;\r#4, est. 0.83s:  69%|███████████████▉       | 3455/5000 [00:00&lt;00:00, 4881.44it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.427585, &quot;o&quot;, &quot;\r#6, est. 0.62s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 6488.86it/s]\r\n&quot;]
-[7.459805, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.459951, &quot;o&quot;, &quot;\r#3, est. 1.00s:  66%|███████████████▎       | 3322/5000 [00:00&lt;00:00, 4192.55it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\r\n\r\n\r\n\r\n\r\n\r#5, est. 0.71s:  91%|████████████████████▉  | 4557/5000 [00:00&lt;00:00, 5717.60it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.460767, &quot;o&quot;, &quot;\r\n\r\n\r#1, est. 1.70s:  40%|█████████▎             | 2021/5000 [00:00&lt;00:01, 2515.40it/s]\u001b[A\u001b[A&quot;]
-[7.462941, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.463183, &quot;o&quot;, &quot;\r#0, est. 2.50s:  27%|██████▏                | 1352/5000 [00:00&lt;00:02, 1674.75it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.464172, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r#4, est. 0.83s:  79%|██████████████████▏    | 3944/5000 [00:00&lt;00:00, 4851.69it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.464692, &quot;o&quot;, &quot;\r#2, est. 1.20s:  54%|████████████▍          | 2701/5000 [00:00&lt;00:00, 3306.24it/s]&quot;]
-[7.547702, &quot;o&quot;, &quot;\r#5, est. 0.71s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 5620.61it/s]\r\n&quot;]
-[7.566987, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.567052, &quot;o&quot;, &quot;\r#1, est. 1.70s:  45%|██████████▍            | 2273/5000 [00:00&lt;00:01, 2468.99it/s]\u001b[A\u001b[A&quot;]
-[7.567509, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.567547, &quot;o&quot;, &quot;\r#0, est. 2.50s:  30%|██████▉                | 1520/5000 [00:00&lt;00:02, 1651.79it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.568657, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.568709, &quot;o&quot;, &quot;\r#3, est. 1.00s:  75%|█████████████████▏     | 3742/5000 [00:00&lt;00:00, 4081.31it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.570132, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[7.570181, &quot;o&quot;, &quot;\r#4, est. 0.83s:  89%|████████████████████▍  | 4430/5000 [00:00&lt;00:00, 4765.18it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.570768, &quot;o&quot;, &quot;\r#2, est. 1.20s:  61%|█████████████▉         | 3032/5000 [00:00&lt;00:00, 3245.98it/s]&quot;]
-[7.668, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.668081, &quot;o&quot;, &quot;\r#0, est. 2.50s:  34%|███████▊               | 1689/5000 [00:01&lt;00:01, 1661.05it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.668858, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.668916, &quot;o&quot;, &quot;\r#3, est. 1.00s:  83%|███████████████████▏   | 4170/5000 [00:01&lt;00:00, 4138.65it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.669846, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.669918, &quot;o&quot;, &quot;\r#1, est. 1.70s:  50%|███████████▌           | 2521/5000 [00:01&lt;00:01, 2450.60it/s]\u001b[A\u001b[A&quot;]
-[7.670477, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n&quot;]
-[7.670541, &quot;o&quot;, &quot;\r#4, est. 0.83s:  98%|██████████████████████▌| 4907/5000 [00:01&lt;00:00, 4761.68it/s]\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.671051, &quot;o&quot;, &quot;\r#2, est. 1.20s:  67%|███████████████▍       | 3358/5000 [00:01&lt;00:00, 3247.82it/s]&quot;]
-[7.690332, &quot;o&quot;, &quot;\r#4, est. 0.83s: 100%|███████████████████████| 5000/5000 [00:01&lt;00:00, 4841.91it/s]\r\n&quot;]
-[7.768065, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.76816, &quot;o&quot;, &quot;\r#0, est. 2.50s:  37%|████████▌              | 1860/5000 [00:01&lt;00:01, 1675.78it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.76985, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.769912, &quot;o&quot;, &quot;\r#1, est. 1.70s:  55%|████████████▋          | 2767/5000 [00:01&lt;00:00, 2453.22it/s]&quot;]
-[7.769943, &quot;o&quot;, &quot;\u001b[A\u001b[A&quot;]
-[7.771104, &quot;o&quot;, &quot;\r#2, est. 1.20s:  74%|████████████████▉      | 3684/5000 [00:01&lt;00:00, 3250.68it/s]&quot;]
-[7.773417, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.77352, &quot;o&quot;, &quot;\r#3, est. 1.00s:  92%|█████████████████████  | 4585/5000 [00:01&lt;00:00, 4085.90it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.868367, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.868446, &quot;o&quot;, &quot;\r#0, est. 2.50s:  41%|█████████▎             | 2031/5000 [00:01&lt;00:01, 1684.31it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.871357, &quot;o&quot;, &quot;\r#2, est. 1.20s:  80%|██████████████████▍    | 4012/5000 [00:01&lt;00:00, 3257.22it/s]&quot;]
-[7.871835, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.871897, &quot;o&quot;, &quot;\r#1, est. 1.70s:  60%|█████████████▊         | 3013/5000 [00:01&lt;00:00, 2440.74it/s]\u001b[A\u001b[A&quot;]
-[7.8774, &quot;o&quot;, &quot;\r\n\r\n\r\n\r\n\r\n\r\n&quot;]
-[7.877474, &quot;o&quot;, &quot;\r#3, est. 1.00s: 100%|██████████████████████▉| 4995/5000 [00:01&lt;00:00, 4042.20it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&quot;]
-[7.878852, &quot;o&quot;, &quot;\r#3, est. 1.00s: 100%|███████████████████████| 5000/5000 [00:01&lt;00:00, 4096.34it/s]\r\n&quot;]
-[7.973438, &quot;o&quot;, &quot;\r#2, est. 1.20s:  87%|███████████████████▉   | 4338/5000 [00:01&lt;00:00, 3239.50it/s]&quot;]
-[7.974947, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[7.975032, &quot;o&quot;, &quot;\r#0, est. 2.50s:  44%|██████████             | 2200/5000 [00:01&lt;00:01, 1653.04it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[7.975125, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[7.975179, &quot;o&quot;, &quot;\r#1, est. 1.70s:  65%|██████████████▉        | 3258/5000 [00:01&lt;00:00, 2419.88it/s]\u001b[A\u001b[A&quot;]
-[8.076423, &quot;o&quot;, &quot;\r#2, est. 1.20s:  93%|█████████████████████▍ | 4663/5000 [00:01&lt;00:00, 3213.92it/s]&quot;]
-[8.077467, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[8.077557, &quot;o&quot;, &quot;\r#1, est. 1.70s:  70%|████████████████       | 3501/5000 [00:01&lt;00:00, 2406.05it/s]\u001b[A\u001b[A&quot;]
-[8.079458, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.079529, &quot;o&quot;, &quot;\r#0, est. 2.50s:  47%|██████████▉            | 2366/5000 [00:01&lt;00:01, 1633.21it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.178546, &quot;o&quot;, &quot;\r#2, est. 1.20s: 100%|██████████████████████▉| 4985/5000 [00:01&lt;00:00, 3195.52it/s]&quot;]
-[8.179391, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[8.179504, &quot;o&quot;, &quot;\r#1, est. 1.70s:  75%|█████████████████▏     | 3742/5000 [00:01&lt;00:00, 2393.54it/s]\u001b[A\u001b[A&quot;]
-[8.182663, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.182739, &quot;o&quot;, &quot;\r#0, est. 2.50s:  51%|███████████▋           | 2530/5000 [00:01&lt;00:01, 1619.95it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.183485, &quot;o&quot;, &quot;\r#2, est. 1.20s: 100%|███████████████████████| 5000/5000 [00:01&lt;00:00, 3275.13it/s]\r\n&quot;]
-[8.281006, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[8.281153, &quot;o&quot;, &quot;\r#1, est. 1.70s:  80%|██████████████████▎    | 3982/5000 [00:01&lt;00:00, 2384.53it/s]\u001b[A\u001b[A&quot;]
-[8.285647, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.285786, &quot;o&quot;, &quot;\r#0, est. 2.50s:  54%|████████████▍          | 2693/5000 [00:01&lt;00:01, 1608.86it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.382223, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[8.382445, &quot;o&quot;, &quot;\r#1, est. 1.70s:  84%|███████████████████▍   | 4221/5000 [00:01&lt;00:00, 2377.93it/s]\u001b[A\u001b[A&quot;]
-[8.387564, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.387724, &quot;o&quot;, &quot;\r#0, est. 2.50s:  57%|█████████████▏         | 2854/5000 [00:01&lt;00:01, 1600.17it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.483547, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[8.483742, &quot;o&quot;, &quot;\r#1, est. 1.70s:  89%|████████████████████▌  | 4459/5000 [00:01&lt;00:00, 2369.39it/s]\u001b[A\u001b[A&quot;]
-[8.489688, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.489909, &quot;o&quot;, &quot;\r#0, est. 2.50s:  60%|█████████████▊         | 3015/5000 [00:01&lt;00:01, 1593.19it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.584999, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[8.585144, &quot;o&quot;, &quot;\r#1, est. 1.70s:  94%|█████████████████████▌ | 4696/5000 [00:01&lt;00:00, 2359.34it/s]&quot;]
-[8.585323, &quot;o&quot;, &quot;\u001b[A\u001b[A&quot;]
-[8.59157, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.591749, &quot;o&quot;, &quot;\r#0, est. 2.50s:  64%|██████████████▌        | 3175/5000 [00:01&lt;00:01, 1586.38it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.685366, &quot;o&quot;, &quot;\r\n\r\n&quot;]
-[8.685433, &quot;o&quot;, &quot;\r#1, est. 1.70s:  99%|██████████████████████▋| 4932/5000 [00:02&lt;00:00, 2356.50it/s]&quot;]
-[8.685557, &quot;o&quot;, &quot;\u001b[A\u001b[A&quot;]
-[8.692435, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.692538, &quot;o&quot;, &quot;\r#0, est. 2.50s:  67%|███████████████▎       | 3334/5000 [00:02&lt;00:01, 1583.22it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.714479, &quot;o&quot;, &quot;\r#1, est. 1.70s: 100%|███████████████████████| 5000/5000 [00:02&lt;00:00, 2430.65it/s]\r\n&quot;]
-[8.792931, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.793065, &quot;o&quot;, &quot;\r#0, est. 2.50s:  70%|████████████████       | 3493/5000 [00:02&lt;00:00, 1583.51it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.893839, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.894077, &quot;o&quot;, &quot;\r#0, est. 2.50s:  73%|████████████████▊      | 3652/5000 [00:02&lt;00:00, 1581.30it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[8.995009, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[8.995199, &quot;o&quot;, &quot;\r#0, est. 2.50s:  76%|█████████████████▌     | 3811/5000 [00:02&lt;00:00, 1578.37it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.095512, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[9.095724, &quot;o&quot;, &quot;\r#0, est. 2.50s:  79%|██████████████████▎    | 3969/5000 [00:02&lt;00:00, 1576.50it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.196695, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[9.19733, &quot;o&quot;, &quot;\r#0, est. 2.50s:  83%|██████████████████▉    | 4127/5000 [00:02&lt;00:00, 1573.48it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.299529, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[9.300196, &quot;o&quot;, &quot;\r#0, est. 2.50s:  86%|███████████████████▋   | 4285/5000 [00:02&lt;00:00, 1562.31it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.401289, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[9.401869, &quot;o&quot;, &quot;\r#0, est. 2.50s:  89%|████████████████████▍  | 4442/5000 [00:02&lt;00:00, 1556.92it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.502155, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[9.502554, &quot;o&quot;, &quot;\r#0, est. 2.50s:  92%|█████████████████████▏ | 4598/5000 [00:02&lt;00:00, 1553.27it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.602158, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[9.602435, &quot;o&quot;, &quot;\r#0, est. 2.50s:  95%|█████████████████████▊ | 4754/5000 [00:02&lt;00:00, 1553.92it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.703135, &quot;o&quot;, &quot;\r\n\r\n\r\n&quot;]
-[9.704004, &quot;o&quot;, &quot;\r#0, est. 2.50s:  98%|██████████████████████▌| 4911/5000 [00:03&lt;00:00, 1555.83it/s]\u001b[A\u001b[A\u001b[A&quot;]
-[9.761857, &quot;o&quot;, &quot;\r#0, est. 2.50s: 100%|███████████████████████| 5000/5000 [00:03&lt;00:00, 1610.96it/s]\r\n&quot;]
-[9.776273, &quot;o&quot;, &quot;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r&quot;]
-[9.776549, &quot;o&quot;, &quot;\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&quot;]
-[9.790267, &quot;o&quot;, &quot;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&quot;]
-[9.790433, &quot;o&quot;, &quot;\u001b[?1h\u001b=\u001b[?2004h&quot;]
-[11.262646, &quot;o&quot;, &quot;\u001b[?2004l\r\r\n&quot;]
-[11.329092, &quot;o&quot;, &quot;\u001b[0;32masciinema: recording finished\u001b[0m\r\n&quot;]
-[11.329167, &quot;o&quot;, &quot;\u001b[0;32masciinema: press &lt;enter&gt; to upload to asciinema.org, &lt;ctrl-c&gt; to save locally\u001b[0m\r\n&quot;]
-[12.316311, &quot;o&quot;, &quot;^C&quot;]
-[12.316399, &quot;o&quot;, &quot;\r\u001b[0;32masciinema: asciicast saved to /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn/T/tmp0m0d4ri1-ascii.cast\u001b[0m\r\n&quot;]
-[12.326841, &quot;o&quot;, &quot;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r&quot;]
-[12.326974, &quot;o&quot;, &quot;\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&quot;]
-[12.338523, &quot;o&quot;, &quot;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&quot;]
-[12.338637, &quot;o&quot;, &quot;\u001b[?1h\u001b=\u001b[?2004h&quot;]
-[13.935243, &quot;o&quot;, &quot;s&quot;]
-[14.097389, &quot;o&quot;, &quot;\bsv&quot;]
-[14.314987, &quot;o&quot;, &quot;g&quot;]
-[14.46684, &quot;o&quot;, &quot;-&quot;]
-[15.209977, &quot;o&quot;, &quot;t&quot;]
-[15.350363, &quot;o&quot;, &quot;e&quot;]
-[15.428225, &quot;o&quot;, &quot;\u001b[31m…\u001b[39m&quot;]
-[15.45927, &quot;o&quot;, &quot;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term\u001b[1m \u001b[0m\u001b[K\u001b[67C\u001b[33m \u001b[00m\u001b[68D&quot;]
-[16.030755, &quot;o&quot;, &quot;\b\u001b[0m -&quot;]
-[16.194477, &quot;o&quot;, &quot;-&quot;]
-[16.425867, &quot;o&quot;, &quot;i&quot;]
-[16.508727, &quot;o&quot;, &quot;n&quot;]
-[16.668521, &quot;o&quot;, &quot; &quot;]
-[16.876205, &quot;o&quot;, &quot;/&quot;]
-[17.019105, &quot;o&quot;, &quot;v&quot;]
-[17.145906, &quot;o&quot;, &quot;a&quot;]
-[17.246531, &quot;o&quot;, &quot;r&quot;]
-[17.421279, &quot;o&quot;, &quot;\u001b[31m…\u001b[39m&quot;]
-[17.427675, &quot;o&quot;, &quot;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var\u001b[1m/\u001b[0m\u001b[K\u001b[57C\u001b[33m \u001b[00m\u001b[58D&quot;]
-[17.909204, &quot;o&quot;, &quot;\b\u001b[0m/f&quot;]
-[17.994984, &quot;o&quot;, &quot;o&quot;]
-[18.158413, &quot;o&quot;, &quot;l&quot;]
-[18.209194, &quot;o&quot;, &quot;d&quot;]
-[18.509358, &quot;o&quot;, &quot;\u001b[31m…\u001b[39m&quot;]
-[18.515598, &quot;o&quot;, &quot;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var/folders\u001b[1m/\u001b[0m\u001b[K\u001b[49C\u001b[33m \u001b[00m\u001b[50D&quot;]
-[19.542164, &quot;o&quot;, &quot;\b\u001b[0m/3&quot;]
-[19.598027, &quot;o&quot;, &quot;n&quot;]
-[19.790912, &quot;o&quot;, &quot;/&quot;]
-[20.75741, &quot;o&quot;, &quot;3&quot;]
-[21.118463, &quot;o&quot;, &quot;d&quot;]
-[21.375089, &quot;o&quot;, &quot;c&quot;]
-[21.564873, &quot;o&quot;, &quot;t&quot;]
-[21.829205, &quot;o&quot;, &quot;\u001b[31m…\u001b[39m&quot;]
-[21.837442, &quot;o&quot;, &quot;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn\u001b[1m/\u001b[0m\u001b[K\u001b[15C\u001b[33m \u001b[00m\u001b[16D&quot;]
-[23.183211, &quot;o&quot;, &quot;\b\u001b[0m/T&quot;]
-[23.603098, &quot;o&quot;, &quot;/&quot;]
-[23.928987, &quot;o&quot;, &quot;t&quot;]
-[24.172937, &quot;o&quot;, &quot;m&quot;]
-[24.489561, &quot;o&quot;, &quot;p&quot;]
-[25.657377, &quot;o&quot;, &quot;0&quot;]
-[26.161103, &quot;o&quot;, &quot;m&quot;]
-[26.404008, &quot;o&quot;, &quot;0&quot;]
-[26.603732, &quot;o&quot;, &quot;\u001b[31m…\u001b[39m&quot;]
-[26.618252, &quot;o&quot;, &quot;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn/T/tmp0m0d4ri1-ascii.cast\u001b[1m \u001b[0m\u001b[K&quot;]
-[27.742006, &quot;o&quot;, &quot;\b\u001b[0m -&quot;]
-[27.890346, &quot;o&quot;, &quot;-&quot;]
-[28.099862, &quot;o&quot;, &quot;o&quot;]
-[28.166638, &quot;o&quot;, &quot;u&quot;]
-[28.250838, &quot;o&quot;, &quot;t&quot;]
-[28.3748, &quot;o&quot;, &quot; &quot;]
-[28.551619, &quot;o&quot;, &quot;/&quot;]
-[29.509291, &quot;o&quot;, &quot;t&quot;]
-[29.603613, &quot;o&quot;, &quot;m&quot;]
-[29.712099, &quot;o&quot;, &quot;p&quot;]
-[29.955365, &quot;o&quot;, &quot;/&quot;]
-[30.657315, &quot;o&quot;, &quot;e&quot;]
-[30.843608, &quot;o&quot;, &quot;x&quot;]
-[31.023734, &quot;o&quot;, &quot;a&quot;]
-[31.108809, &quot;o&quot;, &quot;m&quot;]
-[31.159277, &quot;o&quot;, &quot;p&quot;]
-[31.341015, &quot;o&quot;, &quot;l&quot;]
-[31.43148, &quot;o&quot;, &quot;e&quot;]
-[31.533268, &quot;o&quot;, &quot;.&quot;]
-[31.649616, &quot;o&quot;, &quot;s&quot;]
-[31.831633, &quot;o&quot;, &quot;v&quot;]
-[32.007106, &quot;o&quot;, &quot;g&quot;]
-[32.651262, &quot;o&quot;, &quot; &quot;]
-[32.923743, &quot;o&quot;, &quot;-&quot;]
-[33.065427, &quot;o&quot;, &quot;-&quot;]
-[33.208844, &quot;o&quot;, &quot;w&quot;]
-[33.328877, &quot;o&quot;, &quot;i&quot;]
-[33.379628, &quot;o&quot;, &quot;n&quot;]
-[33.44376, &quot;o&quot;, &quot;d&quot;]
-[33.562365, &quot;o&quot;, &quot;o&quot;]
-[33.692507, &quot;o&quot;, &quot;w&quot;]
-[34.074411, &quot;o&quot;, &quot;\u001b[?1l\u001b&gt;&quot;]
-[34.074507, &quot;o&quot;, &quot;\u001b[?2004l\r\r\n&quot;]
-[34.096816, &quot;o&quot;, &quot;\u001b]2;svg-term --in  --out /tmp/example.svg --window\u0007\u001b]1;svg-term\u0007&quot;]
-[35.927703, &quot;o&quot;, &quot;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r&quot;]
-[35.927783, &quot;o&quot;, &quot;\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&quot;]
-[35.934493, &quot;o&quot;, &quot;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&quot;]
-[35.934557, &quot;o&quot;, &quot;\u001b[?1h\u001b=\u001b[?2004h&quot;]
-[36.939863, &quot;o&quot;, &quot;\u001b[?2004l\r\r\n&quot;]
-</code></pre></details>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">101
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">102
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">103
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">104
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">105
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">106
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">107
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">108
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">109
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">110
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">111
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">112
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">113
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">114
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">115
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">116
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">117
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">118
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">119
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">120
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">121
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">122
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">123
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">124
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">125
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">126
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">127
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">128
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">129
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">130
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">131
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">132
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">133
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">134
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">135
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">136
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">137
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">138
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">139
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">140
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">141
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">142
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">143
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">144
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">145
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">146
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">147
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">148
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">149
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">150
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">151
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">152
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">153
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">154
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">155
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">156
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">157
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">158
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">159
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">160
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">161
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">162
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">163
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">164
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">165
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">166
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">167
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">168
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">169
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">170
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">171
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">172
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">173
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">174
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">175
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">176
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">177
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">178
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">179
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">180
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">181
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">182
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">183
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">184
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">185
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">186
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">187
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">188
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">189
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">190
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">191
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">192
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">193
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">194
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">195
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">196
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">197
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">198
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">199
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">200
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">201
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">202
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">203
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">204
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">205
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">206
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">207
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">208
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">209
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">210
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">211
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">212
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">213
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">214
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">215
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">216
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">217
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">218
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">219
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">220
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">221
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">222
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">223
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">224
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">225
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">226
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">227
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">228
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">229
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">230
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">231
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">232
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">233
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">234
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">235
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">236
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">237
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">238
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">239
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">240
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">241
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">242
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">243
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">244
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">245
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">246
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">247
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">248
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">249
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">250
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">251
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">252
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">253
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">254
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">255
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">256
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">257
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">258
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">259
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">260
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">261
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">262
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">263
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">264
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">265
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">266
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">267
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">268
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">269
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">270
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">271
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">272
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">273
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">274
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">275
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">276
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">277
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">278
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">279
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">280
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">281
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">282
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">283
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">284
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">285
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">286
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">287
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">288
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">289
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">290
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">291
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">292
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">293
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">294
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">295
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">296
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">297
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">298
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">299
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">300
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">301
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">302
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">303
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">304
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">305
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">306
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">307
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">308
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">309
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">310
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">311
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">312
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">313
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">314
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">315
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">316
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">317
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">318
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">319
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">320
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">321
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">322
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">323
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">324
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">325
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">326
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">327
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">328
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">329
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">330
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">331
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">332
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">333
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">334
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">335
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">336
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">337
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">338
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">339
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">340
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">341
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">342
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">343
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">344
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">345
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">346
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">347
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">348
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">349
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">350
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">351
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">352
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">353
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">354
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">355
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">356
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">357
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">358
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">359
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">360
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">361
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">362
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">363
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">364
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">365
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">366
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">367
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">368
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">369
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-json data-lang=json>{<span style=color:#2c5dcd;font-weight:700>&#34;version&#34;</span>: <span style=color:#5918bb;font-weight:700>2</span>, <span style=color:#2c5dcd;font-weight:700>&#34;width&#34;</span>: <span style=color:#5918bb;font-weight:700>82</span>, <span style=color:#2c5dcd;font-weight:700>&#34;height&#34;</span>: <span style=color:#5918bb;font-weight:700>20</span>, <span style=color:#2c5dcd;font-weight:700>&#34;timestamp&#34;</span>: <span style=color:#5918bb;font-weight:700>1632512435</span>, <span style=color:#2c5dcd;font-weight:700>&#34;env&#34;</span>: {<span style=color:#2c5dcd;font-weight:700>&#34;SHELL&#34;</span>: <span style=color:#0c6>&#34;/bin/zsh&#34;</span>, <span style=color:#2c5dcd;font-weight:700>&#34;TERM&#34;</span>: <span style=color:#0c6>&#34;xterm-256color&#34;</span>}}
+[<span style=color:#5918bb;font-weight:700>0.3937</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>0.401958</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>0.402028</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1h\u001b=\u001b[?2004h&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>1.397944</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;asciinema rec&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>2.038988</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1l\u001b&gt;&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>2.039271</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?2004l\r\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>2.040939</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b]2;asciinema rec\u0007\u001b]1;asciinema\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>2.12754</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[0;32masciinema: recording asciicast to /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn/T/tmp0m0d4ri1-ascii.cast\u001b[0m\r\n\u001b[0;32masciinema: press &lt;ctrl-d&gt; or type \&#34;exit\&#34; when you&#39;re done\u001b[0m\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>2.531341</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>2.539224</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>2.539294</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1h\u001b=\u001b[?2004h&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>3.437282</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;p&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>3.573817</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\bpy&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>3.751574</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;t&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>3.813398</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;h&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>3.893245</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;o&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>3.993249</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>4.091641</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;3&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>4.227577</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34; &#34;</span>]
+[<span style=color:#5918bb;font-weight:700>4.631549</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;/&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>4.759173</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;t&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>4.858853</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>4.992652</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[31m…\u001b[39m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>5.028749</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00mpython3 /tmp\u001b[1m/\u001b[0m\u001b[K\u001b[63C\u001b[33m \u001b[00m\u001b[64D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>5.257958</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\b\u001b[0m/e&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>5.436696</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;x&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>5.7675</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[31m…\u001b[39m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>5.776614</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00mpython3 /tmp/example.py\u001b[1m \u001b[0m\u001b[K\u001b[52C\u001b[33m \u001b[00m\u001b[53D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.590538</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\b\u001b[0m \b&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.590824</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1l\u001b&gt;\u001b[?2004l&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.590975</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.592687</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b]2;python3 /tmp/example.py\u0007\u001b]1;python3\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.656795</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.656895</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.656981</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.65715</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.657262</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.657347</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.657453</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.657583</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r#4, est. 0.83s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.657683</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.657779</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.657931</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.658118</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.658213</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.658368</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.658434</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.658526</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.658623</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s:   0%|                                    | 0/5000 [00:00&lt;?, ?it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757006</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757143</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:  13%|███                     | 647/5000 [00:00&lt;00:00, 6468.12it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757228</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:   7%|█▌                      | 334/5000 [00:00&lt;00:01, 3327.45it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757531</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757582</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:   5%|█▏                      | 254/5000 [00:00&lt;00:01, 2533.69it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757652</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757714</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  10%|██▎                     | 492/5000 [00:00&lt;00:00, 4915.24it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.75778</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.75784</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:   3%|▊                       | 169/5000 [00:00&lt;00:02, 1683.67it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.757884</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758049</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758097</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:  11%|██▋                     | 567/5000 [00:00&lt;00:00, 5665.80it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758387</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758455</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:   8%|█▉                      | 409/5000 [00:00&lt;00:01, 4082.16it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758509</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758555</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s:  14%|███▍                    | 716/5000 [00:00&lt;00:00, 7159.09it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758726</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.758759</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s:  16%|███▊                    | 790/5000 [00:00&lt;00:00, 7890.77it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.857141</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.85724</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:  26%|█████▉                 | 1302/5000 [00:00&lt;00:00, 6511.76it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.857278</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  13%|███▏                    | 674/5000 [00:00&lt;00:01, 3368.38it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.85771</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.857762</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  20%|████▋                   | 986/5000 [00:00&lt;00:00, 4928.32it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858337</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858396</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:  23%|█████▏                 | 1134/5000 [00:00&lt;00:00, 5658.36it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858422</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858496</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s:  29%|██████▌                | 1434/5000 [00:00&lt;00:00, 7170.93it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858554</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858584</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  16%|███▉                    | 819/5000 [00:00&lt;00:01, 4089.50it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858642</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858674</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:   7%|█▌                      | 338/5000 [00:00&lt;00:02, 1679.15it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858728</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858775</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  10%|██▍                     | 508/5000 [00:00&lt;00:01, 2519.60it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.858828</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.85887</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s:  32%|███████▎               | 1585/5000 [00:00&lt;00:00, 7921.04it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.957251</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.957276</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:  39%|████████▉              | 1954/5000 [00:00&lt;00:00, 6513.12it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.957367</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  20%|████▋                  | 1012/5000 [00:00&lt;00:01, 3372.64it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958144</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958194</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  30%|██████▊                | 1479/5000 [00:00&lt;00:00, 4919.50it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958383</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958432</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:  34%|███████▊               | 1703/5000 [00:00&lt;00:00, 5671.37it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958528</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958576</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s:  43%|█████████▉             | 2161/5000 [00:00&lt;00:00, 7212.74it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958631</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.95866</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  25%|█████▋                 | 1233/5000 [00:00&lt;00:00, 4110.89it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958857</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.958912</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s:  48%|██████████▉            | 2384/5000 [00:00&lt;00:00, 7950.66it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.959242</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.959296</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  10%|██▍                     | 506/5000 [00:00&lt;00:02, 1674.81it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.959352</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>6.959393</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  15%|███▋                    | 760/5000 [00:00&lt;00:01, 2512.95it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.057416</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.057472</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:  52%|███████████▉           | 2608/5000 [00:00&lt;00:00, 6519.76it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.057578</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  27%|██████▏                | 1351/5000 [00:00&lt;00:01, 3376.65it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058204</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058246</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  39%|█████████              | 1974/5000 [00:00&lt;00:00, 4930.20it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058631</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058679</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s:  58%|█████████████▎         | 2890/5000 [00:00&lt;00:00, 7240.83it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058766</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058825</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:  45%|██████████▍            | 2271/5000 [00:00&lt;00:00, 5666.41it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058875</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  33%|███████▌               | 1647/5000 [00:00&lt;00:00, 4118.91it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058936</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.058983</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s:  64%|██████████████▋        | 3182/5000 [00:00&lt;00:00, 7961.79it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.059486</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.059523</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  20%|████▋                  | 1012/5000 [00:00&lt;00:01, 2514.31it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.059677</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.059715</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  14%|███▏                    | 676/5000 [00:00&lt;00:02, 1681.78it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.157472</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.157542</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:  65%|███████████████        | 3266/5000 [00:00&lt;00:00, 6538.76it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.157691</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  34%|███████▊               | 1689/5000 [00:00&lt;00:00, 3376.30it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.158976</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159029</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  49%|███████████▎           | 2468/5000 [00:00&lt;00:00, 4919.98it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159074</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159127</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  41%|█████████▍             | 2061/5000 [00:00&lt;00:00, 4123.10it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159181</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159211</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:  57%|█████████████          | 2838/5000 [00:00&lt;00:00, 5659.82it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159252</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159291</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s:  80%|██████████████████▎    | 3979/5000 [00:00&lt;00:00, 7954.54it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159639</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159686</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s:  72%|████████████████▋      | 3615/5000 [00:00&lt;00:00, 7217.32it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159745</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159798</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  25%|█████▊                 | 1264/5000 [00:00&lt;00:01, 2513.88it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159854</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.159911</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  17%|████                    | 845/5000 [00:00&lt;00:02, 1683.62it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.25807</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.258125</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:  78%|██████████████████     | 3920/5000 [00:00&lt;00:00, 6526.80it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.25849</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  41%|█████████▎             | 2027/5000 [00:00&lt;00:00, 3368.46it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259193</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259222</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  59%|█████████████▋         | 2962/5000 [00:00&lt;00:00, 4923.60it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259282</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259315</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:  68%|███████████████▋       | 3404/5000 [00:00&lt;00:00, 5657.50it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259372</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259421</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s:  96%|█████████████████████▉ | 4775/5000 [00:00&lt;00:00, 7952.80it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259472</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259508</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  49%|███████████▍           | 2474/5000 [00:00&lt;00:00, 4120.16it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259866</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259917</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  30%|██████▉                | 1516/5000 [00:00&lt;00:01, 2514.82it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.259962</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.260017</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s:  87%|███████████████████▉   | 4337/5000 [00:00&lt;00:00, 7210.60it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.26007</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.260299</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.260351</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  20%|████▋                  | 1014/5000 [00:00&lt;00:02, 1683.28it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.260394</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.288047</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#8, est. 0.50s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 7944.93it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.353676</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#7, est. 0.56s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 7192.40it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.359093</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  47%|██████████▊            | 2364/5000 [00:00&lt;00:00, 3363.69it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.359563</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.359669</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s:  91%|█████████████████████  | 4573/5000 [00:00&lt;00:00, 6494.58it/s]\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.359716</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.359768</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  58%|█████████████▎         | 2887/5000 [00:00&lt;00:00, 4120.15it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.359776</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.359835</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s:  79%|██████████████████▎    | 3970/5000 [00:00&lt;00:00, 5648.96it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.360318</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.360379</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  35%|████████▏              | 1768/5000 [00:00&lt;00:01, 2512.84it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.360572</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.360613</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  24%|█████▍                 | 1183/5000 [00:00&lt;00:02, 1683.97it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.361952</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.362002</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  69%|███████████████▉       | 3455/5000 [00:00&lt;00:00, 4881.44it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.427585</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#6, est. 0.62s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 6488.86it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.459805</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.459951</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  66%|███████████████▎       | 3322/5000 [00:00&lt;00:00, 4192.55it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\r\n\r\n\r\n\r\n\r\n\r#5, est. 0.71s:  91%|████████████████████▉  | 4557/5000 [00:00&lt;00:00, 5717.60it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.460767</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r#1, est. 1.70s:  40%|█████████▎             | 2021/5000 [00:00&lt;00:01, 2515.40it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.462941</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.463183</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  27%|██████▏                | 1352/5000 [00:00&lt;00:02, 1674.75it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.464172</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r#4, est. 0.83s:  79%|██████████████████▏    | 3944/5000 [00:00&lt;00:00, 4851.69it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.464692</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  54%|████████████▍          | 2701/5000 [00:00&lt;00:00, 3306.24it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.547702</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#5, est. 0.71s: 100%|███████████████████████| 5000/5000 [00:00&lt;00:00, 5620.61it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.566987</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.567052</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  45%|██████████▍            | 2273/5000 [00:00&lt;00:01, 2468.99it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.567509</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.567547</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  30%|██████▉                | 1520/5000 [00:00&lt;00:02, 1651.79it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.568657</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.568709</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  75%|█████████████████▏     | 3742/5000 [00:00&lt;00:00, 4081.31it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.570132</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.570181</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  89%|████████████████████▍  | 4430/5000 [00:00&lt;00:00, 4765.18it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.570768</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  61%|█████████████▉         | 3032/5000 [00:00&lt;00:00, 3245.98it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.668</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.668081</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  34%|███████▊               | 1689/5000 [00:01&lt;00:01, 1661.05it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.668858</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.668916</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  83%|███████████████████▏   | 4170/5000 [00:01&lt;00:00, 4138.65it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.669846</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.669918</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  50%|███████████▌           | 2521/5000 [00:01&lt;00:01, 2450.60it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.670477</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.670541</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s:  98%|██████████████████████▌| 4907/5000 [00:01&lt;00:00, 4761.68it/s]\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.671051</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  67%|███████████████▍       | 3358/5000 [00:01&lt;00:00, 3247.82it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.690332</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#4, est. 0.83s: 100%|███████████████████████| 5000/5000 [00:01&lt;00:00, 4841.91it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.768065</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.76816</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  37%|████████▌              | 1860/5000 [00:01&lt;00:01, 1675.78it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.76985</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.769912</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  55%|████████████▋          | 2767/5000 [00:01&lt;00:00, 2453.22it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.769943</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.771104</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  74%|████████████████▉      | 3684/5000 [00:01&lt;00:00, 3250.68it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.773417</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.77352</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s:  92%|█████████████████████  | 4585/5000 [00:01&lt;00:00, 4085.90it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.868367</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.868446</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  41%|█████████▎             | 2031/5000 [00:01&lt;00:01, 1684.31it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.871357</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  80%|██████████████████▍    | 4012/5000 [00:01&lt;00:00, 3257.22it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.871835</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.871897</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  60%|█████████████▊         | 3013/5000 [00:01&lt;00:00, 2440.74it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.8774</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.877474</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s: 100%|██████████████████████▉| 4995/5000 [00:01&lt;00:00, 4042.20it/s]\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.878852</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#3, est. 1.00s: 100%|███████████████████████| 5000/5000 [00:01&lt;00:00, 4096.34it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.973438</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  87%|███████████████████▉   | 4338/5000 [00:01&lt;00:00, 3239.50it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.974947</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.975032</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  44%|██████████             | 2200/5000 [00:01&lt;00:01, 1653.04it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.975125</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>7.975179</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  65%|██████████████▉        | 3258/5000 [00:01&lt;00:00, 2419.88it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.076423</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s:  93%|█████████████████████▍ | 4663/5000 [00:01&lt;00:00, 3213.92it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.077467</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.077557</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  70%|████████████████       | 3501/5000 [00:01&lt;00:00, 2406.05it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.079458</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.079529</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  47%|██████████▉            | 2366/5000 [00:01&lt;00:01, 1633.21it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.178546</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s: 100%|██████████████████████▉| 4985/5000 [00:01&lt;00:00, 3195.52it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.179391</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.179504</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  75%|█████████████████▏     | 3742/5000 [00:01&lt;00:00, 2393.54it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.182663</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.182739</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  51%|███████████▋           | 2530/5000 [00:01&lt;00:01, 1619.95it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.183485</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#2, est. 1.20s: 100%|███████████████████████| 5000/5000 [00:01&lt;00:00, 3275.13it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.281006</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.281153</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  80%|██████████████████▎    | 3982/5000 [00:01&lt;00:00, 2384.53it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.285647</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.285786</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  54%|████████████▍          | 2693/5000 [00:01&lt;00:01, 1608.86it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.382223</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.382445</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  84%|███████████████████▍   | 4221/5000 [00:01&lt;00:00, 2377.93it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.387564</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.387724</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  57%|█████████████▏         | 2854/5000 [00:01&lt;00:01, 1600.17it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.483547</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.483742</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  89%|████████████████████▌  | 4459/5000 [00:01&lt;00:00, 2369.39it/s]\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.489688</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.489909</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  60%|█████████████▊         | 3015/5000 [00:01&lt;00:01, 1593.19it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.584999</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.585144</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  94%|█████████████████████▌ | 4696/5000 [00:01&lt;00:00, 2359.34it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.585323</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.59157</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.591749</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  64%|██████████████▌        | 3175/5000 [00:01&lt;00:01, 1586.38it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.685366</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.685433</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s:  99%|██████████████████████▋| 4932/5000 [00:02&lt;00:00, 2356.50it/s]&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.685557</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.692435</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.692538</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  67%|███████████████▎       | 3334/5000 [00:02&lt;00:01, 1583.22it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.714479</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#1, est. 1.70s: 100%|███████████████████████| 5000/5000 [00:02&lt;00:00, 2430.65it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.792931</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.793065</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  70%|████████████████       | 3493/5000 [00:02&lt;00:00, 1583.51it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.893839</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.894077</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  73%|████████████████▊      | 3652/5000 [00:02&lt;00:00, 1581.30it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.995009</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>8.995199</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  76%|█████████████████▌     | 3811/5000 [00:02&lt;00:00, 1578.37it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.095512</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.095724</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  79%|██████████████████▎    | 3969/5000 [00:02&lt;00:00, 1576.50it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.196695</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.19733</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  83%|██████████████████▉    | 4127/5000 [00:02&lt;00:00, 1573.48it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.299529</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.300196</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  86%|███████████████████▋   | 4285/5000 [00:02&lt;00:00, 1562.31it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.401289</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.401869</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  89%|████████████████████▍  | 4442/5000 [00:02&lt;00:00, 1556.92it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.502155</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.502554</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  92%|█████████████████████▏ | 4598/5000 [00:02&lt;00:00, 1553.27it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.602158</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.602435</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  95%|█████████████████████▊ | 4754/5000 [00:02&lt;00:00, 1553.92it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.703135</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\n\r\n\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.704004</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s:  98%|██████████████████████▌| 4911/5000 [00:03&lt;00:00, 1555.83it/s]\u001b[A\u001b[A\u001b[A&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.761857</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r#0, est. 2.50s: 100%|███████████████████████| 5000/5000 [00:03&lt;00:00, 1610.96it/s]\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.776273</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.776549</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.790267</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>9.790433</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1h\u001b=\u001b[?2004h&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>11.262646</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?2004l\r\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>11.329092</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[0;32masciinema: recording finished\u001b[0m\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>11.329167</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[0;32masciinema: press &lt;enter&gt; to upload to asciinema.org, &lt;ctrl-c&gt; to save locally\u001b[0m\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>12.316311</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;^C&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>12.316399</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\u001b[0;32masciinema: asciicast saved to /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn/T/tmp0m0d4ri1-ascii.cast\u001b[0m\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>12.326841</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>12.326974</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>12.338523</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>12.338637</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1h\u001b=\u001b[?2004h&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>13.935243</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;s&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>14.097389</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\bsv&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>14.314987</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;g&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>14.46684</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;-&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>15.209977</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;t&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>15.350363</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;e&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>15.428225</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[31m…\u001b[39m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>15.45927</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term\u001b[1m \u001b[0m\u001b[K\u001b[67C\u001b[33m \u001b[00m\u001b[68D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>16.030755</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\b\u001b[0m -&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>16.194477</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;-&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>16.425867</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;i&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>16.508727</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>16.668521</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34; &#34;</span>]
+[<span style=color:#5918bb;font-weight:700>16.876205</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;/&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>17.019105</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;v&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>17.145906</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;a&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>17.246531</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;r&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>17.421279</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[31m…\u001b[39m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>17.427675</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var\u001b[1m/\u001b[0m\u001b[K\u001b[57C\u001b[33m \u001b[00m\u001b[58D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>17.909204</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\b\u001b[0m/f&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>17.994984</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;o&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>18.158413</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;l&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>18.209194</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;d&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>18.509358</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[31m…\u001b[39m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>18.515598</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var/folders\u001b[1m/\u001b[0m\u001b[K\u001b[49C\u001b[33m \u001b[00m\u001b[50D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>19.542164</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\b\u001b[0m/3&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>19.598027</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>19.790912</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;/&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>20.75741</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;3&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>21.118463</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;d&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>21.375089</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;c&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>21.564873</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;t&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>21.829205</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[31m…\u001b[39m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>21.837442</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn\u001b[1m/\u001b[0m\u001b[K\u001b[15C\u001b[33m \u001b[00m\u001b[16D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>23.183211</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\b\u001b[0m/T&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>23.603098</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;/&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>23.928987</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;t&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>24.172937</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>24.489561</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;p&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>25.657377</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;0&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>26.161103</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>26.404008</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;0&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>26.603732</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[31m…\u001b[39m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>26.618252</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00msvg-term --in /var/folders/3n/3dct2kb54xn1882dpbw0vbdh0000gn/T/tmp0m0d4ri1-ascii.cast\u001b[1m \u001b[0m\u001b[K&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>27.742006</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\b\u001b[0m -&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>27.890346</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;-&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>28.099862</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;o&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>28.166638</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;u&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>28.250838</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;t&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>28.3748</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34; &#34;</span>]
+[<span style=color:#5918bb;font-weight:700>28.551619</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;/&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>29.509291</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;t&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>29.603613</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>29.712099</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;p&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>29.955365</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;/&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>30.657315</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;e&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>30.843608</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;x&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.023734</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;a&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.108809</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;m&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.159277</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;p&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.341015</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;l&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.43148</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;e&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.533268</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;.&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.649616</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;s&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>31.831633</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;v&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>32.007106</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;g&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>32.651262</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34; &#34;</span>]
+[<span style=color:#5918bb;font-weight:700>32.923743</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;-&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>33.065427</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;-&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>33.208844</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;w&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>33.328877</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;i&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>33.379628</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>33.44376</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;d&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>33.562365</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;o&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>33.692507</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;w&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>34.074411</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1l\u001b&gt;&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>34.074507</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?2004l\r\r\n&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>34.096816</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b]2;svg-term --in  --out /tmp/example.svg --window\u0007\u001b]1;svg-term\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>35.927703</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>35.927783</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>35.934493</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>35.934557</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?1h\u001b=\u001b[?2004h&#34;</span>]
+[<span style=color:#5918bb;font-weight:700>36.939863</span>, <span style=color:#0c6>&#34;o&#34;</span>, <span style=color:#0c6>&#34;\u001b[?2004l\r\r\n&#34;</span>]
+</code></pre></td></tr></table>
+</div>
+</div></details>
 <h3 id=transform-to-svg>Transform to SVG</h3>
 <p>Now, for us to place a cast into a Github README or Issue, we need to convert the cast to an animated SVG. <a href=https://github.com/marionebl/svg-term-cli>svg-term-cli</a> allows us to do this with either a raw cast file or the ID of a cast uploaded to asciinema. Adding the <code>--window</code> flag wraps the cast in a MacOS-style terminal window.</p>
 <div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
