@@ -39,7 +39,7 @@ asciinema will place the file in a temporary directory.  The output "cast" is a 
 
 <summary>example asciinema cast</summary>
 
-```
+```json
 {"version": 2, "width": 82, "height": 20, "timestamp": 1632512435, "env": {"SHELL": "/bin/zsh", "TERM": "xterm-256color"}}
 [0.3937, "o", "\u001b[1m\u001b[7m%\u001b[27m\u001b[1m\u001b[0m                                                                                 \r \r\u001b]2;alukach@ds:~\u0007\u001b]1;~\u0007"]
 [0.401958, "o", "\r\u001b[0m\u001b[27m\u001b[24m\u001b[J\u001b[33m~ ➤ \u001b[00m\u001b[K\u001b[76C\u001b[33m \u001b[00m\u001b[77D"]
