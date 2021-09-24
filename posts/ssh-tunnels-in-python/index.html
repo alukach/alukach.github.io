@@ -1,0 +1,462 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<title> SSH tunnels in Python | anthony lukach</title>
+<meta name=description content="A collection of notes.">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="all,follow">
+<meta name=googlebot content="index,follow,snippet,archive">
+<meta property="og:title" content="SSH tunnels in Python">
+<meta property="og:description" content="At times, a developer may need to access infrastructure not available on the public internet. A common example of this is accessing a database located in a private subnet, as described in the VPC Scenario docs:
+ Instances in the private subnet are back-end servers that don&rsquo;t need to accept incoming traffic from the internet and therefore do not have public IP addresses; however, they can send requests to the internet using the NAT gateway.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://alukach.com/posts/ssh-tunnels-in-python/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-09-17T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-09-17T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="SSH tunnels in Python">
+<meta name=twitter:description content="At times, a developer may need to access infrastructure not available on the public internet. A common example of this is accessing a database located in a private subnet, as described in the VPC Scenario docs:
+ Instances in the private subnet are back-end servers that don&rsquo;t need to accept incoming traffic from the internet and therefore do not have public IP addresses; however, they can send requests to the internet using the NAT gateway.">
+<link rel=stylesheet href=https://alukach.com/css/style-white.css>
+<link rel=stylesheet href=https://alukach.com/css/custom.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
+<link rel=icon type=image/png href=https://alukach.com/images/favicon.ico>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-16401510-1','auto'),ga('send','pageview'))</script>
+</head>
+<body class="max-width mx-auto px3 ltr">
+<div class="content index py4">
+<div id=header-post>
+<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu>
+<span id=nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+</ul>
+</span>
+<br>
+<span id=actions>
+<ul>
+<li>
+<a class=icon href=https://alukach.com/posts/concurrent-python-example-script/>
+<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')">
+<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=#>
+<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
+</a>
+</li>
+</ul>
+<span id=i-prev class=info style=display:none>Previous post</span>
+<span id=i-next class=info style=display:none>Next post</span>
+<span id=i-top class=info style=display:none>Back to top</span>
+<span id=i-share class=info style=display:none>Share post</span>
+</span>
+<br>
+<div id=share style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f">
+<i class="fab fa-facebook" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&text=SSH%20tunnels%20in%20Python">
+<i class="fab fa-twitter" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-linkedin" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&is_video=false&description=SSH%20tunnels%20in%20Python">
+<i class="fab fa-pinterest" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=SSH%20tunnels%20in%20Python&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f">
+<i class="fas fa-envelope" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-get-pocket" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-reddit" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-stumbleupon" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-digg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&name=SSH%20tunnels%20in%20Python&description=At%20times%2c%20a%20developer%20may%20need%20to%20access%20infrastructure%20not%20available%20on%20the%20public%20internet.%20A%20common%20example%20of%20this%20is%20accessing%20a%20database%20located%20in%20a%20private%20subnet%2c%20as%20described%20in%20the%20VPC%20Scenario%20docs%3a%0a%20Instances%20in%20the%20private%20subnet%20are%20back-end%20servers%20that%20don%26rsquo%3bt%20need%20to%20accept%20incoming%20traffic%20from%20the%20internet%20and%20therefore%20do%20not%20have%20public%20IP%20addresses%3b%20however%2c%20they%20can%20send%20requests%20to%20the%20internet%20using%20the%20NAT%20gateway.">
+<i class="fab fa-tumblr" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&t=SSH%20tunnels%20in%20Python">
+<i class="fab fa-hacker-news" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=toc>
+<nav id=TableOfContents></nav>
+</div>
+</span>
+</div>
+<article class=post itemscope itemtype=http://schema.org/BlogPosting>
+<header>
+<h1 class=posttitle itemprop="name headline">
+SSH tunnels in Python
+</h1>
+<div class=meta>
+<div class=postdate>
+<time datetime="2021-09-17 00:00:00 +0000 UTC" itemprop=datePublished>2021-09-17</time>
+</div>
+<div class=article-tag>
+<i class="fas fa-tag"></i>
+<a class=tag-link href=/tags/python rel=tag>python</a>
+,
+<a class=tag-link href=/tags/ssh rel=tag>ssh</a>
+,
+<a class=tag-link href=/tags/tunnel rel=tag>tunnel</a>
+</div>
+</div>
+</header>
+<div class=content itemprop=articleBody>
+<p>At times, a developer may need to access infrastructure not available on the public internet. A common example of this is accessing a database located in a private subnet, as described in the <a href=https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html>VPC Scenario docs</a>:</p>
+<blockquote>
+<p>Instances in the private subnet are back-end servers that don&rsquo;t need to accept incoming traffic from the internet and therefore do not have public IP addresses; however, they can send requests to the internet using the NAT gateway.</p>
+</blockquote>
+<p>The common strategy for connecting to one of these devices is to tunnel your traffic through a <a href=https://en.wikipedia.org/wiki/Jump_server>jump box AKA jump server AKA jump host</a>. This can be achieved by <a href=https://www.ssh.com/academy/ssh/tunneling/example>SSH Port Forwarding AKA SSH Tunneling</a>.</p>
+<p>For a recent project, I needed a convenient way to query private databases in Python to do some repeatable data management operations. Tools like <a href=https://dbeaver.io/>DBeaver</a> have built-in support for connecting to databases over SSH tunnels, however I needed something more scriptable. Standing up a service in AWS would have worked however seemed to be overkill for my simple scripting needs. My goals were to 1) get auth credentials from AWS Secrets Manager (RDS places credentials in Secrets Manager by default, or at least when creating RDS instances via CDK); 2) setup a tunnel through a jumpbox to allow access to the RDS Instance; 3) run SQL queries against the DB. Automating this process in Python was not immediately clear until found the <a href=https://sshtunnel.readthedocs.io/en/latest/><code>sshtunnel</code> module</a>. After playing around with the code for a bit, I was able to put together a utility class with <a href=http://pydantic-docs.helpmanual.io/>Pydantic</a> and <a href=https://www.psycopg.org/docs/>Psycopg2</a> to conveniently connect to a private RDS instance via SSH tunneling. I figured I would share in the event that someone ever needs such a tool in the future.</p>
+<details>
+<summary>Code Sample</summary>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">98
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-py data-lang=py><span style=color:#2c5dcd;font-weight:700>import</span> socket
+<span style=color:#2c5dcd;font-weight:700>import</span> contextlib
+<span style=color:#2c5dcd;font-weight:700>import</span> logging
+<span style=color:#2c5dcd;font-weight:700>from</span> typing <span style=color:#2c5dcd;font-weight:700>import</span> Any, Generator, Tuple, Optional
+
+<span style=color:#2c5dcd;font-weight:700>import</span> psycopg2
+<span style=color:#2c5dcd;font-weight:700>import</span> psycopg2.extras
+<span style=color:#2c5dcd;font-weight:700>from</span> pydantic.main <span style=color:#2c5dcd;font-weight:700>import</span> BaseModel
+<span style=color:#2c5dcd;font-weight:700>from</span> sshtunnel <span style=color:#2c5dcd;font-weight:700>import</span> open_tunnel
+
+logger <span style=color:#2c5dcd>=</span> logging<span style=color:#2c5dcd>.</span>getLogger(__name__)
+
+
+<span style=color:#2c5dcd;font-weight:700>class</span> <span style=text-decoration:underline>Db</span>(BaseModel):
+    dbname: <span style=color:#5918bb;font-weight:700>str</span>
+    user: <span style=color:#5918bb;font-weight:700>str</span>
+    password: <span style=color:#5918bb;font-weight:700>str</span>
+    host: <span style=color:#5918bb;font-weight:700>str</span>
+    port: <span style=color:#5918bb;font-weight:700>int</span> <span style=color:#2c5dcd>=</span> <span style=color:#5918bb;font-weight:700>5432</span>
+
+    <span style=color:#ff8000;font-weight:700>@contextlib</span><span style=color:#2c5dcd>.</span>contextmanager
+    <span style=color:#2c5dcd;font-weight:700>def</span> <span style=color:#ff8000;font-weight:700>cursor</span>(
+        self, name<span style=color:#2c5dcd>=</span><span style=color:#2c5dcd;font-weight:700>None</span>
+    ) <span style=color:#2c5dcd>-&gt;</span> Generator[Tuple[Any, psycopg2<span style=color:#2c5dcd>.</span>extras<span style=color:#2c5dcd>.</span>DictCursor], <span style=color:#2c5dcd;font-weight:700>None</span>, <span style=color:#2c5dcd;font-weight:700>None</span>]:
+        logger<span style=color:#2c5dcd>.</span>debug(<span style=color:#0c6>&#34;Connecting to </span><span style=color:#0c6>%s</span><span style=color:#0c6>&#34;</span>, self<span style=color:#2c5dcd>.</span>dbname)
+        <span style=color:#2c5dcd;font-weight:700>with</span> psycopg2<span style=color:#2c5dcd>.</span>connect(<span style=color:#2c5dcd>**</span>self<span style=color:#2c5dcd>.</span>dict()) <span style=color:#2c5dcd;font-weight:700>as</span> conn:
+            cursor <span style=color:#2c5dcd>=</span> conn<span style=color:#2c5dcd>.</span>cursor(name, cursor_factory<span style=color:#2c5dcd>=</span>psycopg2<span style=color:#2c5dcd>.</span>extras<span style=color:#2c5dcd>.</span>DictCursor)
+            <span style=color:#2c5dcd;font-weight:700>with</span> cursor <span style=color:#2c5dcd;font-weight:700>as</span> curs:
+                logger<span style=color:#2c5dcd>.</span>debug(<span style=color:#0c6>&#34;Yielding cursor&#34;</span>)
+                <span style=color:#2c5dcd;font-weight:700>yield</span> conn, curs
+                logger<span style=color:#2c5dcd>.</span>debug(<span style=color:#0c6>&#34;Disconnecting from </span><span style=color:#0c6>%s</span><span style=color:#0c6>&#34;</span>, self<span style=color:#2c5dcd>.</span>dbname)
+
+    <span style=color:#ff8000;font-weight:700>@contextlib</span><span style=color:#2c5dcd>.</span>contextmanager
+    <span style=color:#2c5dcd;font-weight:700>def</span> <span style=color:#ff8000;font-weight:700>create_tunnel</span>(
+        self,
+        jumpbox_host: <span style=color:#5918bb;font-weight:700>str</span>,
+        local_port: Optional[<span style=color:#5918bb;font-weight:700>int</span>] <span style=color:#2c5dcd>=</span> <span style=color:#2c5dcd;font-weight:700>None</span>,
+        jumpbox_port: <span style=color:#5918bb;font-weight:700>int</span> <span style=color:#2c5dcd>=</span> <span style=color:#5918bb;font-weight:700>22</span>,
+        local_host: <span style=color:#5918bb;font-weight:700>str</span> <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#34;127.0.0.1&#34;</span>,
+        jumpbox_username: <span style=color:#5918bb;font-weight:700>str</span> <span style=color:#2c5dcd>=</span> <span style=color:#2c5dcd;font-weight:700>None</span>,
+        ssh_key_password: <span style=color:#5918bb;font-weight:700>str</span> <span style=color:#2c5dcd>=</span> <span style=color:#2c5dcd;font-weight:700>None</span>,
+    ) <span style=color:#2c5dcd>-&gt;</span> Generator[<span style=color:#0c6>&#34;Db&#34;</span>, <span style=color:#2c5dcd;font-weight:700>None</span>, <span style=color:#2c5dcd;font-weight:700>None</span>]:
+        <span style=color:#0c6>&#34;&#34;&#34;
+</span><span style=color:#0c6>        Generates an SSH tunnel to DB via jumpbox.
+</span><span style=color:#0c6>        &#34;&#34;&#34;</span>
+        <span style=color:#2c5dcd;font-weight:700>if</span> local_port <span style=color:#2c5dcd;font-weight:700>is</span> <span style=color:#2c5dcd;font-weight:700>None</span>:
+            local_port <span style=color:#2c5dcd>=</span> self<span style=color:#2c5dcd>.</span>_find_free_port()
+        <span style=color:#2c5dcd;font-weight:700>with</span> open_tunnel(
+            (jumpbox_host, jumpbox_port),
+            ssh_username<span style=color:#2c5dcd>=</span>jumpbox_username,
+            remote_bind_address<span style=color:#2c5dcd>=</span>(self<span style=color:#2c5dcd>.</span>host, self<span style=color:#2c5dcd>.</span>port),
+            local_bind_address<span style=color:#2c5dcd>=</span>(local_host, local_port),
+            ssh_private_key_password<span style=color:#2c5dcd>=</span>ssh_key_password,
+        ) <span style=color:#2c5dcd;font-weight:700>as</span> tunnel:
+            logger<span style=color:#2c5dcd>.</span>debug(
+                <span style=color:#0c6>&#34;Tunnel to </span><span style=color:#0c6>%s</span><span style=color:#0c6> through </span><span style=color:#0c6>%s</span><span style=color:#0c6> established on port </span><span style=color:#0c6>%s</span><span style=color:#0c6>&#34;</span>,
+                self<span style=color:#2c5dcd>.</span>host,
+                jumpbox_host,
+                local_port,
+            )
+            <span style=color:#2c5dcd;font-weight:700>yield</span> self<span style=color:#2c5dcd>.</span>copy(
+                update<span style=color:#2c5dcd>=</span>{
+                    <span style=color:#0c6>&#34;host&#34;</span>: tunnel<span style=color:#2c5dcd>.</span>local_bind_host,
+                    <span style=color:#0c6>&#34;port&#34;</span>: tunnel<span style=color:#2c5dcd>.</span>local_bind_port,
+                }
+            )
+
+    <span style=color:#ff8000;font-weight:700>@classmethod</span>
+    <span style=color:#2c5dcd;font-weight:700>def</span> <span style=color:#ff8000;font-weight:700>from_rds_credentials</span>(cls, secret):
+        <span style=color:#2c5dcd;font-weight:700>return</span> cls<span style=color:#2c5dcd>.</span>parse_obj({<span style=color:#0c6>&#34;user&#34;</span>: secret<span style=color:#2c5dcd>.</span>pop(<span style=color:#0c6>&#34;username&#34;</span>), <span style=color:#2c5dcd>**</span>secret})
+
+    <span style=color:#ff8000;font-weight:700>@staticmethod</span>
+    <span style=color:#2c5dcd;font-weight:700>def</span> <span style=color:#ff8000;font-weight:700>_find_free_port</span>() <span style=color:#2c5dcd>-&gt;</span> <span style=color:#5918bb;font-weight:700>int</span>:
+        <span style=color:#0080ff;font-style:italic># https://stackoverflow.com/a/45690594/728583</span>
+        <span style=color:#2c5dcd;font-weight:700>with</span> contextlib<span style=color:#2c5dcd>.</span>closing(socket<span style=color:#2c5dcd>.</span>socket(socket<span style=color:#2c5dcd>.</span>AF_INET, socket<span style=color:#2c5dcd>.</span>SOCK_STREAM)) <span style=color:#2c5dcd;font-weight:700>as</span> s:
+            s<span style=color:#2c5dcd>.</span>bind((<span style=color:#0c6>&#34;&#34;</span>, <span style=color:#5918bb;font-weight:700>0</span>))
+            s<span style=color:#2c5dcd>.</span>setsockopt(socket<span style=color:#2c5dcd>.</span>SOL_SOCKET, socket<span style=color:#2c5dcd>.</span>SO_REUSEADDR, <span style=color:#5918bb;font-weight:700>1</span>)
+            <span style=color:#2c5dcd;font-weight:700>return</span> s<span style=color:#2c5dcd>.</span>getsockname()[<span style=color:#5918bb;font-weight:700>1</span>]
+
+
+<span style=color:#2c5dcd;font-weight:700>if</span> __name__ <span style=color:#2c5dcd>==</span> <span style=color:#0c6>&#34;__main__&#34;</span>:
+    <span style=color:#2c5dcd;font-weight:700>import</span> json
+    <span style=color:#2c5dcd;font-weight:700>import</span> boto3
+
+    rds_secret <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#34;myRdsDbSecret&#34;</span>  <span style=color:#0080ff;font-style:italic># ARN or Secret ID</span>
+    jumpbox_host <span style=color:#2c5dcd>=</span> <span style=color:#0c6>&#34;my-jumpbox-hostname&#34;</span>  <span style=color:#0080ff;font-style:italic># hostname/ip address of jumpbox</span>
+
+    credentials <span style=color:#2c5dcd>=</span> json<span style=color:#2c5dcd>.</span>load(
+        boto3<span style=color:#2c5dcd>.</span>client(<span style=color:#0c6>&#34;secretsmanager&#34;</span>)<span style=color:#2c5dcd>.</span>get_secret_value(SecretId<span style=color:#2c5dcd>=</span>rds_secret)[
+            <span style=color:#0c6>&#34;SecretString&#34;</span>
+        ]
+    )
+    private_db <span style=color:#2c5dcd>=</span> Db<span style=color:#2c5dcd>.</span>from_rds_credentials(credentials)
+    <span style=color:#2c5dcd;font-weight:700>with</span> private_db<span style=color:#2c5dcd>.</span>create_tunnel(jumpbox_host) <span style=color:#2c5dcd;font-weight:700>as</span> db:
+        <span style=color:#2c5dcd;font-weight:700>with</span> db<span style=color:#2c5dcd>.</span>cursor() <span style=color:#2c5dcd;font-weight:700>as</span> (conn, cur):
+            cur<span style=color:#2c5dcd>.</span>execute(<span style=color:#0c6>&#34;SELECT COUNT(*) FROM my_table;&#34;</span>)
+            <span style=color:#5918bb;font-weight:700>print</span>(cur<span style=color:#2c5dcd>.</span>fetchone())
+
+</code></pre></td></tr></table>
+</div>
+</div></details>
+</div>
+</article>
+<div id=footer-post-container>
+<div id=footer-post>
+<div id=nav-footer style=display:none>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+</ul>
+</div>
+<div id=toc-footer style=display:none>
+<nav id=TableOfContents></nav>
+</div>
+<div id=share-footer style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f">
+<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&text=SSH%20tunnels%20in%20Python">
+<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&is_video=false&description=SSH%20tunnels%20in%20Python">
+<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=SSH%20tunnels%20in%20Python&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f">
+<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-stumbleupon fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&title=SSH%20tunnels%20in%20Python">
+<i class="fab fa-digg fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&name=SSH%20tunnels%20in%20Python&description=At%20times%2c%20a%20developer%20may%20need%20to%20access%20infrastructure%20not%20available%20on%20the%20public%20internet.%20A%20common%20example%20of%20this%20is%20accessing%20a%20database%20located%20in%20a%20private%20subnet%2c%20as%20described%20in%20the%20VPC%20Scenario%20docs%3a%0a%20Instances%20in%20the%20private%20subnet%20are%20back-end%20servers%20that%20don%26rsquo%3bt%20need%20to%20accept%20incoming%20traffic%20from%20the%20internet%20and%20therefore%20do%20not%20have%20public%20IP%20addresses%3b%20however%2c%20they%20can%20send%20requests%20to%20the%20internet%20using%20the%20NAT%20gateway.">
+<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fssh-tunnels-in-python%2f&t=SSH%20tunnels%20in%20Python">
+<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=actions-footer>
+<a id=menu class=icon href=# onclick="return $('#nav-footer').toggle(),!1">
+<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc class=icon href=# onclick="return $('#toc-footer').toggle(),!1">
+<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share class=icon href=# onclick="return $('#share-footer').toggle(),!1">
+<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')">
+<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
+</div>
+</div>
+</div>
+<footer id=footer>
+<div class=footer-left>
+Copyright &copy; 2021 Anthony Lukach
+</div>
+<div class=footer-right>
+<nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/posts>Writings</a></li>
+</ul>
+</nav>
+</div>
+</footer>
+</div>
+</body>
+<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+</html>
