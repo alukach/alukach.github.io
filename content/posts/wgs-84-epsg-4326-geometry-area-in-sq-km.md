@@ -1,8 +1,8 @@
 ---
-date: 2022-09-17
+date: 2021-09-17
 layout: post
 title: Getting area of WGS-84 geometries in SqKm
-category: posts
+category: snippets
 tags: [quick-hint, postgis, postgresql, gis]
 ---
 
