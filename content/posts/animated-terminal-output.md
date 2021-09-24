@@ -426,7 +426,7 @@ Now that we have our animated SVG, we just need to put it online and reference i
 
 #### README
 
-If you're looking to add your SVG to a README, you can include the SVG in the git repo (e.g. in `.docs/`) and reference it in markdown:
+If you're looking to add your SVG to a README, you can include the SVG in the git repo (e.g. in `docs/`) and reference it in markdown:
 
 ```md
 ![example cli usage](./docs/example.svg)
