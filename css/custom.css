@@ -18,3 +18,14 @@
 .content ul li, .content ol li {
   margin-bottom: 0.5em;
 }
+
+ul.inline {
+  list-style-type: none;
+}
+
+ul.inline li {
+  display: inline-block;
+}
+.center {
+  text-align: center;
+}
