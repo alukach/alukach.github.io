@@ -18,7 +18,7 @@ jobs:
         uses: peaceiris/actions-hugo@v2
 
       - name: Download resume as HTML
-        run: curl "https://docs.google.com/document/d/1iHOSIBZ7AiSSyyejE1-YS2oOlpxG3JZI_y6llnfxBrI/export?format=html" > static/resume.html
+        run: curl "https://docs.google.com/document/d/1iHOSIBZ7AiSSyyejE1-YS2oOlpxG3JZI_y6llnfxBrI/export?format=html" > static/alukach-resume.html
 
       - name: Build
         run: hugo --minify
