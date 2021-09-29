@@ -28,6 +28,9 @@ params:
     - name: email
       link: anthony.lukach+blog@gmail.com
 
+  googleDocsResumeId: 1iHOSIBZ7AiSSyyejE1-YS2oOlpxG3JZI_y6llnfxBrI
+  googleDocsResumeEmbedId: 2PACX-1vTRJs05NAqIefzyJpU1v0ACAXbkFX1nyOPjMozxsFFqDYYdpFLR-Uq7Gnxy4wnCeLx4pM-AEQNYfNSG
+
 menu:
   main:
     - name: Home
@@ -35,6 +38,9 @@ menu:
       weight: 1
     - name: Writings
       url: /posts
+      weight: 2
+    - name: Resume
+      url: /resume
       weight: 2
 
 markup:

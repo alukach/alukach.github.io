@@ -1,0 +1,48 @@
+<ul class="inline center">
+  <li><strong>Download as</strong></li>
+  <li .>
+    <a
+      href="https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=pdf"
+      >pdf</a
+    >
+  </li>
+
+  <li>
+    <a
+      href="https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=docx"
+      >docx</a
+    >
+  </li>
+
+  <li>
+    <a
+      href="https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=rtf"
+      >rtf</a
+    >
+  </li>
+
+  <li>
+    <a
+      href="https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=odt"
+      >odt</a
+    >
+  </li>
+
+  <li>
+    <a
+      href="https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=txt"
+      >txt</a
+    >
+  </li>
+
+  <li>
+    <a href="/resume.html">html</a>
+  </li>
+</ul>
+
+<iframe
+  style="height: 100vh; width: 100%"
+  frameborder="0"
+  src="https://docs.google.com/document/d/e/{{ .Site.Params.googleDocsresumeEmbedId }}/pub?embedded=true"
+>
+</iframe>
