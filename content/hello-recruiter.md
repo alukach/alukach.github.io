@@ -60,6 +60,6 @@ To save time on both of our parts, **I am only available to schedule a phone con
 
 ## My Information
 
-- My most up-to-date resume: [PDF](https://alukach.com/resume/alukach.pdf), [HTML](https://alukach.com/resume/alukach.html), [TXT](https://raw.githubusercontent.com/alukach/alukach.github.io/master/resume/source/alukach.md), _note that I do not offer a Word-based format of my resume_
+- My most up-to-date resume: [PDF](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=pdf), [DOCX](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=docx), [TXT](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=txt), [RTF](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=rtf)
 - My Github profile: [@alukach](https://github.com/alukach)
 - My LinkedIn account: [in/alukach](https://www.linkedin.com/in/alukach/)
