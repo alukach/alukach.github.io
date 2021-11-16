@@ -18,7 +18,7 @@ Thanks for reaching out. You likely received a link to this page from me in resp
 
 ## Am I currently looking for a new job?
 
-No, I am actively not looking for a new position (I will remove this sentence if that changes). As a general rule, I stay at a company for at least a year (although my average is closer to 3 years), so if [my resume](/resume) reflects that I have been at my current employer for less than a year it is unlikely that I am interested in a change. With that said, you are always welcome to send me any job roles that you think I would be crazy to pass up. I will always respond to these messages letting you know if they are or are not a good fit.
+No, I am not actively looking for a new position (I will remove this sentence if that changes). As a general rule, I stay at a company for at least a year (although my average is closer to 3 years), so if [my resume](/resume) reflects that I have been at my current employer for less than a year it is unlikely that I am interested in a change. With that said, you are always welcome to send me any job roles that you think I would be crazy to pass up. I will always respond to these messages letting you know if they are or are not a good fit.
 
 ## What types of roles interest me
 
@@ -60,6 +60,6 @@ To save time on both of our parts, **I am only available to schedule a phone con
 
 ## My Information
 
-- My most up-to-date resume: [PDF](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=pdf), [DOCX](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=docx), [TXT](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=txt), [RTF](https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format=rtf)
+- My most up-to-date resume: {{ resume-link pdf }}, {{ resume-link docx }}, {{ resume-link rtf }}, ({{ resume-link txt }}
 - My Github profile: [@alukach](https://github.com/alukach)
 - My LinkedIn account: [in/alukach](https://www.linkedin.com/in/alukach/)

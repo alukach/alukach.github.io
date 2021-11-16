@@ -1,0 +1,5 @@
+<a 
+    href="https://docs.google.com/document/d/{{ .Site.Params.googleDocsResumeId }}/export?format={{ if .IsNamedParams }}{{ .Get "format" }}{{ else }}{{ .Get 0 }}{{ end }}"
+    >
+    {{ if .IsNamedParams }}{{ .Get "format" }}{{ else }}{{ .Get 0 }}{{ end }}
+</a>
