@@ -60,6 +60,6 @@ To save time on both of our parts, **I am only available to schedule a phone con
 
 ## My Information
 
-- My most up-to-date resume: {{% resume-link pdf %}}, {{% resume-link docx %}}, {{% resume-link rtf %}}, {{% resume-link txt %}}
+- My most up-to-date resume: {{< resume-link pdf >}}, {{< resume-link docx >}}, {{< resume-link rtf >}}, {{< resume-link txt >}}
 - My Github profile: [@alukach](https://github.com/alukach)
 - My LinkedIn account: [in/alukach](https://www.linkedin.com/in/alukach/)
