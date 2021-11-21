@@ -281,7 +281,7 @@ jobs:
 
 </details>
 
-You'll note that any place where we originally specified our API configuration or had a dependency on a PR number, we now first try to retrieve the value from `github.event.inputs` (only available during manual `workflow_dispatch` events) and otherwise fall back to values used during standard PR builds.  This can be achieved by utilizing the [OR operator](https://docs.github.com/en/actions/learn-github-actions/expressions#operators) as so: `${{ github.event.inputs.deployment-id || github.event.pull_request.number }}`  (shoutout to @JohnHedman for spearheading this technique on the SMD project).
+You'll note that any place where we originally specified our API configuration or had a dependency on a PR number, we now first try to retrieve the value from `github.event.inputs` (only available during manual `workflow_dispatch` events) and otherwise fall back to values used during standard PR builds.  This can be achieved by utilizing the [OR operator](https://docs.github.com/en/actions/learn-github-actions/expressions#operators) as so: `${{ github.event.inputs.deployment-id || github.event.pull_request.number }}`.
 
 Additionally, we will only want to comment on a PR during PR builds, so we avoid running the comment steps by adding an `if: ${{ github.event.pull_request.number }}` clause to each step that we want to skip.
 
