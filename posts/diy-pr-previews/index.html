@@ -1,0 +1,1134 @@
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<title> Roll your own PR preview CI pipeline | anthony lukach</title>
+<meta name=description content="A collection of notes.">
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="all,follow">
+<meta name=googlebot content="index,follow,snippet,archive">
+<meta property="og:title" content="Roll your own PR preview CI pipeline">
+<meta property="og:description" content="Goal We want a CI pipeline that will build and deploy an instance of our frontend application for every PR created in our frontend repo. Additionally, we want to be able to easily spin up applications with overridden configuration to allow developers to test the frontend against experimental backends. Finally, we want a reporting mechanism to inform developers when and where these deployed environments are available.
+Other Options Before you jump into this, consider that there are out-of-the-box solutions to solve this problem mentioned in the followup at the bottom of this page.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://alukach.com/posts/diy-pr-previews/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-11-21T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-11-21T00:00:00+00:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Roll your own PR preview CI pipeline">
+<meta name=twitter:description content="Goal We want a CI pipeline that will build and deploy an instance of our frontend application for every PR created in our frontend repo. Additionally, we want to be able to easily spin up applications with overridden configuration to allow developers to test the frontend against experimental backends. Finally, we want a reporting mechanism to inform developers when and where these deployed environments are available.
+Other Options Before you jump into this, consider that there are out-of-the-box solutions to solve this problem mentioned in the followup at the bottom of this page.">
+<link rel=stylesheet href=https://alukach.com/css/style-white.css>
+<link rel=stylesheet href=https://alukach.com/css/custom.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
+<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
+<link rel=icon type=image/png href=https://alukach.com/images/favicon.ico>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-16401510-1','auto'),ga('send','pageview'))</script>
+</head>
+<body class="max-width mx-auto px3 ltr">
+<div class="content index py4">
+<div id=header-post>
+<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
+<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none><i class="fas fa-chevron-up fa-lg"></i></a>
+<span id=menu>
+<span id=nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/resume>Resume</a></li>
+<li><a href=/posts>Writings</a></li>
+</ul>
+</span>
+<br>
+<span id=actions>
+<ul>
+<li>
+<a class=icon href=https://alukach.com/posts/animated-terminal-output/>
+<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')">
+<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
+</a>
+</li>
+<li>
+<a class=icon href=#>
+<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
+</a>
+</li>
+</ul>
+<span id=i-prev class=info style=display:none>Previous post</span>
+<span id=i-next class=info style=display:none>Next post</span>
+<span id=i-top class=info style=display:none>Back to top</span>
+<span id=i-share class=info style=display:none>Share post</span>
+</span>
+<br>
+<div id=share style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f">
+<i class="fab fa-facebook" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&text=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-twitter" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-linkedin" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&is_video=false&description=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-pinterest" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=Roll%20your%20own%20PR%20preview%20CI%20pipeline&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f">
+<i class="fas fa-envelope" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-get-pocket" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-reddit" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-stumbleupon" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-digg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&name=Roll%20your%20own%20PR%20preview%20CI%20pipeline&description=Goal%20We%20want%20a%20CI%20pipeline%20that%20will%20build%20and%20deploy%20an%20instance%20of%20our%20frontend%20application%20for%20every%20PR%20created%20in%20our%20frontend%20repo.%20Additionally%2c%20we%20want%20to%20be%20able%20to%20easily%20spin%20up%20applications%20with%20overridden%20configuration%20to%20allow%20developers%20to%20test%20the%20frontend%20against%20experimental%20backends.%20Finally%2c%20we%20want%20a%20reporting%20mechanism%20to%20inform%20developers%20when%20and%20where%20these%20deployed%20environments%20are%20available.%0aOther%20Options%20Before%20you%20jump%20into%20this%2c%20consider%20that%20there%20are%20out-of-the-box%20solutions%20to%20solve%20this%20problem%20mentioned%20in%20the%20followup%20at%20the%20bottom%20of%20this%20page.">
+<i class="fab fa-tumblr" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&t=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-hacker-news" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=toc>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#goal>Goal</a>
+<ul>
+<li><a href=#other-options>Other Options</a></li>
+</ul>
+</li>
+<li><a href=#background-project-infrastructure>Background: Project Infrastructure</a></li>
+<li><a href=#ci-cloud-infrastructure>CI: Cloud Infrastructure</a>
+<ul>
+<li><a href=#1-setup-a-bucket>1. Setup a bucket</a></li>
+<li><a href=#2-setup-ssl-via-api-gateway>2. Setup SSL via API Gateway</a></li>
+<li><a href=#3-setup-a-url-for-the-ci-builds>3. Setup a URL for the CI builds</a></li>
+</ul>
+</li>
+<li><a href=#ci-workflows>CI: Workflows</a>
+<ul>
+<li><a href=#building--deploying>Building & Deploying</a></li>
+<li><a href=#adding-a-comment-on-our-pr-to-notify-others-of-the-build>Adding a comment on our PR to notify others of the build</a></li>
+<li><a href=#allow-users-to-customize-configuration>Allow users to customize configuration</a></li>
+<li><a href=#cleanup>Cleanup</a></li>
+<li><a href=#putting-it-all-together>Putting it all together</a></li>
+<li><a href=#followup>Followup</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</span>
+</div>
+<article class=post itemscope itemtype=http://schema.org/BlogPosting>
+<header>
+<h1 class=posttitle itemprop="name headline">
+Roll your own PR preview CI pipeline
+</h1>
+<div class=meta>
+<div class=postdate>
+<time datetime="2021-11-21 00:00:00 +0000 UTC" itemprop=datePublished>2021-11-21</time>
+</div>
+<div class=article-tag>
+<i class="fas fa-tag"></i>
+<a class=tag-link href=/tags/ci rel=tag>ci</a>
+,
+<a class=tag-link href=/tags/github rel=tag>github</a>
+,
+<a class=tag-link href=/tags/actions rel=tag>actions</a>
+,
+<a class=tag-link href=/tags/s3 rel=tag>s3</a>
+</div>
+</div>
+</header>
+<div class=content itemprop=articleBody>
+<h2 id=goal>Goal</h2>
+<p>We want a CI pipeline that will build and deploy an instance of our frontend application for every PR created in our frontend repo. Additionally, we want to be able to easily spin up applications with overridden configuration to allow developers to test the frontend against experimental backends. Finally, we want a reporting mechanism to inform developers when and where these deployed environments are available.</p>
+<h3 id=other-options>Other Options</h3>
+<p>Before you jump into this, consider that there are out-of-the-box solutions to solve this problem mentioned in the <a href=#followup>followup</a> at the bottom of this page.</p>
+<h2 id=background-project-infrastructure>Background: Project Infrastructure</h2>
+<p>Our production frontend is a React application (using Next.js). We build this application into static HTML/CSS/JS files and upload them to an S3 bucket. This bucket has been <a href=https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html>setup to serve static websites</a> and is served via HTTPS by CloudFront (see #270).</p>
+<p>The frontend accesses multiple backend APIs (e.g. a STAC API, a FastAPI REST API). Deployment of those APIs is outside of the scope of the frontend codebase.</p>
+<h2 id=ci-cloud-infrastructure>CI: Cloud Infrastructure</h2>
+<p>Our goal is to mimic the production frontend deployment to a reasonable degree.</p>
+<h3 id=1-setup-a-bucket>1. Setup a bucket</h3>
+<p>First, we will need an S3 bucket to store our builds. We created a bucket (<code>s3://project-frontend-ci</code>) and configured it to serve static websites. As a sanity check, we wrote a simple message to a public file that we place at the root of the bucket:</p>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">1
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-sh data-lang=sh><span style=color:#5918bb;font-weight:700>echo</span> <span style=color:#0c6>&#34;Project frontend CI builds&#34;</span> | aws s3 cp - s3://project-frontend-ci/index.html --acl public-read --content-type text/html
+</code></pre></td></tr></table>
+</div>
+</div><p>We can verify that everything is configured properly by visiting the bucket&rsquo;s website url: <a href=http://project-frontend-ci.s3-website.us-east-1.amazonaws.com/>http://project-frontend-ci.s3-website.us-east-1.amazonaws.com/</a></p>
+<h3 id=2-setup-ssl-via-api-gateway>2. Setup SSL via API Gateway</h3>
+<p>Unfortunately, S3 does not support serving content via SSL (i.e. over HTTPS). As such, we need to use something like API Gateway or CloudFront to accept traffic over HTTPS and to route it to our bucket&rsquo;s content over HTTP. For the sake of simplicity, we chose to use API Gateway for this purpose. For our actual staging environment, we utilize CloudFront to more closely mimic the production environment, however for these temporary CI builds we felt that API Gateway was close-enough.</p>
+<p>We created an API Gateway <a href=https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html>HTTP API</a> configured to direct all traffic to our S3 bucket&rsquo;s website URL:
+<img src=https://user-images.githubusercontent.com/897290/141352748-e30c371c-523b-4f31-89bb-618b7f87aa6b.png alt=image></p>
+<p>We can now visit our bucket over SSL via the API Gateway endpoint: <a href=https://0zy9z5ko27.execute-api.us-east-1.amazonaws.com/>https://0zy9z5ko27.execute-api.us-east-1.amazonaws.com/</a></p>
+<h3 id=3-setup-a-url-for-the-ci-builds>3. Setup a URL for the CI builds</h3>
+<p>The downside of API Gateway or CloudFront is that it produces very unmemorable URLs. Just to be a bit fancy 💅 , we set up a custom URL on <code>domain.com</code>. We settled on <code>ci.project-staging.domain.com</code> to pair nicely with our staging environment (<code>project-staging.domain.com</code>).</p>
+<details>
+<summary>Setting this up is a bit of a multi-step process. Click here to see the details...</summary>
+<h4 id=a-create-ssl-certificate>a. Create SSL Certificate</h4>
+<p>On the AWS account owns the API Gateway HTTP API we just setup, we created an SSL Certificate via AWS Certificate Manager (ACM):</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141357476-cafcc308-2215-49d2-b3c5-302f944fd16a.png alt=image></p>
+<h4 id=b-verify-ownership-of-domain>b. Verify ownership of domain</h4>
+<p>ACM requires that you verify that you have control of a domain before it will grant you an SSL certificate. After creating an SSL certificate, you&rsquo;ll see that it is in &ldquo;Pending Validation&rdquo; status.</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141358311-217d51dd-8b13-413c-95f4-88c0c61d1b69.png alt=image></p>
+<p>To verify that we control <code>domain.com</code>, we add a CNAME record to the <code>domain.com</code> hosted zone. Once this is done, we frantically refresh the ACM status page until it states that our domain has been verified.</p>
+<h4 id=c-setup-api-gateway-custom-domain>c. Setup API Gateway custom domain</h4>
+<p>Back over to API Gateway, we set up a custom domain.</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141358750-797889a4-d79b-492f-b9fd-c4f0015a1766.png alt=image></p>
+<p>After creating the custom domain, we add an API mapping to our HTTP API.</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141359117-c5ea1a3d-6bbf-4efa-bf61-813509358eb2.png alt=image></p>
+<h4 id=d-creating-a-dns-entry-for-our-new-url>d. Creating a DNS entry for our new URL</h4>
+<p>We now want to instruct Route53 to direct all traffic sent to our URL (<code>ci.project-staging.domain.com</code>) to our new API Gateway custom domain. To do this, we copy the API Gateway domain name.</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141359323-e8eec982-af38-4246-b49a-5099ea1ec5af.png alt=image></p>
+<p>We use the copied API Gateway domain name to create a new DNS entry to facilitate this mapping:</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141360545-c020accc-e4b3-46b0-ab50-82723b356a2e.png alt=image></p>
+</details>
+<p>After this, we should be able to see our sanity-check message at <a href=https://ci.project-staging.domain.com>https://ci.project-staging.domain.com</a>.</p>
+<h2 id=ci-workflows>CI: Workflows</h2>
+<h3 id=building--deploying>Building & Deploying</h3>
+<p>Our goal is to build a version of our frontend application for every pull request and have it available at <a href=https://ci.project-staging.domain.com>https://ci.project-staging.domain.com</a>. Our chosen strategy was to build each PR and to place the build in a path prefixed with the PR number (i.e. PR 208 should be available at <a href=https://ci.project-staging.domain.com/208)>https://ci.project-staging.domain.com/208)</a>. To facilitate this, your frontend application must be configured to allow it to be served from non-route paths. In the case of NextJS, this is done via the <a href=https://nextjs.org/docs/api-reference/next.config.js/basepath>Base Path configuration</a>.</p>
+<p>Building and Deploying the application via Github actions is pretty straightforward.</p>
+<details>
+<summary>Example of a simple build/deploy Github Actions workflow</summary>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">59
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Deploy to CI environment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>on</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>pull_request</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>jobs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>build-and-deploy</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>runs-on</span>:<span style=color:#cbcbcb> </span>ubuntu-latest<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>steps</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Cancel Previous Runs<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>styfle/cancel-workflow-action@0.8.0<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>access_token</span>:<span style=color:#cbcbcb> </span>${{ github.token }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Checkout<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>actions/checkout@v2<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Use Node.js 14<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>actions/setup-node@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>node-version</span>:<span style=color:#cbcbcb> </span><span style=color:#5918bb;font-weight:700>14</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Cache node modules<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>actions/cache@v2<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>env</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>cache-name</span>:<span style=color:#cbcbcb> </span>cache-node-modules<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>path</span>:<span style=color:#cbcbcb> </span>node_modules<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>key</span>:<span style=color:#cbcbcb> </span>${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles(&#39;**/yarn.lock&#39;) }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>restore-keys</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>            ${{ runner.os }}-build-${{ env.cache-name }}-
+</span><span style=color:#0c6;font-style:italic>            ${{ runner.os }}-build-
+</span><span style=color:#0c6;font-style:italic>            ${{ runner.os }}-</span><span style=color:#cbcbcb>            
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Build and Export<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>build<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>env</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_BASE_URL</span>:<span style=color:#cbcbcb> </span>https://ci.project-staging.domain.com/${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_STAC_API</span>:<span style=color:#cbcbcb> </span>${{ &#39;https://project-staging.domain.com/stac&#39; }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_ORDERS_API</span>:<span style=color:#cbcbcb> </span>${{ &#39;https://project-staging.domain.com/api&#39; }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>run</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>          yarn install
+</span><span style=color:#0c6;font-style:italic>          yarn build
+</span><span style=color:#0c6;font-style:italic>          yarn run next export</span><span style=color:#cbcbcb>          
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Configure AWS credentials from staging account<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>aws-actions/configure-aws-credentials@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-access-key-id</span>:<span style=color:#cbcbcb> </span>${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-secret-access-key</span>:<span style=color:#cbcbcb> </span>${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-region</span>:<span style=color:#cbcbcb> </span>us-east-1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Deploy 🚀<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>run</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>          aws s3 sync \
+</span><span style=color:#0c6;font-style:italic>            ./out \
+</span><span style=color:#0c6;font-style:italic>            s3://project-frontend-ci/${{ github.event.pull_request.number }} \
+</span><span style=color:#0c6;font-style:italic>            --delete \
+</span><span style=color:#0c6;font-style:italic>            --acl public-read</span><span style=color:#cbcbcb>          
+</span></code></pre></td></tr></table>
+</div>
+</div><p>You can see that we pass in our Base URL and external APIs via the <code>env</code> at build time and that we have our AWS credentials available as <a href=https://docs.github.com/en/actions/security-guides/encrypted-secrets>encrypted secrets</a>.</p>
+<p>Note that, as per the <a href=https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows#pull_request>Github docs</a>, the <code>pull_request</code> event only triggers when a PR is opened, updated, or re-opened:</p>
+<blockquote>
+<p>By default, a workflow only runs when a <code>pull_request</code>&rsquo;s activity type is <code>opened</code>, <code>synchronize</code>, or <code>reopened</code>.</p>
+</blockquote>
+</details>
+<h3 id=adding-a-comment-on-our-pr-to-notify-others-of-the-build>Adding a comment on our PR to notify others of the build</h3>
+<p>Once the CI has built and deployed a new instance of our frontend, we want to notify others (e.g. those reviewing PRs) where they can view the build. To do this, we add the following steps to our Github Actions workflow to take place after our build:</p>
+<details>
+<summary>Example of jobs to add comments to a PR</summary>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>jobs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>build-and-deploy</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>steps</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#0080ff;font-style:italic># ...</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Get current time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>gerred/actions/current-time@master<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>current-time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Find Comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/find-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>find-comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-author</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#34;github-actions[bot]&#34;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body-includes</span>:<span style=color:#cbcbcb> </span>Latest commit deployed to<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Create or update comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/create-or-update-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-id</span>:<span style=color:#cbcbcb> </span>${{ steps.find-comment.outputs.comment-id }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>            🚀 Latest commit deployed to https://ci.project-staging.domain.com/${{ github.event.pull_request.number }}
+</span><span style=color:#0c6;font-style:italic>            * Date: `${{ steps.current-time.outputs.time }}`
+</span><span style=color:#0c6;font-style:italic>            * Commit: ${{ github.sha }} (Merging ${{ github.event.pull_request.head.sha }} into ${{ github.event.pull_request.base.sha }})</span><span style=color:#cbcbcb>            
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>edit-mode</span>:<span style=color:#cbcbcb> </span>replace<span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
+</div>
+</div></details>
+<p>These steps add a new comment to PRs, looking something like this:</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141362960-87186629-d0f7-4501-a8c3-273bb923c7bc.png alt=image></p>
+<p>For later commits to the PR, the original comment will be replaced rather than creating another comment. This helps us avoid littering user&rsquo;s notifications and keeps a clean comment thread.</p>
+<h3 id=allow-users-to-customize-configuration>Allow users to customize configuration</h3>
+<p>As previously mentioned, the frontend connects to multiple backing APIs. By default, the CI builds point to our staging APIs. However, it&rsquo;s a realistic scenario that a developer would want their custom environment to point to a different API release (e.g. a developer is working on frontend changes in tandem with changes being made to the backend API). To support this, we want to allow developers to manually override certain configurations. To do this, we added the <code>workflow_dispatch</code> trigger to our workflow, allowing for <a href=https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow#running-a-workflow-using-the-rest-api>manual workflow runs</a>. We also add <code>inputs</code> for each configuration we want to allow a developer to specify.</p>
+<details>
+<summary>Example of adding <code>workflow_dispatch</code> event with <code>inputs</code> to your workflow</summary>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Deploy to CI environment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>on</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>pull_request</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>workflow_dispatch</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>inputs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>stac-api-url</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Override STAC API URL<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>default</span>:<span style=color:#cbcbcb> </span>https://project-staging.domain.com/stac<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>orders-api-url</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Override Orders API URL<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>default</span>:<span style=color:#cbcbcb> </span>https://project-staging.domain.com/api<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>deployment-id</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Unique identifier for build (used to construct path for upload)<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>required</span>:<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>true</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>jobs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>build-and-deploy</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>runs-on</span>:<span style=color:#cbcbcb> </span>ubuntu-latest<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>steps</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#0080ff;font-style:italic># ...</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Build and Export<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>build<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>env</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_BASE_URL</span>:<span style=color:#cbcbcb> </span>https://ci.project-staging.domain.com/${{ github.event.inputs.deployment-id || github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_STAC_API</span>:<span style=color:#cbcbcb> </span>${{ github.event.inputs.stac-api-url || &#39;https://project-staging.domain.com/stac&#39; }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_ORDERS_API</span>:<span style=color:#cbcbcb> </span>${{ github.event.inputs.orders-api-url || &#39;https://project-staging.domain.com/api&#39; }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_MB_TOKEN</span>:<span style=color:#cbcbcb> </span>pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJjazB6YXU2bDUwMWNkM2VvNGNpMnFhOXMxIn0.c30a2TQIfCDF3GlqMdSQ_g<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_GA_ID</span>:<span style=color:#cbcbcb> </span>GTM-WNP7MLF<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>run</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>          yarn install
+</span><span style=color:#0c6;font-style:italic>          yarn build
+</span><span style=color:#0c6;font-style:italic>          yarn run next export</span><span style=color:#cbcbcb>          
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Get current time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>gerred/actions/current-time@master<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#0080ff;font-style:italic># ...</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Find Comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/find-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#0080ff;font-style:italic># ...</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Create or update comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/create-or-update-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#0080ff;font-style:italic># ...</span><span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
+</div>
+</div></details>
+<p>You&rsquo;ll note that any place where we originally specified our API configuration or had a dependency on a PR number, we now first try to retrieve the value from <code>github.event.inputs</code> (only available during manual <code>workflow_dispatch</code> events) and otherwise fall back to values used during standard PR builds. This can be achieved by utilizing the <a href=https://docs.github.com/en/actions/learn-github-actions/expressions#operators>OR operator</a> as so: <code>${{ github.event.inputs.deployment-id || github.event.pull_request.number }}</code> (shoutout to @JohnHedman for spearheading this technique on the SMD project).</p>
+<p>Additionally, we will only want to comment on a PR during PR builds, so we avoid running the comment steps by adding an <code>if: ${{ github.event.pull_request.number }}</code> clause to each step that we want to skip.</p>
+<h3 id=cleanup>Cleanup</h3>
+<p>After each PR is merged, we want to clean up the past build to avoid unnecessary storage in our CI bucket. This can be achieved with another workflow that cleans up the build whenever a pull request is closed.</p>
+<details>
+<summary>Example of a workflow to destroy CI builds</summary>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Destroy PR Preview<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>on</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>pull_request</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>types</span>:<span style=color:#cbcbcb> </span>[closed]<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>workflow_dispatch</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>inputs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>deployment-id</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Unique identifier of CI build to be deleted<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>required</span>:<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>true</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>jobs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>build-and-deploy</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>runs-on</span>:<span style=color:#cbcbcb> </span>ubuntu-latest<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>steps</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#0080ff;font-style:italic># ...</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Destroy 💣<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>run</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>          </span><span style=color:#cbcbcb>          </span>aws s3 rm --recursive s3://project-frontend-ci/${{ github.event.inputs.deployment-id || github.event.pull_request.number }}/<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Get current time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>gerred/actions/current-time@master<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>current-time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Find Comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/find-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>find-comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-author</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#34;github-actions[bot]&#34;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body-includes</span>:<span style=color:#cbcbcb> </span>Latest commit deployed to<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Create or update comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/create-or-update-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-id</span>:<span style=color:#cbcbcb> </span>${{ steps.find-comment.outputs.comment-id }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>            ---
+</span><span style=color:#0c6;font-style:italic>            🧹 Deleted build at https://ci.project-staging.domain.com/${{ github.event.inputs.deployment-id || github.event.pull_request.number }} 
+</span><span style=color:#0c6;font-style:italic>            
+</span><span style=color:#0c6;font-style:italic>            * Date: `${{ steps.current-time.outputs.time }}`</span><span style=color:#cbcbcb>            
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>edit-mode</span>:<span style=color:#cbcbcb> </span>append<span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
+</div>
+</div></details>
+<p>Our pull request message is then appended with information to let others know that the build environment is no longer available.</p>
+<p><img src=https://user-images.githubusercontent.com/897290/141370017-cf8b9fd2-ae20-46cd-9a0c-74083cb36a11.png alt=image></p>
+<h3 id=putting-it-all-together>Putting it all together</h3>
+<p>To achieve our goals of deployment, notification, customization, and cleanup, we have settled on these two Github workflows:</p>
+<details>
+<summary><code>.github/workflows/deploy-pr-preview.yml</code></summary>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">  9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 58
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 59
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 60
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 61
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 62
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 63
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 64
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 65
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 66
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 67
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 68
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 69
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 70
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 71
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 72
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 73
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 74
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 75
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 76
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 77
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 78
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 79
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 80
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 81
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 82
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 83
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 84
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 85
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 86
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 87
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 88
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 89
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 90
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 91
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 92
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 93
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 94
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 95
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 96
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 97
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 98
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 99
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">100
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Deploy to CI environment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>on</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>pull_request</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>workflow_dispatch</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>inputs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>stac-api-url</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Override STAC API URL<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>default</span>:<span style=color:#cbcbcb> </span>https://project-staging.domain.com/stac<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>orders-api-url</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Override Orders API URL<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>default</span>:<span style=color:#cbcbcb> </span>https://project-staging.domain.com/api<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>deployment-id</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Unique identifier for build (used to construct path for upload)<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>required</span>:<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>true</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>jobs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>build-and-deploy</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>runs-on</span>:<span style=color:#cbcbcb> </span>ubuntu-latest<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>steps</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Cancel Previous Runs<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>styfle/cancel-workflow-action@0.8.0<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>access_token</span>:<span style=color:#cbcbcb> </span>${{ github.token }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Checkout<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>actions/checkout@v2<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Use Node.js 14<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>actions/setup-node@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>node-version</span>:<span style=color:#cbcbcb> </span><span style=color:#5918bb;font-weight:700>14</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Cache node modules<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>actions/cache@v2<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>env</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>cache-name</span>:<span style=color:#cbcbcb> </span>cache-node-modules<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>path</span>:<span style=color:#cbcbcb> </span>node_modules<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>key</span>:<span style=color:#cbcbcb> </span>${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles(&#39;**/yarn.lock&#39;) }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>restore-keys</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>            ${{ runner.os }}-build-${{ env.cache-name }}-
+</span><span style=color:#0c6;font-style:italic>            ${{ runner.os }}-build-
+</span><span style=color:#0c6;font-style:italic>            ${{ runner.os }}-</span><span style=color:#cbcbcb>            
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Build and Export<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>build<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>env</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_BASE_URL</span>:<span style=color:#cbcbcb> </span>https://ci.project-staging.domain.com/${{ github.event.inputs.deployment-id || github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_STAC_API</span>:<span style=color:#cbcbcb> </span>${{ github.event.inputs.stac-api-url || &#39;https://project-staging.domain.com/stac&#39; }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_ORDERS_API</span>:<span style=color:#cbcbcb> </span>${{ github.event.inputs.orders-api-url || &#39;https://project-staging.domain.com/api&#39; }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_MB_TOKEN</span>:<span style=color:#cbcbcb> </span>pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJjazB6YXU2bDUwMWNkM2VvNGNpMnFhOXMxIn0.c30a2TQIfCDF3GlqMdSQ_g<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>NEXT_PUBLIC_GA_ID</span>:<span style=color:#cbcbcb> </span>GTM-WNP7MLF<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>run</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>          yarn install
+</span><span style=color:#0c6;font-style:italic>          yarn build
+</span><span style=color:#0c6;font-style:italic>          yarn run next export</span><span style=color:#cbcbcb>          
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Configure AWS credentials from staging account<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>aws-actions/configure-aws-credentials@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-access-key-id</span>:<span style=color:#cbcbcb> </span>${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-secret-access-key</span>:<span style=color:#cbcbcb> </span>${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-region</span>:<span style=color:#cbcbcb> </span>us-east-1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Deploy 🚀<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>run</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>          aws s3 sync \
+</span><span style=color:#0c6;font-style:italic>            ./out \
+</span><span style=color:#0c6;font-style:italic>            s3://project-frontend-ci/${{ github.event.inputs.deployment-id || github.event.pull_request.number }} \
+</span><span style=color:#0c6;font-style:italic>            --delete \
+</span><span style=color:#0c6;font-style:italic>            --acl public-read</span><span style=color:#cbcbcb>          
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Get current time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>gerred/actions/current-time@master<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>current-time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Find Comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/find-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>find-comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-author</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#34;github-actions[bot]&#34;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body-includes</span>:<span style=color:#cbcbcb> </span>Latest commit deployed to<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Create or update comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/create-or-update-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-id</span>:<span style=color:#cbcbcb> </span>${{ steps.find-comment.outputs.comment-id }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>            🚀 Latest commit deployed to https://ci.project-staging.domain.com/${{ github.event.inputs.deployment-id || github.event.pull_request.number }}
+</span><span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>            * Date: `${{ steps.current-time.outputs.time }}`
+</span><span style=color:#0c6;font-style:italic>            * Commit: ${{ github.sha }} (merging ${{ github.event.pull_request.head.sha }} into ${{ github.event.pull_request.base.sha }})</span><span style=color:#cbcbcb>            
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>edit-mode</span>:<span style=color:#cbcbcb> </span>replace<span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
+</div>
+</div></details>
+<details>
+<summary><code>.github/workflows/destroy-pr-preview.yml</code></summary>
+<div class=highlight><div style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2>
+<table style=border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block><tr><td style=vertical-align:top;padding:0;margin:0;border:0>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 1
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 2
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 3
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 4
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 5
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 6
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 7
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 8
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f"> 9
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">10
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">11
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">12
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">13
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">14
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">15
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">16
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">17
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">18
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">19
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">20
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">21
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">22
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">23
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">24
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">25
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">26
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">27
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">28
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">29
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">30
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">31
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">32
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">33
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">34
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">35
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">36
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">37
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">38
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">39
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">40
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">41
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">42
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">43
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">44
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">45
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">46
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">47
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">48
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">49
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">50
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">51
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">52
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">53
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">54
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">55
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">56
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">57
+</span><span style="margin-right:.4em;padding:0 .4em;color:#7f7f7f">58
+</span></code></pre></td>
+<td style=vertical-align:top;padding:0;margin:0;border:0;width:100%>
+<pre tabindex=0 style=color:#4d4d4d;background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-yaml data-lang=yaml><span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Destroy PR Preview<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>on</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>pull_request</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>types</span>:<span style=color:#cbcbcb> </span>[closed]<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>workflow_dispatch</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>inputs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span><span style=color:#2c5dcd;font-weight:700>deployment-id</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>description</span>:<span style=color:#cbcbcb> </span>Unique identifier of CI build to be deleted<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>required</span>:<span style=color:#cbcbcb> </span><span style=color:#2c5dcd;font-weight:700>true</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb></span><span style=color:#2c5dcd;font-weight:700>jobs</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>  </span><span style=color:#2c5dcd;font-weight:700>build-and-deploy</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>runs-on</span>:<span style=color:#cbcbcb> </span>ubuntu-latest<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>    </span><span style=color:#2c5dcd;font-weight:700>steps</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Cancel Previous Runs<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>styfle/cancel-workflow-action@0.8.0<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>access_token</span>:<span style=color:#cbcbcb> </span>${{ github.token }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Configure AWS credentials from staging account<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>aws-actions/configure-aws-credentials@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-access-key-id</span>:<span style=color:#cbcbcb> </span>${{ secrets.STAGING_AWS_ACCESS_KEY_ID }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-secret-access-key</span>:<span style=color:#cbcbcb> </span>${{ secrets.STAGING_AWS_SECRET_ACCESS_KEY }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>aws-region</span>:<span style=color:#cbcbcb> </span>us-east-1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Destroy 💣<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>run</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>          </span><span style=color:#cbcbcb>          </span>aws s3 rm --recursive s3://project-frontend-ci/${{ github.event.inputs.deployment-id || github.event.pull_request.number }}/<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Get current time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>gerred/actions/current-time@master<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>current-time<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Find Comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/find-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>id</span>:<span style=color:#cbcbcb> </span>find-comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-author</span>:<span style=color:#cbcbcb> </span><span style=color:#0c6>&#34;github-actions[bot]&#34;</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body-includes</span>:<span style=color:#cbcbcb> </span>Latest commit deployed to<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>      </span>- <span style=color:#2c5dcd;font-weight:700>name</span>:<span style=color:#cbcbcb> </span>Create or update comment<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>uses</span>:<span style=color:#cbcbcb> </span>peter-evans/create-or-update-comment@v1<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>if</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>        </span><span style=color:#2c5dcd;font-weight:700>with</span>:<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>comment-id</span>:<span style=color:#cbcbcb> </span>${{ steps.find-comment.outputs.comment-id }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>issue-number</span>:<span style=color:#cbcbcb> </span>${{ github.event.pull_request.number }}<span style=color:#cbcbcb>
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>body</span>:<span style=color:#cbcbcb> </span>|<span style=color:#0c6;font-style:italic>
+</span><span style=color:#0c6;font-style:italic>            ---
+</span><span style=color:#0c6;font-style:italic>            🧹 Deleted build at https://ci.project-staging.domain.com/${{ github.event.inputs.deployment-id || github.event.pull_request.number }} 
+</span><span style=color:#0c6;font-style:italic>            
+</span><span style=color:#0c6;font-style:italic>            * Date: `${{ steps.current-time.outputs.time }}`</span><span style=color:#cbcbcb>            
+</span><span style=color:#cbcbcb>          </span><span style=color:#2c5dcd;font-weight:700>edit-mode</span>:<span style=color:#cbcbcb> </span>append<span style=color:#cbcbcb>
+</span></code></pre></td></tr></table>
+</div>
+</div></details>
+<hr>
+<p>This system is very new for us and required some additional changes to other services (i.e. updating CORS rules on our APIs to allow us to use this new URL), but so far it seems to be operating as expected. Hoping that this can help others who are looking to build out better CI preview environments for their applications.</p>
+<hr>
+<h3 id=followup>Followup</h3>
+<blockquote>
+<p>this is super cool but was there a reason we couldn’t use netlify or another third party service for this?</p>
+</blockquote>
+<p>This is a fair question. We opted to roll our own solution being that the general idea (uploading builds to S3) was something that we were already doing for deployments to our Production and Staging environments. However, if you&rsquo;re starting a new project, you may be interested in achieving per-PR deployments with a third party tool. It appears that most common hosting solutions offer something for this:</p>
+<ul>
+<li>Netlify offers <a href=https://docs.netlify.com/site-deploys/deploy-previews/>Deploy Previews</a></li>
+<li>Vercel offers <a href=https://vercel.com/docs/concepts/deployments/environments#preview>Preview URLs</a> via its <a href=https://vercel.com/docs/concepts/git/vercel-for-github>Github Integration</a></li>
+<li>AWS Amplify offers <a href=https://docs.aws.amazon.com/amplify/latest/userguide/pr-previews.html>Web Previews</a></li>
+<li>Surge.sh can be configured to preview URLs via the <a href=https://github.com/afc163/surge-preview>surge-preview</a> Github Action</li>
+</ul>
+</div>
+</article>
+<div id=footer-post-container>
+<div id=footer-post>
+<div id=nav-footer style=display:none>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/resume>Resume</a></li>
+<li><a href=/posts>Writings</a></li>
+</ul>
+</div>
+<div id=toc-footer style=display:none>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#goal>Goal</a>
+<ul>
+<li><a href=#other-options>Other Options</a></li>
+</ul>
+</li>
+<li><a href=#background-project-infrastructure>Background: Project Infrastructure</a></li>
+<li><a href=#ci-cloud-infrastructure>CI: Cloud Infrastructure</a>
+<ul>
+<li><a href=#1-setup-a-bucket>1. Setup a bucket</a></li>
+<li><a href=#2-setup-ssl-via-api-gateway>2. Setup SSL via API Gateway</a></li>
+<li><a href=#3-setup-a-url-for-the-ci-builds>3. Setup a URL for the CI builds</a></li>
+</ul>
+</li>
+<li><a href=#ci-workflows>CI: Workflows</a>
+<ul>
+<li><a href=#building--deploying>Building & Deploying</a></li>
+<li><a href=#adding-a-comment-on-our-pr-to-notify-others-of-the-build>Adding a comment on our PR to notify others of the build</a></li>
+<li><a href=#allow-users-to-customize-configuration>Allow users to customize configuration</a></li>
+<li><a href=#cleanup>Cleanup</a></li>
+<li><a href=#putting-it-all-together>Putting it all together</a></li>
+<li><a href=#followup>Followup</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div id=share-footer style=display:none>
+<ul>
+<li>
+<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f">
+<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&text=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&is_video=false&description=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="mailto:?subject=Roll%20your%20own%20PR%20preview%20CI%20pipeline&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f">
+<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-stumbleupon fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&title=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-digg fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&name=Roll%20your%20own%20PR%20preview%20CI%20pipeline&description=Goal%20We%20want%20a%20CI%20pipeline%20that%20will%20build%20and%20deploy%20an%20instance%20of%20our%20frontend%20application%20for%20every%20PR%20created%20in%20our%20frontend%20repo.%20Additionally%2c%20we%20want%20to%20be%20able%20to%20easily%20spin%20up%20applications%20with%20overridden%20configuration%20to%20allow%20developers%20to%20test%20the%20frontend%20against%20experimental%20backends.%20Finally%2c%20we%20want%20a%20reporting%20mechanism%20to%20inform%20developers%20when%20and%20where%20these%20deployed%20environments%20are%20available.%0aOther%20Options%20Before%20you%20jump%20into%20this%2c%20consider%20that%20there%20are%20out-of-the-box%20solutions%20to%20solve%20this%20problem%20mentioned%20in%20the%20followup%20at%20the%20bottom%20of%20this%20page.">
+<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
+</a>
+</li>
+<li>
+<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fdiy-pr-previews%2f&t=Roll%20your%20own%20PR%20preview%20CI%20pipeline">
+<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
+</a>
+</li>
+</ul>
+</div>
+<div id=actions-footer>
+<a id=menu class=icon href=# onclick="return $('#nav-footer').toggle(),!1">
+<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
+<a id=toc class=icon href=# onclick="return $('#toc-footer').toggle(),!1">
+<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
+<a id=share class=icon href=# onclick="return $('#share-footer').toggle(),!1">
+<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
+<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')">
+<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
+</div>
+</div>
+</div>
+<footer id=footer>
+<div class=footer-left>
+Copyright &copy; 2021 Anthony Lukach
+</div>
+<div class=footer-right>
+<nav>
+<ul>
+<li><a href=/>Home</a></li>
+<li><a href=/resume>Resume</a></li>
+<li><a href=/posts>Writings</a></li>
+</ul>
+</nav>
+</div>
+</footer>
+</div>
+</body>
+<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/js/main.js></script>
+</html>
