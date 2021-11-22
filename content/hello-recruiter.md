@@ -17,22 +17,22 @@ Thanks for reaching out. You likely received a link to this page from me in resp
 
 ## Am I currently looking for a new job?
 
-No, I am not actively looking for a new position (I will remove this sentence if that changes). As a general rule, I stay at a company for at least a year (although my average is closer to 3 years), so if [my resume](/resume) reflects that I have been at my current employer for less than a year it is unlikely that I am interested in a change. With that said, you are always welcome to send me any job roles that you think I would be crazy to pass up. I will always respond to these messages letting you know if they are or are not a good fit.
+No, I am **not actively looking** for a new position (I will remove this sentence if that changes). As a general rule, I stay at a company for at least a year (although my average is closer to 3 years), so if [my resume](/resume) reflects that I have been at my current employer for less than a year it is unlikely that I am interested in a change. With that said, **you are always welcome to send me any job roles** that you think I would be crazy to pass up. I will always respond to these messages letting you know if they are or are not a good fit.
 
 ## What types of roles interest me
 
 I'm interested in working on jobs that:
 
-- utilize Python, TypeScript/JavaScript (particularly node.js, React.js). I'm eager to move towards Go (aka Golang) or Rust however I have only minor experience with either.
-- have a focus on spatial or scientific data
-- are remote or offer a good work-from-home/flexible-schedule policy
-- have a positive/altruistic impact on the world
-- contribute to open-source technologies
-- are focussed on understanding large datasets, particularly through machine-learning/artificial-intelligence
-- include working on distributed systems utilizing microservices via container-based (e.g. Docker) and serverless (e.g. AWS Lambda) technologies
-- are full-stack roles
-- are working on systems that experience high usage
-- are working on systems that serve large amounts of data
+- utilize **Python, TypeScript/JavaScript (particularly node.js, React.js)**. I'm eager to move towards Go (aka Golang) or Rust however I have only minor experience with either.
+- have a focus on **spatial** or **scientific data**
+- are **remote** or offer a good work-from-home/flexible-schedule policy
+- have a **positive/altruistic impact** on the world
+- contribute to **open-source technologies**
+- are focussed on understanding **large datasets**, particularly through machine-learning/artificial-intelligence
+- include working on **distributed systems** utilizing microservices via container-based (e.g. Docker) and serverless (e.g. AWS Lambda) technologies
+- are **full-stack** roles
+- are working on systems that experience **high usage**
+- are working on systems that serve **large amounts of data**
 
 I don't expect any role to touch on all of the above details, however more is better.
 
