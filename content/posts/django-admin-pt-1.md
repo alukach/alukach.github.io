@@ -16,4 +16,4 @@ It revolves around generating a fake model that you register to your app's admin
 
 {{< gist alukach 0a1b9e788b805e6242dd >}}
 
-See more in [part 2]({% post_url 2014-12-15-django-admin-pt-2 %}).
+See more in [part 2]({{< relref django-admin-pt-2 >}}).

@@ -6,7 +6,7 @@ categories: ["posts"]
 tags: [django]
 ---
 
-Continuing with the [Django Admin Fu post part 1]({% post_url 2014-11-04-django-admin-pt-1 %}).
+Continuing with the [Django Admin Fu post part 1]({{< relref django-admin-pt-1 >}}).
 
 ## Action with Intermediate Page
 
