@@ -2,6 +2,10 @@
   --radius: 0;
 }
 
+.first-entry {
+  min-height: unset;
+}
+
 div:not(.toc) > details summary {
   margin-bottom: 1em;
   cursor: pointer;
