@@ -9,7 +9,8 @@ googleAnalyticsAsync: true
 
 params:
   homeInfoParams:
-    Content: Technical thoughts & notes.
+    Title: my notepad
+    Content: a collection of notes put together while working as a software developer
 
   socialIcons:
     - name: github

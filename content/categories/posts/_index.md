@@ -1,4 +1,4 @@
 ---
 title: "Posts"
-description: Long-form thoughts.
+description: long-form thoughts
 ---

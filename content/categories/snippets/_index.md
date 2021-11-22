@@ -1,4 +1,4 @@
 ---
 title: "Snippets"
-description: Small notes & code samples. Probably only of use to myself.
+description: small notes & code samples. probably only of use to myself
 ---
