@@ -5,7 +5,7 @@
 <meta name=robots content="index, follow">
 <title>Django Admin Fu, part 2 | anthony lukach</title>
 <meta name=keywords content="django">
-<meta name=description content="Continuing with the [Django Admin Fu post part 1]({% post_url 2014-11-04-django-admin-pt-1 %}).
+<meta name=description content="Continuing with the Django Admin Fu post part 1.
 Action with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:
  Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string.">
 <meta name=author content>
@@ -25,7 +25,7 @@ Action with Intermediate Page Sometimes you may need an admin action that, when 
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
 </noscript>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-16401510-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Django Admin Fu, part 2">
-<meta property="og:description" content="Continuing with the [Django Admin Fu post part 1]({% post_url 2014-11-04-django-admin-pt-1 %}).
+<meta property="og:description" content="Continuing with the Django Admin Fu post part 1.
 Action with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:
  Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string.">
 <meta property="og:type" content="article">
@@ -34,11 +34,11 @@ Action with Intermediate Page Sometimes you may need an admin action that, when 
 <meta property="article:modified_time" content="2014-12-15T00:00:00+00:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Django Admin Fu, part 2">
-<meta name=twitter:description content="Continuing with the [Django Admin Fu post part 1]({% post_url 2014-11-04-django-admin-pt-1 %}).
+<meta name=twitter:description content="Continuing with the Django Admin Fu post part 1.
 Action with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:
  Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string.">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://alukach.com/posts/"},{"@type":"ListItem","position":2,"name":"Django Admin Fu, part 2","item":"https://alukach.com/posts/django-admin-pt-2/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Django Admin Fu, part 2","name":"Django Admin Fu, part 2","description":"Continuing with the [Django Admin Fu post part 1]({% post_url 2014-11-04-django-admin-pt-1 %}).\nAction with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:\n Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string.","keywords":["django"],"articleBody":"Continuing with the [Django Admin Fu post part 1]({% post_url 2014-11-04-django-admin-pt-1 %}).\nAction with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:\n Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string. This allows you to provide complex interaction logic on the intermediary pages.\n I do see where the docs are coming from and it would probably be easier to do as advised, but I think there could be something said about keeping all admin logic within the admin page. Doing something like the following would take the user to an intermediate form.\n ","wordCount":"162","inLanguage":"en","datePublished":"2014-12-15T00:00:00Z","dateModified":"2014-12-15T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://alukach.com/posts/django-admin-pt-2/"},"publisher":{"@type":"Organization","name":"anthony lukach","logo":{"@type":"ImageObject","url":"https://alukach.com/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Django Admin Fu, part 2","name":"Django Admin Fu, part 2","description":"Continuing with the Django Admin Fu post part 1.\nAction with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:\n Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string.","keywords":["django"],"articleBody":"Continuing with the Django Admin Fu post part 1.\nAction with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:\n Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string. This allows you to provide complex interaction logic on the intermediary pages.\n I do see where the docs are coming from and it would probably be easier to do as advised, but I think there could be something said about keeping all admin logic within the admin page. Doing something like the following would take the user to an intermediate form.\n ","wordCount":"159","inLanguage":"en","datePublished":"2014-12-15T00:00:00Z","dateModified":"2014-12-15T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://alukach.com/posts/django-admin-pt-2/"},"publisher":{"@type":"Organization","name":"anthony lukach","logo":{"@type":"ImageObject","url":"https://alukach.com/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -52,11 +52,6 @@ Action with Intermediate Page Sometimes you may need an admin action that, when 
 </span>
 </div>
 <ul id=menu>
-<li>
-<a href=https://alukach.com/ title=Home>
-<span>Home</span>
-</a>
-</li>
 <li>
 <a href=https://alukach.com/categories/posts title=Posts>
 <span>Posts</span>
@@ -73,8 +68,8 @@ Action with Intermediate Page Sometimes you may need an admin action that, when 
 </a>
 </li>
 <li>
-<a href=https://alukach.com/resume title=Resume>
-<span>Resume</span>
+<a href=https://alukach.com/resume title=Résumé>
+<span>Résumé</span>
 </a>
 </li>
 </ul>
@@ -101,7 +96,7 @@ Django Admin Fu, part 2
 </div>
 </details>
 </div>
-<div class=post-content><p>Continuing with the [Django Admin Fu post part 1]({% post_url 2014-11-04-django-admin-pt-1 %}).</p>
+<div class=post-content><p>Continuing with the <a href=/posts/django-admin-pt-1/>Django Admin Fu post part 1</a>.</p>
 <h2 id=action-with-intermediate-page>Action with Intermediate Page<a hidden class=anchor aria-hidden=true href=#action-with-intermediate-page>#</a></h2>
 <p>Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention <a href=https://docs.djangoproject.com/en/1.6/ref/contrib/admin/actions/#actions-that-provide-intermediate-pages>a bit</a> about providing intermediate pages, but not a lot. It states:</p>
 <blockquote>
