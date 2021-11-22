@@ -2,11 +2,10 @@
 date: 2018-03-28
 layout: post
 title: Serve an Esri Web AppBuilder web app from HTTP
-category: posts
+categories: ["snippets"]
 tags: [esri]
 ---
 
-## How to serve an Esri Web AppBuilder web app from HTTP
 
 When an [Esri Web AppBuilder](https://www.esri.com/en-us/arcgis/products/web-appbuilder/overview) web app is configured with a `portalUrl` value served from HTTPS, the web app automatically redirects users to HTTPS when visited via HTTP. While this is best-practice in production, it can be a burden in development when you want to quickly run a local version of the web app. Below is a quick script written with Python standard libraries to serve a web app over HTTP. It works by serving a `config.json` that is modified to use HTTP rather than HTTPS. This allows you to keep `config.json` using the HTTPS configuration for production but serve the web app via HTTP during development.
 

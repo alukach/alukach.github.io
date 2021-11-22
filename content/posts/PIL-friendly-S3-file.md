@@ -2,7 +2,7 @@
 date: 2019-12-11
 layout: post
 title: A PIL-friendly class for S3 objects
-category: posts
+categories: ["snippets"]
 tags: [python, pil, s3]
 aliases: [pil_friendly_s3_file]
 ---

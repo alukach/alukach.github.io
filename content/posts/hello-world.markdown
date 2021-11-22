@@ -2,7 +2,7 @@
 date: 2013-02-20
 layout: post
 title: Hello World
-category: posts
+categories: ["posts"]
 tags: [jekyll]
 aliases: [hello_world]
 ---

@@ -2,7 +2,7 @@
 date: 2020-10-02
 layout: post
 title: Using CloudFront as a Reverse Proxy
-category: posts
+categories: ["posts"]
 tags: [python, aws, cdk, cloudfront]
 aliases: [using_cloudfont_as_a_reverse_proxy]
 ---

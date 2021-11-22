@@ -2,7 +2,7 @@
 date: 2018-04-30
 layout: post
 title: Using CloudFormation's Fn::Sub with Bash parameter substitution
-category: posts
+categories: ["posts"]
 tags: [quick-hint, cloudformation, aws]
 ---
 

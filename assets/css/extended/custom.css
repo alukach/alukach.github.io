@@ -1,0 +1,30 @@
+:root {
+  --radius: 0;
+}
+
+div:not(.toc) > details summary {
+  margin-bottom: 1em;
+  cursor: pointer;
+}
+
+pre code {
+  /* Make unstyled code much more visible */
+  color: var(--primary) !important;
+  background-color: var(--theme) !important;
+}
+
+.content ul li,
+.content ol li {
+  margin-bottom: 0.5em;
+}
+
+ul.inline {
+  list-style-type: none;
+}
+
+ul.inline li {
+  display: inline-block;
+}
+.center {
+  text-align: center;
+}

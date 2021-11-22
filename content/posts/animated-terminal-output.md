@@ -2,7 +2,7 @@
 date: 2021-09-24
 layout: post
 title: Putting animated SVGs of Terminal Output into Github READMEs
-category: posts
+categories: ["posts"]
 tags: [markdown, cli, github]
 ---
 

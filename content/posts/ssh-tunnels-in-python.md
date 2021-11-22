@@ -2,7 +2,7 @@
 date: 2021-09-17
 layout: post
 title: SSH tunnels in Python
-category: posts
+categories: ["snippets"]
 tags: [python, ssh, tunnel]
 ---
 
@@ -15,9 +15,7 @@ The common strategy for connecting to one of these devices is to tunnel your tra
 
 For a recent project, I needed a convenient way to query private databases in Python to do some repeatable data management operations. Tools like [DBeaver](https://dbeaver.io/) have built-in support for connecting to databases over SSH tunnels, however I needed something more scriptable. Standing up a service in AWS would have worked however seemed to be overkill for my simple scripting needs.  My goals were to 1) get auth credentials from AWS Secrets Manager (RDS places credentials in Secrets Manager by default, or at least when creating RDS instances via CDK); 2) setup a tunnel through a jumpbox to allow access to the RDS Instance; 3) run SQL queries against the DB.  Automating this process in Python was not immediately clear until found the [`sshtunnel` module](https://sshtunnel.readthedocs.io/en/latest/).  After playing around with the code for a bit, I was able to put together a utility class with [Pydantic](http://pydantic-docs.helpmanual.io/) and [Psycopg2](https://www.psycopg.org/docs/) to conveniently connect to a private RDS instance via SSH tunneling.  I figured I would share in the event that someone ever needs such a tool in the future.
 
-<details>
-
-<summary>Code Sample</summary>
+### Code Sample
 
 ```py
 import socket
@@ -119,5 +117,3 @@ if __name__ == "__main__":
             print(cur.fetchone())
 
 ```
-
-</details>

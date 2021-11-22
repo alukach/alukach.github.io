@@ -2,7 +2,7 @@
 date: 2020-05-30
 layout: post
 title: Tips for working with a large number of files in S3
-category: posts
+categories: ["posts"]
 tags: [python, aws, s3]
 aliases: [tips_for_working_with_a_large_number_of_files_in_s3]
 ---

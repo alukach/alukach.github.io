@@ -2,7 +2,7 @@
 date: 2020-06-15
 layout: post
 title: How to generate a database URI from an AWS Secret
-category: posts
+categories: ["snippets"]
 tags: [python, aws, cdk, secretsmanager]
 aliases: [database_uri_from_secret]
 ---

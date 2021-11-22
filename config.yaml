@@ -2,31 +2,37 @@ baseURL: "https://alukach.com/"
 languageCode: en-us
 title: anthony lukach
 copyright: Anthony Lukach
-theme: cactus # https://themes.gohugo.io/hugo-theme-cactus/
+theme: PaperMod # https://adityatelange.github.io/hugo-PaperMod/
 paginate: 50
 
 googleAnalytics: UA-16401510-1
 googleAnalyticsAsync: true
 
 params:
-  description: A collection of notes.
-  mainSection: posts
-  showAllPostsOnHomePage: true
-  colortheme: white
-  rss: true
-  css:
-    - css/custom.css
-  tagsOverview: false # tag cloud on homepage
+  homeInfoParams:
+    Content: A collection of notes.
 
-  social:
+  socialIcons:
     - name: github
-      link: "https://github.com/alukach"
+      url: "https://github.com/alukach"
     - name: twitter
-      link: "https://twitter.com/anthonylukach"
+      url: "https://twitter.com/anthonylukach"
     - name: linkedin
-      link: "https://www.linkedin.com/in/alukach/"
+      url: "https://www.linkedin.com/in/alukach/"
     - name: email
-      link: anthony.lukach+blog@gmail.com
+      url: anthony.lukach+blog@gmail.com
+
+  # Theme config, https://github.com/adityatelange/hugo-PaperMod/wiki/Features
+  # (all options default to false)
+  ShowReadingTime: true
+  ShowToc: true  # default: false
+  TocOpen: false  # default: false
+  ShowBreadCrumbs: false  # default: false
+  ShowCodeCopyButtons: true
+  editPost:
+    URL: "https://github.com/alukach/alukach.github.io/edit/main/content"
+    Text: "Suggest Changes" # edit text
+    appendFilePath: true # to append file path to Edit link
 
   googleDocsResumeId: 1iHOSIBZ7AiSSyyejE1-YS2oOlpxG3JZI_y6llnfxBrI
   googleDocsResumeEmbedId: 2PACX-1vTRJs05NAqIefzyJpU1v0ACAXbkFX1nyOPjMozxsFFqDYYdpFLR-Uq7Gnxy4wnCeLx4pM-AEQNYfNSG
@@ -36,12 +42,24 @@ menu:
     - name: Home
       url: /
       weight: 1
-    - name: Writings
-      url: /posts
+    - name: Posts
+      url: /categories/posts
       weight: 2
+    - name: Snippets
+      url: /categories/snippets
+      weight: 3
     - name: Resume
       url: /resume
-      weight: 2
+      weight: 9
+    - name: Search
+      url: /Search
+      weight: 4
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # necessary for search
 
 markup:
   highlight:
@@ -56,10 +74,4 @@ markup:
 
   goldmark:
     renderer:
-      unsafe: true  # Enable HTML in markdown
-
-minify:
-  minifyOutput: true
-  tdewolff:
-    html:
-      keepWhitespace: true  # Persist whitespace to avoid tight clustering of icons on "Find me on..." section of homepage
+      unsafe: true # Enable HTML in markdown

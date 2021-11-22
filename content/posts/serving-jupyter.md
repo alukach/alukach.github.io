@@ -2,7 +2,7 @@
 date: 2016-12-28
 layout: post
 title: Hosting Jupyter at a subdomain via Cloudflare
-category: posts
+categories: ["posts"]
 tags: [jupyter, machine-learning, cloudflare, devops]
 ---
 

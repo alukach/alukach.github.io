@@ -1,6 +1,7 @@
 ---
 layout: content
 title: "Hello recruiter!"
+searchHidden: true
 ---
 
 # Hello recruiter!

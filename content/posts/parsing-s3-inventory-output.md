@@ -2,7 +2,7 @@
 date: 2019-12-16
 layout: post
 title: Parsing S3 Inventory CSV output in Python
-category: posts
+categories: ["snippets"]
 tags: [python, s3, inventory, csv]
 ---
 

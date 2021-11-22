@@ -2,7 +2,7 @@
 date: 2020-11-09
 layout: post
 title: An ECR Deployment Script
-category: posts
+categories: ["snippets"]
 tags: [ecr,aws]
 aliases: [ecr_deployment_script]
 ---

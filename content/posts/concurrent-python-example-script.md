@@ -1,7 +1,7 @@
 ---
 title: "Concurrent Python Example Script"
 date: 2021-02-19T13:42:21-07:00
-draft: false
+categories: ["snippets"]
 tags: [python]
 ---
 

@@ -2,7 +2,7 @@
 date: 2013-02-25
 layout: post
 title: SSH Port Forwarding
-category: posts
+categories: ["snippets"]
 tags: [command-line-foo]
 aliases: [ssh_port_forwarding]
 ---

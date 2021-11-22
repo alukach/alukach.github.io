@@ -2,7 +2,7 @@
 date: 2014-11-04
 layout: post
 title: Django Admin Fu, part 1
-category: posts
+categories: ["posts"]
 tags: [django]
 ---
 

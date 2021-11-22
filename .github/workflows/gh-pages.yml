@@ -21,6 +21,8 @@ jobs:
         run: curl "https://docs.google.com/document/d/1iHOSIBZ7AiSSyyejE1-YS2oOlpxG3JZI_y6llnfxBrI/export?format=html" > static/alukach-resume.html
 
       - name: Build
+        env:
+          HUGO_ENV: production
         run: hugo --minify
 
       - name: Deploy

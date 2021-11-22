@@ -2,7 +2,7 @@
 date: 2014-03-22
 layout: post
 title: Learning AngularJS
-category: posts
+categories: ["snippets"]
 tags: [angularjs]
 aliases: [nots_on_learning_angularjs]
 ---

@@ -2,7 +2,7 @@
 date: 2013-08-25
 layout: post
 title: Natural Language Toolkit Notes
-category: posts
+categories: ["snippets"]
 tags: [nltk, python]
 ---
 

@@ -2,7 +2,7 @@
 date: 2013-03-02
 layout: post
 title: pushd and popd forever
-category: posts
+categories: ["snippets"]
 tags: [command-line-foo, bash-profile]
 aliases: [pushd_all_day_long]
 ---

@@ -2,7 +2,7 @@
 date: 2019-12-20
 layout: post
 title: Boilerplate for S3 Batch Operation Lambda
-category: posts
+categories: ["snippets"]
 tags: [python, aws, s3, batch operation, lambda]
 ---
 

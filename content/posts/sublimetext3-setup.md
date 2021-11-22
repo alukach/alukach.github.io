@@ -2,7 +2,7 @@
 date: 2014-02-03
 layout: post
 title: SublimeText3 Setup
-category: posts
+categories: ["snippets"]
 tags: [sublimetext]
 ---
 
