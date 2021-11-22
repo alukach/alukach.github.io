@@ -1,13 +1,29 @@
-<!doctype html><html lang=en-us>
-<head>
-<meta charset=utf-8>
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
-<title> A PIL-friendly class for S3 objects | anthony lukach</title>
-<meta name=description content="A collection of notes.">
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="all,follow">
-<meta name=googlebot content="index,follow,snippet,archive">
-<meta property="og:title" content="A PIL-friendly class for S3 objects">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>A PIL-friendly class for S3 objects | anthony lukach</title>
+<meta name=keywords content="python,pil,s3">
+<meta name=description content="Here&rsquo;s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with PIL. This ended up being overkill for my needs but I figured somebody might get some use out of it.
+ ">
+<meta name=author content>
+<link rel=canonical href=https://alukach.com/posts/pil-friendly-s3-file/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.d3ac7722b310eb0e766008030de600ef174720ca311dc5ef494d1ba934fa43f0.css integrity="sha256-06x3IrMQ6w52YAgDDeYA7xdHIMoxHcXvSU0bqTT6Q/A=" rel="preload stylesheet" as=style>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://alukach.com/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://alukach.com/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://alukach.com/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://alukach.com/apple-touch-icon.png>
+<link rel=mask-icon href=https://alukach.com/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.89.4">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-16401510-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="A PIL-friendly class for S3 objects">
 <meta property="og:description" content="Here&rsquo;s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with PIL. This ended up being overkill for my needs but I figured somebody might get some use out of it.
  ">
 <meta property="og:type" content="article">
@@ -18,244 +34,83 @@
 <meta name=twitter:title content="A PIL-friendly class for S3 objects">
 <meta name=twitter:description content="Here&rsquo;s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with PIL. This ended up being overkill for my needs but I figured somebody might get some use out of it.
  ">
-<link rel=stylesheet href=https://alukach.com/css/style-white.css>
-<link rel=stylesheet href=https://alukach.com/css/custom.css><!--[if lt IE 9]><script src=https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js></script>
-<script src=https://oss.maxcdn.com/respond/1.4.2/respond.min.js></script><![endif]-->
-<link rel=icon type=image/png href=https://alukach.com/images/favicon.ico>
-<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-16401510-1','auto'),ga('send','pageview'))</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://alukach.com/posts/"},{"@type":"ListItem","position":2,"name":"A PIL-friendly class for S3 objects","item":"https://alukach.com/posts/pil-friendly-s3-file/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"A PIL-friendly class for S3 objects","name":"A PIL-friendly class for S3 objects","description":"Here\u0026rsquo;s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with PIL. This ended up being overkill for my needs but I figured somebody might get some use out of it.\n ","keywords":["python","pil","s3"],"articleBody":"Here’s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with PIL. This ended up being overkill for my needs but I figured somebody might get some use out of it.\n ","wordCount":"41","inLanguage":"en","datePublished":"2019-12-11T00:00:00Z","dateModified":"2019-12-11T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://alukach.com/posts/pil-friendly-s3-file/"},"publisher":{"@type":"Organization","name":"anthony lukach","logo":{"@type":"ImageObject","url":"https://alukach.com/favicon.ico"}}}</script>
 </head>
-<body class="max-width mx-auto px3 ltr">
-<div class="content index py4">
-<div id=header-post>
-<a id=menu-icon href=#><i class="fas fa-bars fa-lg"></i></a>
-<a id=menu-icon-tablet href=#><i class="fas fa-bars fa-lg"></i></a>
-<a id=top-icon-tablet href=# onclick="$('html, body').animate({scrollTop:0},'fast')" style=display:none><i class="fas fa-chevron-up fa-lg"></i></a>
-<span id=menu>
-<span id=nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/resume>Resume</a></li>
-<li><a href=/posts>Writings</a></li>
-</ul>
-</span>
-<br>
-<span id=actions>
-<ul>
-<li>
-<a class=icon href=https://alukach.com/posts/cloudformation-sub-ref/>
-<i class="fas fa-chevron-left" aria-hidden=true onmouseover="$('#i-prev').toggle()" onmouseout="$('#i-prev').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=https://alukach.com/posts/parsing-s3-inventory-output/>
-<i class="fas fa-chevron-right" aria-hidden=true onmouseover="$('#i-next').toggle()" onmouseout="$('#i-next').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')">
-<i class="fas fa-chevron-up" aria-hidden=true onmouseover="$('#i-top').toggle()" onmouseout="$('#i-top').toggle()"></i>
-</a>
-</li>
-<li>
-<a class=icon href=#>
-<i class="fas fa-share-alt" aria-hidden=true onmouseover="$('#i-share').toggle()" onmouseout="$('#i-share').toggle()" onclick="return $('#share').toggle(),!1"></i>
-</a>
-</li>
-</ul>
-<span id=i-prev class=info style=display:none>Previous post</span>
-<span id=i-next class=info style=display:none>Next post</span>
-<span id=i-top class=info style=display:none>Back to top</span>
-<span id=i-share class=info style=display:none>Share post</span>
-</span>
-<br>
-<div id=share style=display:none>
-<ul>
-<li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f">
-<i class="fab fa-facebook" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&text=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-twitter" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-linkedin" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&is_video=false&description=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-pinterest" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="mailto:?subject=A%20PIL-friendly%20class%20for%20S3%20objects&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f">
-<i class="fas fa-envelope" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-get-pocket" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-reddit" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-stumbleupon" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-digg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&name=A%20PIL-friendly%20class%20for%20S3%20objects&description=Here%26rsquo%3bs%20a%20quick%20example%20of%20creating%20an%20file-like%20object%20in%20Python%20that%20represents%20an%20object%20on%20S3%20and%20plays%20nicely%20with%20PIL.%20This%20ended%20up%20being%20overkill%20for%20my%20needs%20but%20I%20figured%20somebody%20might%20get%20some%20use%20out%20of%20it.%0a%20">
-<i class="fab fa-tumblr" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&t=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-hacker-news" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=toc>
-<nav id=TableOfContents></nav>
-</div>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://alukach.com/ accesskey=h title="anthony lukach (Alt + H)">anthony lukach</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
 </span>
 </div>
-<article class=post itemscope itemtype=http://schema.org/BlogPosting>
-<header>
-<h1 class=posttitle itemprop="name headline">
-A PIL-friendly class for S3 objects
-</h1>
-<div class=meta>
-<div class=postdate>
-<time datetime="2019-12-11 00:00:00 +0000 UTC" itemprop=datePublished>2019-12-11</time>
-</div>
-<div class=article-tag>
-<i class="fas fa-tag"></i>
-<a class=tag-link href=/tags/python rel=tag>python</a>
-,
-<a class=tag-link href=/tags/pil rel=tag>pil</a>
-,
-<a class=tag-link href=/tags/s3 rel=tag>s3</a>
-</div>
-</div>
-</header>
-<div class=content itemprop=articleBody>
-<p>Here&rsquo;s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with <a href=http://pillow.readthedocs.io/>PIL</a>. This ended up being overkill for my needs but I figured somebody might get some use out of it.</p>
-<script type=application/javascript src=https://gist.github.com/alukach/7266c77e9990307e492516a6b8990c63.js></script>
-</div>
-</article>
-<div id=footer-post-container>
-<div id=footer-post>
-<div id=nav-footer style=display:none>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/resume>Resume</a></li>
-<li><a href=/posts>Writings</a></li>
-</ul>
-</div>
-<div id=toc-footer style=display:none>
-<nav id=TableOfContents></nav>
-</div>
-<div id=share-footer style=display:none>
-<ul>
+<ul id=menu>
 <li>
-<a class=icon href="http://www.facebook.com/sharer.php?u=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f">
-<i class="fab fa-facebook fa-lg" aria-hidden=true></i>
+<a href=https://alukach.com/ title=Home>
+<span>Home</span>
 </a>
 </li>
 <li>
-<a class=icon href="https://twitter.com/share?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&text=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-twitter fa-lg" aria-hidden=true></i>
+<a href=https://alukach.com/categories/posts title=Posts>
+<span>Posts</span>
 </a>
 </li>
 <li>
-<a class=icon href="http://www.linkedin.com/shareArticle?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-linkedin fa-lg" aria-hidden=true></i>
+<a href=https://alukach.com/categories/snippets title=Snippets>
+<span>Snippets</span>
 </a>
 </li>
 <li>
-<a class=icon href="https://pinterest.com/pin/create/bookmarklet/?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&is_video=false&description=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-pinterest fa-lg" aria-hidden=true></i>
+<a href=https://alukach.com/search title="Search (Alt + /)" accesskey=/>
+<span>Search</span>
 </a>
 </li>
 <li>
-<a class=icon href="mailto:?subject=A%20PIL-friendly%20class%20for%20S3%20objects&body=Check out this article: https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f">
-<i class="fas fa-envelope fa-lg" aria-hidden=true></i>
+<a href=https://alukach.com/resume title=Resume>
+<span>Resume</span>
 </a>
 </li>
-<li>
-<a class=icon href="https://getpocket.com/save?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-get-pocket fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://reddit.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-reddit fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.stumbleupon.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-stumbleupon fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://digg.com/submit?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&title=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-digg fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="http://www.tumblr.com/share/link?url=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&name=A%20PIL-friendly%20class%20for%20S3%20objects&description=Here%26rsquo%3bs%20a%20quick%20example%20of%20creating%20an%20file-like%20object%20in%20Python%20that%20represents%20an%20object%20on%20S3%20and%20plays%20nicely%20with%20PIL.%20This%20ended%20up%20being%20overkill%20for%20my%20needs%20but%20I%20figured%20somebody%20might%20get%20some%20use%20out%20of%20it.%0a%20">
-<i class="fab fa-tumblr fa-lg" aria-hidden=true></i>
-</a>
-</li>
-<li>
-<a class=icon href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2falukach.com%2fposts%2fpil-friendly-s3-file%2f&t=A%20PIL-friendly%20class%20for%20S3%20objects">
-<i class="fab fa-hacker-news fa-lg" aria-hidden=true></i>
-</a>
-</li>
-</ul>
-</div>
-<div id=actions-footer>
-<a id=menu class=icon href=# onclick="return $('#nav-footer').toggle(),!1">
-<i class="fas fa-bars fa-lg" aria-hidden=true></i> Menu</a>
-<a id=toc class=icon href=# onclick="return $('#toc-footer').toggle(),!1">
-<i class="fas fa-list fa-lg" aria-hidden=true></i> TOC</a>
-<a id=share class=icon href=# onclick="return $('#share-footer').toggle(),!1">
-<i class="fas fa-share-alt fa-lg" aria-hidden=true></i> share</a>
-<a id=top style=display:none class=icon href=# onclick="$('html, body').animate({scrollTop:0},'fast')">
-<i class="fas fa-chevron-up fa-lg" aria-hidden=true></i> Top</a>
-</div>
-</div>
-</div>
-<footer id=footer>
-<div class=footer-left>
-Copyright &copy; 2021 Anthony Lukach
-</div>
-<div class=footer-right>
-<nav>
-<ul>
-<li><a href=/>Home</a></li>
-<li><a href=/resume>Resume</a></li>
-<li><a href=/posts>Writings</a></li>
 </ul>
 </nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<h1 class=post-title>
+A PIL-friendly class for S3 objects
+</h1>
+<div class=post-meta><span title="2019-12-11 00:00:00 +0000 UTC">December 11, 2019</span>&nbsp;·&nbsp;1 min&nbsp;|&nbsp;<a href=https://github.com/alukach/alukach.github.io/edit/main/content/posts/PIL-friendly-S3-file.md rel="noopener noreferrer" target=_blank>Suggest Changes</a>
 </div>
+</header>
+<div class=post-content><p>Here&rsquo;s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with <a href=http://pillow.readthedocs.io/>PIL</a>. This ended up being overkill for my needs but I figured somebody might get some use out of it.</p>
+<script type=application/javascript src=https://gist.github.com/alukach/7266c77e9990307e492516a6b8990c63.js></script>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://alukach.com/tags/python/>python</a></li>
+<li><a href=https://alukach.com/tags/pil/>pil</a></li>
+<li><a href=https://alukach.com/tags/s3/>s3</a></li>
+</ul>
 </footer>
-</div>
+</article>
+</main>
+<footer class=footer>
+<span>Anthony Lukach</span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
 </body>
-<link rel=stylesheet href=/lib/font-awesome/css/all.min.css>
-<script src=/lib/jquery/jquery.min.js></script>
-<script src=/js/main.js></script>
 </html>
