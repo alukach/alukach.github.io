@@ -18,7 +18,7 @@ params:
     - name: twitter
       url: "https://twitter.com/anthonylukach"
     - name: linkedin
-      url: "https://www.linkedin.com/in/alukach/"
+      url: "https://www.linkedin.com/in/alukach"
 
   # Theme config, https://github.com/adityatelange/hugo-PaperMod/wiki/Features
   # (all options default to false)
