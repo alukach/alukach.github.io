@@ -2,18 +2,10 @@
 layout: content
 title: "Hello recruiter!"
 searchHidden: true
+TocOpen: true
 ---
 
 Thanks for reaching out. You likely received a link to this page from me in response to a message you sent me via email or LinkedIn. Unfortunately, I am unable to schedule phone calls with every recruiter that contacts me. For this reason I have created this page that should help streamline our communication. It aims to answer common questions you may have and to outline criteria so that we can quickly identify if I am the right person for the role you're looking to fill.
-
-**Quick Links:**
-
-- [Hello recruiter!](#hello-recruiter)
-  - [Am I currently looking for a new job?](#am-i-currently-looking-for-a-new-job)
-  - [What types of roles interest me](#what-types-of-roles-interest-me)
-  - [What types of roles do not interest me](#what-types-of-roles-do-not-interest-me)
-  - [How to send me a job role](#how-to-send-me-a-job-role)
-  - [My Information](#my-information)
 
 ## Am I currently looking for a new job?
 
