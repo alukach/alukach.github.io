@@ -1,6 +1,6 @@
 ---
 layout: content
-title: "Resume"
+title: "Résumé"
 searchHidden: true
 ShowReadingTime: false
 ---

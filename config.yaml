@@ -19,8 +19,6 @@ params:
       url: "https://twitter.com/anthonylukach"
     - name: linkedin
       url: "https://www.linkedin.com/in/alukach/"
-    - name: email
-      url: anthony.lukach+blog@gmail.com
 
   # Theme config, https://github.com/adityatelange/hugo-PaperMod/wiki/Features
   # (all options default to false)
@@ -39,16 +37,13 @@ params:
 
 menu:
   main:
-    - name: Home
-      url: /
-      weight: 1
     - name: Posts
       url: /categories/posts
       weight: 2
     - name: Snippets
       url: /categories/snippets
       weight: 3
-    - name: Resume
+    - name: Résumé
       url: /resume
       weight: 9
     - name: Search
