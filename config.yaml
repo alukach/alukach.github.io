@@ -1,7 +1,6 @@
 baseURL: "https://alukach.com/"
 languageCode: en-us
 title: anthony lukach
-copyright: Anthony Lukach
 theme: PaperMod # https://adityatelange.github.io/hugo-PaperMod/
 paginate: 50
 
@@ -10,7 +9,7 @@ googleAnalyticsAsync: true
 
 params:
   homeInfoParams:
-    Content: A collection of notes.
+    Content: Technical thoughts & notes.
 
   socialIcons:
     - name: github
