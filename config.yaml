@@ -2,7 +2,7 @@ baseURL: "https://alukach.com/"
 languageCode: en-us
 title: anthony lukach
 theme: PaperMod # https://adityatelange.github.io/hugo-PaperMod/
-paginate: 50
+paginate: 5
 
 googleAnalytics: UA-16401510-1
 googleAnalyticsAsync: true
