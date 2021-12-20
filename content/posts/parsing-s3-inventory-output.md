@@ -3,7 +3,7 @@ date: 2019-12-16
 layout: post
 title: Parsing S3 Inventory CSV output in Python
 categories: ["snippets"]
-tags: [python, s3, inventory, csv]
+tags: [python, s3, csv]
 ---
 
 [S3 Inventory](https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-inventory.html) is a great way to access a large number of keys in an S3 Bucket. Its output is easily parsed by [AWS Athena](https://docs.aws.amazon.com/athena/latest/ug//what-is.html), enabling queries across the key names (e.g. find all keys ending with `.png`)
