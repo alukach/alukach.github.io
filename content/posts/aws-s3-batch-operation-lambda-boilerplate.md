@@ -3,7 +3,7 @@ date: 2019-12-20
 layout: post
 title: Boilerplate for S3 Batch Operation Lambda
 categories: ["snippets"]
-tags: [python, aws, s3, batch operation, lambda]
+tags: [python, aws, s3, lambda]
 ---
 
 [S3 Batch Operation](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/batch-ops.html) provide a simple way to process a number of files stored in an S3 bucket with a Lambda function. However, the Lambda function must return [particular Response Codes](https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-invoke-lambda.html).  Below is an example of a Lambda function written in Python that works with AWS S3 Batch Operations.
