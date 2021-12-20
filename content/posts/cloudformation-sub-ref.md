@@ -2,8 +2,8 @@
 date: 2018-04-30
 layout: post
 title: Using CloudFormation's Fn::Sub with Bash parameter substitution
-categories: ["posts"]
-tags: [quick-hint, cloudformation, aws]
+categories: ["snippets"]
+tags: [cloudformation, aws]
 ---
 
 Let's say that you need to inject a large bash script into a CloudFormation `AWS::EC2::Instance` Resource's `UserData` property. CloudFormation makes this easy with the [`Fn::Base64` intrinsic function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-base64.html):
