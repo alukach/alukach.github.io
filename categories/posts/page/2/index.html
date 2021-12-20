@@ -74,18 +74,6 @@ long-form thoughts
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
-<h2>Using CloudFormation's Fn::Sub with Bash parameter substitution
-</h2>
-</header>
-<section class=entry-content>
-<p>Let’s say that you need to inject a large bash script into a CloudFormation AWS::EC2::Instance Resource’s UserData property. CloudFormation makes this easy with the Fn::Base64 intrinsic function:
-1 2 3 4 5 6 7 8 9 10 11 12 AWSTemplateFormatVersion:'2010-09-09'Resources:VPNServerInstance:Type:AWS::EC2::InstanceProperties:ImageId:ami-efd0428fInstanceType:m3.mediumUserData:Fn::Base64:|#!/bin/sh echo "Hello world" In your bash script, you may even want to reference a parameter created elsewhere in the CloudFormation template. This is no problem with Cloudformation’s Fn::Sub instrinsic function:...</p>
-</section>
-<footer class=entry-footer><span title="2018-04-30 00:00:00 +0000 UTC">April 30, 2018</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to Using CloudFormation's Fn::Sub with Bash parameter substitution" href=https://alukach.com/posts/cloudformation-sub-ref/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
 <h2>Hosting Jupyter at a subdomain via Cloudflare
 </h2>
 </header>

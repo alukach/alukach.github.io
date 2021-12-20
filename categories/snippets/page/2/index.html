@@ -110,6 +110,18 @@ However, sometimes you just need to list all of the keys mentioned in the S3 Inv
 </article>
 <article class="post-entry tag-entry">
 <header class=entry-header>
+<h2>Using CloudFormation's Fn::Sub with Bash parameter substitution
+</h2>
+</header>
+<section class=entry-content>
+<p>Let’s say that you need to inject a large bash script into a CloudFormation AWS::EC2::Instance Resource’s UserData property. CloudFormation makes this easy with the Fn::Base64 intrinsic function:
+1 2 3 4 5 6 7 8 9 10 11 12 AWSTemplateFormatVersion:'2010-09-09'Resources:VPNServerInstance:Type:AWS::EC2::InstanceProperties:ImageId:ami-efd0428fInstanceType:m3.mediumUserData:Fn::Base64:|#!/bin/sh echo "Hello world" In your bash script, you may even want to reference a parameter created elsewhere in the CloudFormation template. This is no problem with Cloudformation’s Fn::Sub instrinsic function:...</p>
+</section>
+<footer class=entry-footer><span title="2018-04-30 00:00:00 +0000 UTC">April 30, 2018</span>&nbsp;·&nbsp;2 min</footer>
+<a class=entry-link aria-label="post link to Using CloudFormation's Fn::Sub with Bash parameter substitution" href=https://alukach.com/posts/cloudformation-sub-ref/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
 <h2>Serve an Esri Web AppBuilder web app from HTTP
 </h2>
 </header>
@@ -118,20 +130,6 @@ However, sometimes you just need to list all of the keys mentioned in the S3 Inv
 </section>
 <footer class=entry-footer><span title="2018-03-28 00:00:00 +0000 UTC">March 28, 2018</span>&nbsp;·&nbsp;1 min</footer>
 <a class=entry-link aria-label="post link to Serve an Esri Web AppBuilder web app from HTTP" href=https://alukach.com/posts/serve-esri-webapp-http/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>Learning AngularJS
-</h2>
-</header>
-<section class=entry-content>
-<p>Here is a quick dump of some of the better resources that I came across while learning AngularJS.
-StackOverflow: How to ‘think in AngularJS’ - Great for getting the appropriate mindset.
-egghead.io’s AngularJS series by John Lindquist - Excellently cut up into discrete segments to cover fundamentals.
-Introduction to AngularJS - First in a series of developing an Angular app. Then watch [End to End](End to End with Angular JS), Security, Frontend Workflows, Testing</p>
-</section>
-<footer class=entry-footer><span title="2014-03-22 00:00:00 +0000 UTC">March 22, 2014</span>&nbsp;·&nbsp;1 min</footer>
-<a class=entry-link aria-label="post link to Learning AngularJS" href=https://alukach.com/posts/notes-on-learning-angularjs/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
