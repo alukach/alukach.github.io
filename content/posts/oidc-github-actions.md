@@ -3,7 +3,7 @@ date: 2021-12-20
 layout: post
 title: Security-conscious cloud deployments from Github Actions via OpenID Connect
 categories: ["posts"]
-tags: [aws, devops, github]
+tags: [aws, devops, github, actions]
 ---
 
 ## Goals
