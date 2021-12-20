@@ -16,7 +16,7 @@
 <link rel=mask-icon href=https://alukach.com/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.89.4">
+<meta name=generator content="Hugo 0.91.0">
 <link rel=alternate type=application/rss+xml href=https://alukach.com/categories/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
@@ -74,6 +74,18 @@ long-form thoughts
 </header>
 <article class="post-entry tag-entry">
 <header class=entry-header>
+<h2>Security-conscious cloud deployments from Github Actions via OpenID Connect
+</h2>
+</header>
+<section class=entry-content>
+<p>Goals This ticket is focused on how we can securely deploy to a major cloud provider environment (e.g. AWS, Azure, GCP) from within our Github Actions workflows.
+Why is this challenging? A naive solution to this problem is to generate some cloud provider credentials (e.g. AWS Access Keys) and to store them as a Github Secret. Our Github Actions can then utilize these credentials in its workflows. However, this technique contains a number of concerns:...</p>
+</section>
+<footer class=entry-footer><span title="2021-12-20 00:00:00 +0000 UTC">December 20, 2021</span>&nbsp;·&nbsp;6 min</footer>
+<a class=entry-link aria-label="post link to Security-conscious cloud deployments from Github Actions via OpenID Connect" href=https://alukach.com/posts/oidc-github-actions/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
 <h2>Roll your own PR preview CI pipeline
 </h2>
 </header>
@@ -121,18 +133,6 @@ Why Within large organizations, bureaucracy can make it a challenge to obtain a 
 </section>
 <footer class=entry-footer><span title="2020-05-30 00:00:00 +0000 UTC">May 30, 2020</span>&nbsp;·&nbsp;7 min</footer>
 <a class=entry-link aria-label="post link to Tips for working with a large number of files in S3" href=https://alukach.com/posts/tips-for-working-with-a-large-number-of-files-in-s3/></a>
-</article>
-<article class="post-entry tag-entry">
-<header class=entry-header>
-<h2>Using CloudFormation's Fn::Sub with Bash parameter substitution
-</h2>
-</header>
-<section class=entry-content>
-<p>Let’s say that you need to inject a large bash script into a CloudFormation AWS::EC2::Instance Resource’s UserData property. CloudFormation makes this easy with the Fn::Base64 intrinsic function:
-1 2 3 4 5 6 7 8 9 10 11 12 AWSTemplateFormatVersion:'2010-09-09'Resources:VPNServerInstance:Type:AWS::EC2::InstanceProperties:ImageId:ami-efd0428fInstanceType:m3.mediumUserData:Fn::Base64:|#!/bin/sh echo "Hello world" In your bash script, you may even want to reference a parameter created elsewhere in the CloudFormation template. This is no problem with Cloudformation’s Fn::Sub instrinsic function:...</p>
-</section>
-<footer class=entry-footer><span title="2018-04-30 00:00:00 +0000 UTC">April 30, 2018</span>&nbsp;·&nbsp;2 min</footer>
-<a class=entry-link aria-label="post link to Using CloudFormation's Fn::Sub with Bash parameter substitution" href=https://alukach.com/posts/cloudformation-sub-ref/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
