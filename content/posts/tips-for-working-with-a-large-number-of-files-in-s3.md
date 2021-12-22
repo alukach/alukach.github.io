@@ -247,11 +247,11 @@ At time of writing, S3 Batch Operations cost $0.25 / job + $1 / million S3 objec
 
 Price to process 5 million thumbnails in 2hrs:
 
-- S3 Batch Operations: $0.25 + (5 \* $1) = $5.25
-- Lambda: 128MB _ 2000 ms _ 5,000,000 = $21.83
-- S3 Get Requests: 5,000,000 / 1000 \* $0.0004 = $2
-- S3 Put Requests: 5,000,000 / 1000 \* $0.005 = $25
-- TOTAL: $54.08
+- S3 Batch Operations: `$0.25 + (5 \* $1)` = $5.25
+- Lambda: `128MB * 2000 ms * 5,000,000` = $21.83
+- S3 Get Requests: `5,000,000 / 1000 \* $0.0004` = $2
+- S3 Put Requests: `5,000,000 / 1000 \* $0.005` = $25
+- TOTAL: **$54.08**
 
 ## Things not discussed in this post
 
