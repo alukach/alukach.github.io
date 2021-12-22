@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
 ## Querying files by S3 Properties
 
-Sometimes you may need a subset of the files within S3, based some metadata property of the object (e.g. the key's extension). While you can use the S3 list-objects API to list files beginning with a particular prefix, you can not filter by suffix. To get around this limitation, we can utilize AWS Athena to query over an S3 Inventory report.
+Sometimes you may need a subset of the files within S3, based some metadata property of the object (e.g. storage class, the key's extension). While you can use the S3 list-objects API to list files beginning with a particular prefix, you can not filter by suffix. To get around this limitation, we can utilize AWS Athena to query over an S3 Inventory report.
 
 <details>
   <summary>1. Create a table</summary>
