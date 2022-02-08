@@ -108,7 +108,7 @@ Setting up OIDC with AWS is described in depth [here](https://docs.github.com/en
    ![image](https://user-images.githubusercontent.com/897290/146831434-b69cb9d2-2776-4909-a237-508d9dbf0f8b.png)
    </details>
 
-1. By default, the IAM Role created for our OIDC Web Identity contains a condition where the `aud` claim in our token should match `sts.amazonaws.com`. However, by default the `aud` will be the URL of the repository owner. As such, we need to customize our trust relationship to encorce custom conditions.
+1. By default, the IAM Role created for our OIDC Web Identity contains a condition where the `aud` claim in our token should match `sts.amazonaws.com`. However, it is here that we will enforce more strict conditions. The `sub` claim in our token contains information about the reposoitory and branch. As such, we need to customize our trust relationship to encorce our custom conditions.
 
    <details>
    <summary>Console Screenshot</summary>
@@ -133,6 +133,7 @@ Setting up OIDC with AWS is described in depth [here](https://docs.github.com/en
          "Action": "sts:AssumeRoleWithWebIdentity",
          "Condition": {
            "StringEquals": {
+             "token.actions.githubusercontent.com:aud": "sts.amazonaws.com",
              "token.actions.githubusercontent.com:sub": "repo:my-org/my-repo:ref:refs/heads/staging"
            }
          }
