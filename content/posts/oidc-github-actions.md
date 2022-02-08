@@ -143,7 +143,7 @@ Setting up OIDC with AWS is described in depth [here](https://docs.github.com/en
 
    </details>
 
-#### Setup Workflow
+#### Setup GitHub Actions Workflow
 
 Workflows utilizing OIDC need a few particular elements.
 
