@@ -1,5 +1,6 @@
 :root {
   --radius: 0;
+  --content: rgb(81, 81, 81);
 }
 
 h1,
@@ -15,14 +16,22 @@ summary,
 body {
   font-family: "Lato", -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
     Oxygen, Ubuntu, Cantarell, open sans, helvetica neue, sans-serif;
+  line-height: 1.75;
 }
 
-.first-entry {
-  min-height: unset;
+
+.toc details {
+  margin: 0;
+  border-left: none;
 }
 
-div:not(.toc) > details summary {
-  margin-bottom: 1em;
+details {
+  margin: 0.75em 0 1em;
+  padding-left: 0.5em;
+  border-left: 3px dashed var(--code-bg);
+}
+
+details summary {
   cursor: pointer;
 }
 
