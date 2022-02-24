@@ -3,22 +3,9 @@
   --content: rgb(81, 81, 81);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-summary,
-.logo {
-  font-family: "Lora", Georgia;
-}
-
 body {
-  font-family: "Lato", -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
-    Oxygen, Ubuntu, Cantarell, open sans, helvetica neue, sans-serif;
-  line-height: 1.75;
+  line-height: 1.7;
 }
-
 
 .toc details {
   margin: 0;
@@ -26,7 +13,7 @@ body {
 }
 
 details {
-  margin: 0.75em 0 1em;
+  margin: 0.5em 0 0.5em;
   padding-left: 0.5em;
   border-left: 3px dashed var(--code-bg);
 }
