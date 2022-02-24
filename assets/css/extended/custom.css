@@ -2,6 +2,21 @@
   --radius: 0;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+summary,
+.logo {
+  font-family: "Lora", Georgia;
+}
+
+body {
+  font-family: "Lato", -apple-system, BlinkMacSystemFont, segoe ui, Roboto,
+    Oxygen, Ubuntu, Cantarell, open sans, helvetica neue, sans-serif;
+}
+
 .first-entry {
   min-height: unset;
 }
