@@ -8,7 +8,7 @@
 <meta name=description content>
 <meta name=author content>
 <link rel=canonical href=https://alukach.com/tags/python/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.ec5cdd07fdb067133c5ff34dea9dd5600a5e402560ae010c52e0dc18a961a867.css integrity="sha256-7FzdB/2wZxM8X/NN6p3VYApeQCVgrgEMUuDcGKlhqGc=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.8e4092f2ad3a4e741cba2bf986b460d9fa5f67f8c407623d3cdded5eddc92998.css integrity="sha256-jkCS8q06TnQcuiv5hrRg2fpfZ/jEB2I9PN3tXt3JKZg=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://alukach.com/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://alukach.com/favicon-16x16.png>
 <link rel=icon type=image/png sizes=32x32 href=https://alukach.com/favicon-32x32.png>
@@ -16,12 +16,14 @@
 <link rel=mask-icon href=https://alukach.com/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=https://alukach.com/tags/python/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
-</noscript>
+</noscript><link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&display=swap" rel=stylesheet>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-16401510-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="python">
 <meta property="og:description" content>
 <meta property="og:type" content="website">
@@ -129,11 +131,54 @@ Why Within large organizations, bureaucracy can make it a challenge to obtain a 
 <footer class=entry-footer><span title="2020-05-30 00:00:00 +0000 UTC">May 30, 2020</span>&nbsp;·&nbsp;7 min</footer>
 <a class=entry-link aria-label="post link to Tips for working with a large number of files in S3" href=https://alukach.com/posts/tips-for-working-with-a-large-number-of-files-in-s3/></a>
 </article>
-<footer class=page-footer>
-<nav class=pagination>
-<a class=next href=https://alukach.com/tags/python/page/2/>Next Page »</a>
-</nav>
-</footer>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Boilerplate for S3 Batch Operation Lambda
+</h2>
+</header>
+<section class=entry-content>
+<p>S3 Batch Operation provide a simple way to process a number of files stored in an S3 bucket with a Lambda function. However, the Lambda function must return particular Response Codes. Below is an example of a Lambda function written in Python that works with AWS S3 Batch Operations.
+</p>
+</section>
+<footer class=entry-footer><span title="2019-12-20 00:00:00 +0000 UTC">December 20, 2019</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to Boilerplate for S3 Batch Operation Lambda" href=https://alukach.com/posts/aws-s3-batch-operation-lambda-boilerplate/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Parsing S3 Inventory CSV output in Python
+</h2>
+</header>
+<section class=entry-content>
+<p>S3 Inventory is a great way to access a large number of keys in an S3 Bucket. Its output is easily parsed by AWS Athena, enabling queries across the key names (e.g. find all keys ending with .png)
+However, sometimes you just need to list all of the keys mentioned in the S3 Inventory output (e.g. populating an SQS queue with every keyname mentioned in an inventory output). The following code is an example of doing such task in Python:...</p>
+</section>
+<footer class=entry-footer><span title="2019-12-16 00:00:00 +0000 UTC">December 16, 2019</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to Parsing S3 Inventory CSV output in Python" href=https://alukach.com/posts/parsing-s3-inventory-output/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>A PIL-friendly class for S3 objects
+</h2>
+</header>
+<section class=entry-content>
+<p>Here’s a quick example of creating an file-like object in Python that represents an object on S3 and plays nicely with PIL. This ended up being overkill for my needs but I figured somebody might get some use out of it.
+</p>
+</section>
+<footer class=entry-footer><span title="2019-12-11 00:00:00 +0000 UTC">December 11, 2019</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to A PIL-friendly class for S3 objects" href=https://alukach.com/posts/pil-friendly-s3-file/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Natural Language Toolkit Notes
+</h2>
+</header>
+<section class=entry-content>
+<p>I’ve been experimenting with Python’s Natural Language Toolkit, following along with Steven Bird, Ewan Klein, and Edward Loper’s book “Natural Language Processing with Python — Analyzing Text with the Natural Language Toolkit” (pdf version).
+So far, the book’s been great. As I’m going through the book, I’ve been writing down notes relating to the book’s examples. I’ve made a Github repo to store these notes and experiments that I may be doing using the NLTK here....</p>
+</section>
+<footer class=entry-footer><span title="2013-08-25 00:00:00 +0000 UTC">August 25, 2013</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to Natural Language Toolkit Notes" href=https://alukach.com/posts/nltk-notes/></a>
+</article>
 </main>
 <footer class=footer>
 <span>&copy; 2022 <a href=https://alukach.com/>anthony lukach</a></span>

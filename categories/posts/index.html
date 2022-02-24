@@ -8,7 +8,7 @@
 <meta name=description content="long-form thoughts">
 <meta name=author content>
 <link rel=canonical href=https://alukach.com/categories/posts/>
-<link crossorigin=anonymous href=/assets/css/stylesheet.min.ec5cdd07fdb067133c5ff34dea9dd5600a5e402560ae010c52e0dc18a961a867.css integrity="sha256-7FzdB/2wZxM8X/NN6p3VYApeQCVgrgEMUuDcGKlhqGc=" rel="preload stylesheet" as=style>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.8e4092f2ad3a4e741cba2bf986b460d9fa5f67f8c407623d3cdded5eddc92998.css integrity="sha256-jkCS8q06TnQcuiv5hrRg2fpfZ/jEB2I9PN3tXt3JKZg=" rel="preload stylesheet" as=style>
 <link rel=icon href=https://alukach.com/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://alukach.com/favicon-16x16.png>
 <link rel=icon type=image/png sizes=32x32 href=https://alukach.com/favicon-32x32.png>
@@ -16,12 +16,14 @@
 <link rel=mask-icon href=https://alukach.com/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.1">
 <link rel=alternate type=application/rss+xml href=https://alukach.com/categories/posts/index.xml>
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
-</noscript>
+</noscript><link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&display=swap" rel=stylesheet>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;600&display=swap" rel=stylesheet>
 <script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-16401510-1','auto'),ga('send','pageview'))</script><meta property="og:title" content="Posts">
 <meta property="og:description" content="long-form thoughts">
 <meta property="og:type" content="website">
@@ -134,11 +136,55 @@ Why Within large organizations, bureaucracy can make it a challenge to obtain a 
 <footer class=entry-footer><span title="2020-05-30 00:00:00 +0000 UTC">May 30, 2020</span>&nbsp;·&nbsp;7 min</footer>
 <a class=entry-link aria-label="post link to Tips for working with a large number of files in S3" href=https://alukach.com/posts/tips-for-working-with-a-large-number-of-files-in-s3/></a>
 </article>
-<footer class=page-footer>
-<nav class=pagination>
-<a class=next href=https://alukach.com/categories/posts/page/2/>Next Page »</a>
-</nav>
-</footer>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Hosting Jupyter at a subdomain via Cloudflare
+</h2>
+</header>
+<section class=entry-content>
+<p>Full Disclosure: I am NOT an expert at Jupyter or Anaconda (which I am using in this project), there may be some bad habits below…
+Below is a quick scratchpad of the steps I took to serve Jupyter from a subdomain. Jupyter is running behind NGINX on an OpenStack Ubuntu instance and the domain’s DNS is set up to use Cloudflare to provides convenient SSL support. I was suprised by the lack of documentation for this process, prompting me to document my steps taken here....</p>
+</section>
+<footer class=entry-footer><span title="2016-12-28 00:00:00 +0000 UTC">December 28, 2016</span>&nbsp;·&nbsp;3 min</footer>
+<a class=entry-link aria-label="post link to Hosting Jupyter at a subdomain via Cloudflare" href=https://alukach.com/posts/serving-jupyter/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Django Admin Fu, part 2
+</h2>
+</header>
+<section class=entry-content>
+<p>Continuing with the Django Admin Fu post part 1.
+Action with Intermediate Page Sometimes you may need an admin action that, when submitted, takes the user to a form where they provides some additional detail. The docs mention a bit about providing intermediate pages, but not a lot. It states:
+Generally, something like [writing a intermediate page through the admin] isn’t considered a great idea. Most of the time, the best practice will be to return an HttpResponseRedirect and redirect the user to a view you’ve written, passing the list of selected objects in the GET query string....</p>
+</section>
+<footer class=entry-footer><span title="2014-12-15 00:00:00 +0000 UTC">December 15, 2014</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to Django Admin Fu, part 2" href=https://alukach.com/posts/django-admin-pt-2/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Django Admin Fu, part 1
+</h2>
+</header>
+<section class=entry-content>
+<p>I’ve been putting some time into building out the Django Admin site for one of my company’s projects. Here are some notes I’ve taken about straying away from the beaten path. I find surprisingly little information about how to do these things on StackOverflow or elsewhere. These were put used when working with Django 1.6.7.
+Fake The Model, Make The View You may want a form on the Django Admin that exists along side the model views but doesn’t actually represent a model....</p>
+</section>
+<footer class=entry-footer><span title="2014-11-04 00:00:00 +0000 UTC">November 4, 2014</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to Django Admin Fu, part 1" href=https://alukach.com/posts/django-admin-pt-1/></a>
+</article>
+<article class="post-entry tag-entry">
+<header class=entry-header>
+<h2>Hello World
+</h2>
+</header>
+<section class=entry-content>
+<p>I’m just getting things set up with this new blog. I’ve been hearing about this movement towards static-generated blogs for a while now, ever since reading this article about the Obama Campaign’s fundraising platform. The idea of stepping away from databases and convulated CMS’s and PHP attracted me.
+This site is built with Jekyll. After seeing how simple the template syntax was (based on LiquidMarkup, not unlike Django or Jinja2’s syntax), I was sold....</p>
+</section>
+<footer class=entry-footer><span title="2013-02-20 00:00:00 +0000 UTC">February 20, 2013</span>&nbsp;·&nbsp;1 min</footer>
+<a class=entry-link aria-label="post link to Hello World" href=https://alukach.com/posts/hello-world/></a>
+</article>
 </main>
 <footer class=footer>
 <span>&copy; 2022 <a href=https://alukach.com/>anthony lukach</a></span>
