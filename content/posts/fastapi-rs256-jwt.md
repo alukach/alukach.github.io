@@ -47,6 +47,7 @@ from functools import lru_cache
 from time import time
 
 from authlib.jose import JsonWebToken, JsonWebKey, KeySet, JWTClaims, errors
+from cachetools import cached, TTLCache
 from fastapi import FastAPI, Depends, HTTPException, security
 import requests
 import pydantic
@@ -58,6 +59,15 @@ token_scheme = security.HTTPBearer()
 
 class Settings(pydantic.BaseSettings):
     cognito_user_pool_id: str
+    
+    @property
+    def jwks_url(self):
+        """
+        Build JWKS url
+        """
+        pool_id = self.cognito_user_pool_id
+        region = pool_id.split("_")[0]
+        return f"https://cognito-idp.{region}.amazonaws.com/{pool_id}/.well-known/jwks.json"
 
 
 @lru_cache
@@ -68,34 +78,16 @@ def get_settings() -> Settings:
     return Settings()
 
 
-def get_jwks_url(settings=Depends(get_settings)) -> str:
+@cached(TTLCache(maxsize=1, ttl=3600))
+def get_jwks(settings: Settings = Depends(get_settings)) -> KeySet:
     """
-    Build JWKS url
-    """
-    pool_id = settings.cognito_user_pool_id
-    region = pool_id.split("_")[0]
-    return f"https://cognito-idp.{region}.amazonaws.com/{pool_id}/.well-known/jwks.json"
-
-
-@lru_cache
-def fetch_jwks(url: str, nonce: int) -> KeySet:  # noqa
-    """
-    Fetch JWKS.
+    Get cached or new JWKS. Cognito does not seem to rotate keys, however to be safe we
+    are lazy-loading new credentials every hour.
     """
     logger.info("Fetching JWKS from %s", url)
     with requests.get(url) as response:
         response.raise_for_status()
         return JsonWebKey.import_key_set(response.json())
-
-
-def get_jwks(url: str = Depends(get_jwks_url)) -> KeySet:
-    """
-    Get cached or new JWKS. Cognito does not seem to rotate keys, however to be safe we
-    are lazy-loading new credentials every hour.
-    """
-    ttl_hours = 1
-    nonce = round(time() / (ttl_hours * 60 * 60))
-    return fetch_jwks(url, nonce)
 
 
 def decode_token(
@@ -107,7 +99,7 @@ def decode_token(
     """
     try:
         return JsonWebToken().decode(s=token.credentials, key=jwks)
-    except errors.JoseError:  #
+    except errors.JoseError:
         logger.exception("Unable to decode token")
         raise HTTPException(status_code=403, detail="Bad auth token")
 
