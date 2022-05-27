@@ -44,7 +44,6 @@ Below, I've added a simple way to achieve this by taking advantage of [FastAPI's
 ```py
 import logging
 from functools import lru_cache
-from time import time
 
 from authlib.jose import JsonWebToken, JsonWebKey, KeySet, JWTClaims, errors
 from cachetools import cached, TTLCache
@@ -59,7 +58,7 @@ token_scheme = security.HTTPBearer()
 
 class Settings(pydantic.BaseSettings):
     cognito_user_pool_id: str
-    
+
     @property
     def jwks_url(self):
         """
@@ -70,7 +69,7 @@ class Settings(pydantic.BaseSettings):
         return f"https://cognito-idp.{region}.amazonaws.com/{pool_id}/.well-known/jwks.json"
 
 
-@lru_cache
+@lru_cache()
 def get_settings() -> Settings:
     """
     Load settings (once per app lifetime)
@@ -78,14 +77,21 @@ def get_settings() -> Settings:
     return Settings()
 
 
+def get_jwks_url(settings: Settings = Depends(get_settings)) -> str:
+    """
+    Get JWKS url
+    """
+    return settings.jwks_url
+
+
 @cached(TTLCache(maxsize=1, ttl=3600))
-def get_jwks(settings: Settings = Depends(get_settings)) -> KeySet:
+def get_jwks(url: str = Depends(get_jwks_url)) -> KeySet:
     """
     Get cached or new JWKS. Cognito does not seem to rotate keys, however to be safe we
     are lazy-loading new credentials every hour.
     """
-    logger.info("Fetching JWKS from %s", settings.jwks_url)
-    with requests.get(settings.jwks_url) as response:
+    logger.info("Fetching JWKS from %s", url)
+    with requests.get(url) as response:
         response.raise_for_status()
         return JsonWebKey.import_key_set(response.json())
 
@@ -104,22 +110,15 @@ def decode_token(
         raise HTTPException(status_code=403, detail="Bad auth token")
 
 
-def get_subject_claim(claims: security.HTTPBasicCredentials = Depends(decode_token)) -> str:
-    """
-    Get subject from JWT claims
-    """
-    return claims["sub"]
-
-
 app = FastAPI()
 
 
 @app.get("/who-am-i")
-def who_am_i(sub=Depends(get_subject_claim)) -> str:
+def who_am_i(claims=Depends(decode_token)) -> str:
     """
     Return claims for the provided JWT
     """
-    return sub
+    return claims
 
 
 @app.get("/auth-test", dependencies=[Depends(decode_token)])
@@ -128,4 +127,5 @@ def auth_test() -> bool:
     Require auth but not use it as a dependency
     """
     return True
+
 ```
