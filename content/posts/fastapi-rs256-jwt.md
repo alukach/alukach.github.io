@@ -104,7 +104,7 @@ def decode_token(
         raise HTTPException(status_code=403, detail="Bad auth token")
 
 
-def get_claims_subject(claims: security.HTTPBasicCredentials = Depends(decode_token)):
+def get_subject_claim(claims: security.HTTPBasicCredentials = Depends(decode_token)) -> str:
     """
     Get subject from JWT claims
     """
@@ -115,7 +115,7 @@ app = FastAPI()
 
 
 @app.get("/who-am-i")
-def who_am_i(sub=Depends(get_claims_subject)):
+def who_am_i(sub=Depends(get_subject_claim)) -> str:
     """
     Return claims for the provided JWT
     """
@@ -123,7 +123,7 @@ def who_am_i(sub=Depends(get_claims_subject)):
 
 
 @app.get("/auth-test", dependencies=[Depends(decode_token)])
-def auth_test():
+def auth_test() -> bool:
     """
     Require auth but not use it as a dependency
     """
