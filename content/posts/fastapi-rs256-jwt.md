@@ -84,8 +84,8 @@ def get_jwks(settings: Settings = Depends(get_settings)) -> KeySet:
     Get cached or new JWKS. Cognito does not seem to rotate keys, however to be safe we
     are lazy-loading new credentials every hour.
     """
-    logger.info("Fetching JWKS from %s", url)
-    with requests.get(url) as response:
+    logger.info("Fetching JWKS from %s", settings.jwks_url)
+    with requests.get(settings.jwks_url) as response:
         response.raise_for_status()
         return JsonWebKey.import_key_set(response.json())
 
