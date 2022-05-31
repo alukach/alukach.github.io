@@ -16,7 +16,7 @@ RS256 is a signing algorithm used to generate and validate JSON Web Tokens (JWTs
 
 This allows you to share your public key and thus enables any service to validate JWTs (provided that the service can read the public key).  This makes RS256 a great choice for distributed applications, wherein one service generates auth tokens but many services can independently validate auth tokens.  
 
-_Note:_ You are already using asymmetric cryptographic algorithms. For example, when you access a website over HTTPS, the SSL certificate includes a public key to allow a browser to validate messages sent by the origin server, while the origin server maintains a private key used to sign messages before they are sent.  Additionally, when you set up SSH key pair for the purpose of connecting to servers. This key pair consists of a _private_ and _public_ key.  The private is kept on your machine while a public key can be stored in a `~/.ssh/authorized_keys` file on the server to validate login requests.
+_Note:_ You are already using asymmetric cryptographic algorithms. For example, when you access a website over HTTPS, the SSL certificate includes a public key to allow a browser to validate messages sent by the origin server, while the origin server maintains a private key used to sign messages before they are sent.  Additionally, when you set up SSH key pair for the purpose of connecting to servers, this key pair consists of a _private_ and _public_ key.  The private is kept on your machine while a public key can be stored in a `~/.ssh/authorized_keys` file on the server to validate login requests.
 
 ### Background: JWKS
 
