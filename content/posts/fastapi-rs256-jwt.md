@@ -104,7 +104,7 @@ def decode_token(
     Validate & decode JWT.
     """
     try:
-        claims = JsonWebToken(['RS256']).decode(
+        claims = JsonWebToken(["RS256"]).decode(
             s=token.credentials,
             key=jwks,
             claim_options={
