@@ -104,7 +104,7 @@ def decode_token(
     Validate & decode JWT.
     """
     try:
-        return JsonWebToken().decode(s=token.credentials, key=jwks)
+        return JsonWebToken(["RS256"]).decode(s=token.credentials, key=jwks)
     except errors.JoseError:
         logger.exception("Unable to decode token")
         raise HTTPException(status_code=403, detail="Bad auth token")
