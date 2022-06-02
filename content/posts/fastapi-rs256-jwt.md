@@ -104,10 +104,25 @@ def decode_token(
     Validate & decode JWT.
     """
     try:
-        return JsonWebToken(["RS256"]).decode(s=token.credentials, key=jwks)
+        claims = JsonWebToken(['RS256']).decode(
+            s=token.credentials,
+            key=jwks,
+            claim_options={
+                # Example of validating audience to match expected value
+                # "aud": {"essential": True, "values": [APP_CLIENT_ID]}
+            }
+        )
+
+        if "client_id" in claims:
+            # Insert Cognito's `client_id` into `aud` claim if `aud` claim is unset
+            claims.setdefault("aud", claims["client_id"])
+
+        claims.validate()
     except errors.JoseError:
         logger.exception("Unable to decode token")
         raise HTTPException(status_code=403, detail="Bad auth token")
+
+    return claims
 
 
 app = FastAPI()
