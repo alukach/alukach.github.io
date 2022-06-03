@@ -59,15 +59,6 @@ token_scheme = security.HTTPBearer()
 class Settings(pydantic.BaseSettings):
     cognito_user_pool_id: str
 
-    @property
-    def jwks_url(self):
-        """
-        Build JWKS url
-        """
-        pool_id = self.cognito_user_pool_id
-        region = pool_id.split("_")[0]
-        return f"https://cognito-idp.{region}.amazonaws.com/{pool_id}/.well-known/jwks.json"
-
 
 @lru_cache()
 def get_settings() -> Settings:
@@ -79,9 +70,11 @@ def get_settings() -> Settings:
 
 def get_jwks_url(settings: Settings = Depends(get_settings)) -> str:
     """
-    Get JWKS url
+    Build JWKS url
     """
-    return settings.jwks_url
+    pool_id = settings.cognito_user_pool_id
+    region = pool_id.split("_")[0]
+    return f"https://cognito-idp.{region}.amazonaws.com/{pool_id}/.well-known/jwks.json"
 
 
 @cached(TTLCache(maxsize=1, ttl=3600))
