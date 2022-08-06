@@ -5,12 +5,11 @@ title: Type-based message processing with Pydantic
 categories: ["posts"]
 tags: [python, pydantic]
 ---
-
 When building systems to process messages, it's not unlikely to find yourself in a situation where you need to process a number of inputted heterogeneous messages (i.e. messages of varying shapes/types). For example, consider a situation where you are processing messages from an SQS queue via a Lambda function. This post attempts to highlight how this can be achieved in a clean and elegant manner by utilizing [Pydantic](https://pydantic-docs.helpmanual.io/), Python's [typing](https://docs.python.org/3/library/typing.html) system, and some helpers from the Python standard library.
 
 ## Categorizing messages of unknown type
 
-The first thing you likely need to do is identify the type of an inputted message by its properties. We can use Pydantic to model the types of messages we expect to have coming into our system. We can then utilize [Pydantic's `parse_obj_as`](https://pydantic-docs.helpmanual.io/usage/models/#parsing-data-into-a-specified-type) function to cast these messages as their
+The first thing you likely need to do is identify the type of an inputted message by its properties. We can use Pydantic to model the types of messages we expect to have coming into our system. We can then utilize [Pydantic's `parse_obj_as`](https://pydantic-docs.helpmanual.io/usage/models/#parsing-data-into-a-specified-type) function to cast these messages to their respective Pydantic classes.
 
 In the following example, we are able to distinguish between messages based on the _attributes_ that they contain:
 
@@ -102,7 +101,7 @@ print(messages)
 
 #### Unknown types
 
-In the event that a message does not fit any model, a `ValidationError` will be thrown:
+In the event that a message does not fit any model, a `pydantic.ValidationError` will be thrown:
 
 <details>
 
@@ -160,7 +159,7 @@ pydantic.parse_obj_as(typing.Union[Person, Pet], {"name": "Fido", "breed": "pood
 
 </details>
 
-By default, Pydantic permits extra attributes on models. By specifying that extra attributes are forbidden via the [`extra` option](https://pydantic-docs.helpmanual.io/usage/model_config/#options),
+By default, Pydantic permits extra attributes on models. By specifying that extra attributes are forbidden via the [`extra` option](https://pydantic-docs.helpmanual.io/usage/model_config/#options), we can help Pydantic narrow in on the correct type.
 
 <details>
 
@@ -186,7 +185,7 @@ pydantic.parse_obj_as(typing.Union[Person, Pet], {"name": "Fido", "breed": "pood
 
 Now that we have our messages categorized, it's likely that you'll want to process each message according to its type. We could write a long `if isinstance(msg, TypeA): ... elif isinstance(msg, TypeB): ...`, but that's no fun. Instead, we can reach for Python's `functools` module, which has a convenient [`singledispatch` decorator](https://docs.python.org/3/library/functools.html#functools.singledispatch).
 
-For those of us who aren't function programming wizards (ie myself), here are some helpful definitions from [Python's glossary](https://docs.python.org/3/glossary.html):
+For those of us who aren't function programming wizards (e.g. myself), here are some helpful definitions from [Python's glossary](https://docs.python.org/3/glossary.html):
 
 <blockquote>
 <dl>
