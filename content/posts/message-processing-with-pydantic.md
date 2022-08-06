@@ -293,7 +293,7 @@ handle_message({
 
 ## Testing
 
-This type-based message handling is neat and all, but can we test this? I found it to be a bit challenging to integrate [mocking](https://docs.python.org/3/library/unittest.mock.html) with the `@functools.singledispatch`, but coming up with a simple context manager to conveniently swap out registered type handlers with mocks:
+This type-based message handling is neat and all, but can we test this? I found it to be a bit challenging to integrate [mocking](https://docs.python.org/3/library/unittest.mock.html) with the `@functools.singledispatch`, but ended up using a simple context manager to conveniently swap out registered type handlers with mocks:
 
 ```py
 import contextlib
