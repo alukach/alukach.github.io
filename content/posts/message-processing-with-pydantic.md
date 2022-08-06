@@ -1,12 +1,12 @@
 ---
 date: 2022-08-05
 layout: post
-title: Type-based message/event processing with Pydantic
+title: Type-based message processing with Pydantic
 categories: ["posts"]
 tags: [python, pydantic]
 ---
 
-When building systems to that process messages, it's not unlikely to find yourself in a situation where you need to process a number of inputted heterogeneous messages (i.e. messages of varying shapes/types) by a single function. For example, consider a situation where you are processing messages from an SQS queue via a Lambda function. This post attempts to highlight how this can be achieved in a clean and elegant manner by utilizing [Pydantic](https://pydantic-docs.helpmanual.io/), Python's [typing](https://docs.python.org/3/library/typing.html) system, and some helpers from the Python standard library.
+When building systems to process messages, it's not unlikely to find yourself in a situation where you need to process a number of inputted heterogeneous messages (i.e. messages of varying shapes/types). For example, consider a situation where you are processing messages from an SQS queue via a Lambda function. This post attempts to highlight how this can be achieved in a clean and elegant manner by utilizing [Pydantic](https://pydantic-docs.helpmanual.io/), Python's [typing](https://docs.python.org/3/library/typing.html) system, and some helpers from the Python standard library.
 
 ## Categorizing messages of unknown type
 
@@ -188,6 +188,7 @@ Now that we have our messages categorized, it's likely that you'll want to proce
 
 For those of us who aren't function programming wizards (ie myself), here are some helpful definitions from [Python's glossary](https://docs.python.org/3/glossary.html):
 
+<blockquote>
 <dl>
 
 <dt><a href="https://docs.python.org/3/glossary.html#term-single-dispatch">single dispatch</a></dt>
@@ -199,6 +200,7 @@ For those of us who aren't function programming wizards (ie myself), here are so
 <dd>A function composed of multiple functions implementing the same operation for different types. Which implementation should be used during a call is determined by the dispatch algorithm.</dd>
 
 </dl>
+</blockquote>
 
 Let's take a look at how that could work:
 
