@@ -1,7 +1,7 @@
 ---
 date: 2022-09-08
 layout: post
-title: SSH tunnels in Python
+title: Auto-assume an IAM role before running a command
 categories: ["snippets"]
 tags: [python, ssh, tunnel]
 ---
