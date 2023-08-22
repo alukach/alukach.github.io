@@ -1,0 +1,41 @@
+---
+date: 2023-08-21
+layout: post
+title: Normalizing heterogeneous decimal Ion data in Athena
+categories: ["snippets"]
+tags: [athena, aws, sql]
+---
+
+Recently, we exported data from a DynamoDB table to S3 in [AWS Ion format](https://amazon-ion.github.io/ion-docs/docs/spec.html).  However, due to the fact that the DynamoDB table had varied formats for some numeric properties, the export serialized these numeric data columns in a few different formats: as a decimal (`1234.`), as an Ion decimal type (`123d1`), and as a string (`"1234"`).
+
+When querying this data in Athena, the following SQL did the trick to convert any of those formats into a `bigint`:
+
+```sql
+SELECT
+  CAST(
+		-- Convert `size` from Ion Decimal string to bigint
+		CAST(
+			SUBSTRING(
+				i.size,
+				1,
+				CASE
+					STRPOS(i.size, 'd')
+					WHEN 0 THEN LENGTH(i.size) ELSE STRPOS(i.size, 'd') - 1
+				END
+			) AS DECIMAL(32, 16)
+		) * POWER(
+			10,
+			CASE
+				STRPOS(i.size, 'd')
+				WHEN 0 THEN 0 ELSE CAST(
+					SUBSTRING(
+						i.size,
+						STRPOS(i.size, 'd') + 1,
+						LENGTH(i.size)
+					) as BIGINT
+				)
+			END
+		) as BIGINT
+	) size
+FROM table i
+```
