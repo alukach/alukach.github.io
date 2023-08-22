@@ -6,9 +6,9 @@ categories: ["snippets"]
 tags: [athena, aws, sql]
 ---
 
-Recently, we exported data from a DynamoDB table to S3 in [AWS Ion format](https://amazon-ion.github.io/ion-docs/docs/spec.html).  However, due to the fact that the DynamoDB table had varied formats for some numeric properties, the export serialized these numeric data columns in a few different formats: as a decimal (`1234.`), as an Ion decimal type (`123d1`), and as a string (`"1234"`).
+Recently, we exported data from a DynamoDB table to S3 in [AWS Ion format](https://amazon-ion.github.io/ion-docs/docs/spec.html).  However, due to the fact that the DynamoDB table had varied formats for some numeric properties, the export serialized these numeric data columns in a few different formats: as a decimal (`1234.`), as an [Ion decimal type](https://amazon-ion.github.io/ion-docs/docs/decimal.html) (`123d1`), and as a string (`"1234"`).  However, we want to be able to treat these values as a `bigint` within our Athena queries.
 
-When querying this data in Athena, the following SQL did the trick to convert any of those formats into a `bigint`:
+Our solution was to create a view similar to the following that would convert any of those formats into a `bigint`:
 
 ```sql
 SELECT
@@ -39,3 +39,8 @@ SELECT
 	) size
 FROM table i
 ```
+
+This works by splitting the values the location of a `d` character within the value and multiplying the value to the left of the `d` character by `10` to the power of the value to the right of the `d` character.  Examples:
+
+* `1234d1` -> `1234 * 10 ** 1` -> `12340`
+* `12345` -> `12345 * 10 ** 0` -> `12345`
