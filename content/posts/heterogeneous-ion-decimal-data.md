@@ -6,7 +6,7 @@ categories: ["snippets"]
 tags: [athena, aws, sql]
 ---
 
-Recently, we exported data from a DynamoDB table to S3 in [AWS Ion format](https://amazon-ion.github.io/ion-docs/docs/spec.html).  However, due to the fact that the DynamoDB table had varied formats for some numeric properties, the export serialized these numeric data columns in a few different formats: as a decimal (`1234.`), as an [Ion decimal type](https://amazon-ion.github.io/ion-docs/docs/decimal.html) (`123d1`), and as a string (`"1234"`).  However, we want to be able to treat these values as a `bigint` within our Athena queries.
+Recently, we exported data from a DynamoDB table to S3 in [AWS Ion format](https://amazon-ion.github.io/ion-docs/docs/spec.html).  However, due to the fact that the DynamoDB table had varied formats for some numeric properties, the export serialized these numeric data columns in a few different formats: as a decimal (`1234.`), as an [Ion decimal type](https://amazon-ion.github.io/ion-docs/docs/decimal.html) (`1234d0`), and as a string (`"1234"`).  However, we want to be able to treat these values as a `bigint` within our Athena queries.
 
 Our solution was to create a view similar to the following that would convert any of those formats into a `bigint`:
 
