@@ -29,7 +29,7 @@ params:
   ShowCodeCopyButtons: true
   editPost:
     URL: "https://github.com/alukach/alukach.github.io/edit/main/content"
-    Text: "Suggest Changes" # edit text
+    Text: "Edit" # edit text
     appendFilePath: true # to append file path to Edit link
 
   googleDocsResumeId: 1iHOSIBZ7AiSSyyejE1-YS2oOlpxG3JZI_y6llnfxBrI
