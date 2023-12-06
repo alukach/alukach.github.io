@@ -1,12 +1,12 @@
 ---
 date: 2023-04-01
 layout: post
-title: Everything that I know about Cookies 🍪
+title: Notes on Cookies 🍪
 categories: ["posts"]
 tags: [cookies]
 ---
 
-This is everything that I know about using cookies in web applications.  Admittedly, I don't know a lot about cookies and should probably not be considered a source of authority on this topic.  These are just notes I write while trying to learn about the subject.
+These are some notes that I have needed to write down about using cookies in web applications.  Admittedly, I don't know a lot about cookies and should probably not be considered a source of authority on this topic.
 
 ## Why cookies?
 
