@@ -19,6 +19,7 @@
         function generateEmbed() {
             // Get URL from input
             var urlInput = document.getElementById('loomUrl').value;
+            if (!urlInput) return
             var embedUrl = urlInput.replace('share', 'embed');
 
             // Check which checkboxes are checked and append arguments
