@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loom Embed Wizard</title>
+    <script>
+        function generateEmbed() {
+            // Get URL from input
+            var urlInput = document.getElementById('loomUrl').value;
+            var embedUrl = urlInput.replace('share', 'embed');
+
+            // Check which checkboxes are checked and append arguments
+            if (document.getElementById('hideShare').checked) embedUrl += '?hide_share=true';
+            if (document.getElementById('hideEmbedTopBar').checked) embedUrl += (embedUrl.includes('?') ? '&' : '?') + 'hideEmbedTopBar=true';
+            if (document.getElementById('hideTitle').checked) embedUrl += (embedUrl.includes('?') ? '&' : '?') + 'hide_title=true';
+            if (document.getElementById('hideOwner').checked) embedUrl += (embedUrl.includes('?') ? '&' : '?') + 'hide_owner=true';
+            if (document.getElementById('mute').checked) embedUrl += (embedUrl.includes('?') ? '&' : '?') + 'muted=true';
+            if (document.getElementById('autoplay').checked) embedUrl += (embedUrl.includes('?') ? '&' : '?') + 'autoplay=true';
+            if (document.getElementById('timestamp').value) {
+                var timestamp = document.getElementById('timestamp').value;
+                embedUrl += (embedUrl.includes('?') ? '&' : '?') + 't=' + timestamp;
+            }
+
+            // Set the preview and HTML code
+            var previewFrame = '<div style="position: relative; padding-bottom: 64.86486486486486%; height: 0;"><iframe src="' + embedUrl + '" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>';
+            document.getElementById('preview').innerHTML = previewFrame;
+            document.getElementById('embedCode').textContent = previewFrame;
+        }
+        
+        // Add event listeners once the window loads
+        window.onload = () => {
+            document.getElementById('loomUrl').addEventListener('input', generateEmbed);
+            document.querySelectorAll('.option').forEach(item => {
+                item.addEventListener('change', generateEmbed);
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>Loom Embed Generator</h1>
+    <p>Enter your Loom share URL below:</p>
+    <input type="text" id="loomUrl" style="width: 100%;" placeholder="https://www.loom.com/share/yourvideo">
+    <br><br>
+    <label><input type="checkbox" id="hideShare" class="option"> Hide Share Button (removes the button linking out to the Loom page)</label><br>
+    <label><input type="checkbox" id="hideEmbedTopBar" class="option"> Hide Embed Top Bar (removes the top bar that includes the title, owner, and share link)</label><br>
+    <label><input type="checkbox" id="hideTitle" class="option"> Hide Title (hides the video title from the embedded video)</label><br>
+    <label><input type="checkbox" id="hideOwner" class="option"> Hide Owner (hides the video creator's avatar before the video plays)</label><br>
+    <label><input type="checkbox" id="mute" class="option"> Mute (starts the video muted)</label><br>
+    <label><input type="checkbox" id="autoplay" class="option"> Autoplay (immediately plays the embedded video once loaded)</label><br>
+    Timestamp (e.g., 80s or 1m20s): <input type="text" id="timestamp" class="option"><br><br>
+    <h2>Preview:</h2>
+    <div id="preview"></div>
+    <h2>Embed Code:</h2>
+    <textarea id="embedCode" style="width: 100%; height: 150px;"></textarea>
+</body>
+</html>
