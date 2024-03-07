@@ -40,7 +40,7 @@
 <body>
     <h1>Loom Embed Generator</h1>
     <p>Enter your Loom share URL below:</p>
-    <input type="text" id="loomUrl" style="width: 100%;" placeholder="https://www.loom.com/share/yourvideo">
+    <input type="text" id="loomUrl" style="width: 100%; border: 1px dotted #000" placeholder="https://www.loom.com/share/yourvideo">
     <br><br>
     <label><input type="checkbox" id="hideShare" class="option"> Hide Share Button (removes the button linking out to the Loom page)</label><br>
     <label><input type="checkbox" id="hideEmbedTopBar" class="option"> Hide Embed Top Bar (removes the top bar that includes the title, owner, and share link)</label><br>
@@ -52,6 +52,6 @@
     <h2>Preview:</h2>
     <div id="preview"></div>
     <h2>Embed Code:</h2>
-    <textarea id="embedCode" style="width: 100%; height: 150px;"></textarea>
+    <textarea id="embedCode" style="width: 100%; height: 150px; font-family: monospace;"></textarea>
 </body>
 </html>
