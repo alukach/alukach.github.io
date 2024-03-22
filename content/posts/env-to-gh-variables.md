@@ -1,7 +1,7 @@
 ---
 date: 2024-03-21
 layout: post
-title: .env to Github Environment Variables
+title: ".env to Github Environment Variables"
 categories: ["snippets"]
 tags: [github, actions, dotenv]
 ---
