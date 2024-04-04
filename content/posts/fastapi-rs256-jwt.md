@@ -39,101 +39,131 @@ For a FastAPI application to validate a JWT signed with an RS256 algorithm, it n
 2. Retrieve token from the request
 3. Validate the token's signature against the JWKS
 
-Below, I've added a simple way to achieve this by taking advantage of [FastAPI's dependency injection system](https://fastapi.tiangolo.com/tutorial/dependencies/) and [Authlib](https://docs.authlib.org/en/latest/):
+Below, I've added a simple way to achieve this by taking advantage of [FastAPI's dependency injection system](https://fastapi.tiangolo.com/tutorial/dependencies/) and [pyJWT](https://pyjwt.readthedocs.io):
 
 ```py
-import logging
-from functools import lru_cache
+from typing import Annotated, Any, Dict, List, Optional
 
-from authlib.jose import JsonWebToken, JsonWebKey, KeySet, JWTClaims, errors
-from cachetools import cached, TTLCache
-from fastapi import FastAPI, Depends, HTTPException, security
-import requests
-import pydantic
-
-logger = logging.getLogger(__name__)
-
-token_scheme = security.HTTPBearer()
+import jwt
+from fastapi import FastAPI, HTTPException, Security, security, status
+from pydantic import HttpUrl
+from pydantic_settings import BaseSettings
 
 
-class Settings(pydantic.BaseSettings):
-    cognito_user_pool_id: str
+#
+# Settings
+#
+class Settings(BaseSettings):
+    authorization_url: HttpUrl
+    token_url: HttpUrl
+    jwks_url: HttpUrl
+    client_id: str
+    permitted_jwt_audiences: List[str] = ["account"]
 
 
-@lru_cache()
-def get_settings() -> Settings:
-    """
-    Load settings (once per app lifetime)
-    """
-    return Settings()
+settings = Settings(
+    # Some example Cognito endpoints...
+    authorization_url="https://example-app.auth.us-west-2.amazoncognito.com/oauth2/authorize",
+    token_url="https://example-app.auth.us-west-2.amazoncognito.com/oauth2/token",
+    jwks_url="https://cognito-idp.us-west-2.amazonaws.com/us-west-2_3x4mP1e1d/.well-known/jwks.json",
+    client_id='example-api'
+)
+jwks_client = jwt.PyJWKClient(settings.jwks_url)  # Caches JWKS
 
 
-def get_jwks_url(settings: Settings = Depends(get_settings)) -> str:
-    """
-    Build JWKS url
-    """
-    pool_id = settings.cognito_user_pool_id
-    region = pool_id.split("_")[0]
-    return f"https://cognito-idp.{region}.amazonaws.com/{pool_id}/.well-known/jwks.json"
+#
+# Dependencies
+#
+oauth2_scheme = security.OAuth2AuthorizationCodeBearer(
+    authorizationUrl=settings.authorization_url,
+    tokenUrl=settings.token_url,
+    scopes={ # Populate UI for scope selection checkboxes
+        f"example:{resource}:{action}": f"{action.title()} {resource}"
+        for resource in ["note"]
+        for action in ["create", "read", "update", "delete"]
+    },
+)
 
 
-@cached(TTLCache(maxsize=1, ttl=3600))
-def get_jwks(url: str = Depends(get_jwks_url)) -> KeySet:
-    """
-    Get cached or new JWKS. Cognito does not seem to rotate keys, however to be safe we
-    are lazy-loading new credentials every hour.
-    """
-    logger.info("Fetching JWKS from %s", url)
-    with requests.get(url) as response:
-        response.raise_for_status()
-        return JsonWebKey.import_key_set(response.json())
-
-
-def decode_token(
-    token: security.HTTPAuthorizationCredentials = Depends(token_scheme),
-    jwks: KeySet = Depends(get_jwks),
-) -> JWTClaims:
-    """
-    Validate & decode JWT.
-    """
+def user_token(
+    token_str: Annotated[str, Security(oauth2_scheme)],
+    required_scopes: security.SecurityScopes,
+):
+    # Parse & validate token
     try:
-        claims = JsonWebToken(["RS256"]).decode(
-            s=token.credentials,
-            key=jwks,
-            claim_options={
-                # Example of validating audience to match expected value
-                # "aud": {"essential": True, "values": [APP_CLIENT_ID]}
-            }
+        token = jwt.decode(
+            token_str,
+            jwks_client.get_signing_key_from_jwt(token_str).key,
+            algorithms=["RS256"],
+            audience=settings.permitted_jwt_audiences,
         )
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        ) from e
 
-        if "client_id" in claims:
-            # Insert Cognito's `client_id` into `aud` claim if `aud` claim is unset
-            claims.setdefault("aud", claims["client_id"])
+    # Validate scopes (if required)
+    for scope in required_scopes.scopes:
+        if scope not in token["scope"]:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Not enough permissions",
+                headers={
+                    "WWW-Authenticate": f'Bearer scope="{required_scopes.scope_str}"'
+                },
+            )
 
-        claims.validate()
-    except errors.JoseError:
-        logger.exception("Unable to decode token")
-        raise HTTPException(status_code=403, detail="Bad auth token")
-
-    return claims
-
-
-app = FastAPI()
-
-
-@app.get("/who-am-i")
-def who_am_i(claims=Depends(decode_token)) -> str:
-    """
-    Return claims for the provided JWT
-    """
-    return claims
+    return token
 
 
-@app.get("/auth-test", dependencies=[Depends(decode_token)])
-def auth_test() -> bool:
-    """
-    Require auth but not use it as a dependency
-    """
-    return True
+#
+# App
+#
+app = FastAPI(
+    docs_url="/",
+    swagger_ui_init_oauth={
+        "appName": "ExampleApp",
+        "clientId": settings.client_id,
+        "usePkceWithAuthorizationCodeGrant": True,
+    },
+)
+
+
+@app.get("/my-token")
+def token(user_token: Annotated[Dict[Any, Any], Security(user_token)]):
+    """View auth token token."""
+    return user_token
+
+
+@app.get("/my-scopes")
+def scopes(user_token: Annotated[Dict[Any, Any], Security(user_token)]):
+    """View auth token scopes."""
+    return user_token["scope"].split(" ")
+
+
+@app.get(
+    "/notes",
+    dependencies=[Security(user_token, scopes=["example:note:read"])],
+)
+def read_note():
+    """Mock endpoint to read a note. Requires `example:note:read` scope."""
+    return {
+        "success": True,
+        "details": "🚀 You have the required scope to read a note",
+    }
+
+
+@app.post(
+    "/notes",
+    dependencies=[Security(user_token, scopes=["example:note:create"])],
+)
+def create_note():
+    """Mock endpoint to create a note. Requires `example:note:create` scope."""
+    return {
+        "success": True,
+        "details": "🚀 You have the required scope to create a note",
+    }
 
 ```
