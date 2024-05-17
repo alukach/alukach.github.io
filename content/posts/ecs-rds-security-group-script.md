@@ -1,7 +1,7 @@
 ---
 date: 2024-02-08
 layout: post
-title: An ECS -> RDS Securty Group Script
+title: An ECS -> RDS Security Group Script
 categories: ["snippets"]
 tags: [ecs,rds,aws]
 ---
