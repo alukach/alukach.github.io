@@ -22,12 +22,6 @@ details summary {
   cursor: pointer;
 }
 
-pre code {
-  /* Make unstyled code much more visible */
-  color: var(--primary) !important;
-  background-color: var(--theme) !important;
-}
-
 li::marker {
   font-weight: 600;
 }
