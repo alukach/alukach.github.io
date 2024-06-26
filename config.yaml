@@ -66,7 +66,7 @@ markup:
     lineNos: true
     lineNumbersInTable: true
     noClasses: true
-    style: rainbow_dash # https://xyproto.github.io/splash/docs/longer/all.html
+    style: monokai
     tabWidth: 2
 
   goldmark:
